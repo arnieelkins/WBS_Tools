@@ -45,7 +45,7 @@
 		<Objects>
 			<Memo>
 				<expr>self.headerblock</expr>
-				<fontsize>11</fontsize>
+				<fontsize>10.5</fontsize>
 				<height>648</height>
 				<width>525</width>
 				<y>'648.0 pt'</y>

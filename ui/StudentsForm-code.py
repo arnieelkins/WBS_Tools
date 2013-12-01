@@ -8,7 +8,7 @@
 def onHit(self, evt):
 	
 	try:
-		dlg = dabo.ui.info('Output from save operation = ' + str(self.Form.save()) + '.\nIf it says None, that is a Good Thing!')
+		dlg = dabo.ui.info('Output from save operation = ' + str(self.Form.save()) + '.\n')
 		self.Form.update()
 	except:
 		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
@@ -87,7 +87,7 @@ def onHit(self, evt):
 		bizObj.setFieldVal("GradeDateGraded", currentDate)
 		bizObj.setFieldVal("GradeLessonsRecNo", choiceDict[lesson])
 		try:
-			dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\nIf it says None, that is a Good Thing!')
+			dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\n')
 		except:
 			dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
 		self.Form.requery()
@@ -184,7 +184,8 @@ def onHit(self, evt):
 def onHit(self, evt):
 	# Save Button
 	try:
-		dlg = dabo.ui.info('Output from save operation = ' + str(self.Form.save()) + '.\nIf it says None, that is a Good Thing!')
+		dlg = dabo.ui.info('Output from save operation = ' + str(self.Form.save()) + '.\n')
+		self.Form.requery()
 		self.Form.update()
 	except:
 		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
@@ -233,7 +234,7 @@ def initProperties(self):
 def onGridCellEdited(self, evt):
 	# save the grade data if the user edits anything
 	try:
-		dlg = dabo.ui.info('Output from save operation = ' + str(self.Form.save(dataSource='Grades')) + '.\nIf it says None, that is a Good Thing!')
+		dlg = dabo.ui.info('Output from save operation = ' + str(self.Form.save(dataSource='Grades')) + '.\n')
 		self.Form.requery()
 	except:
 		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
@@ -244,7 +245,7 @@ def addStudent(self):
 		self.PrimaryBizobj.setWhereClause("")
 		self.requery()
 		self.new()
-		dlg = dabo.ui.info('Output from save operation = ' + str(self.save()) + '.\nIf it says None, that is a Good Thing!')
+		dlg = dabo.ui.info('Output from save operation = ' + str(self.save()) + '.\n')
 		self.requery()
 	except:
 		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
@@ -304,7 +305,7 @@ def deleteGrade(self):
 		if response == True:
 			try:
 				bizObj.delete()
-				dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\nIf it says None, that is a Good Thing!')
+				dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\n')
 				self.requery()
 			except:
 				dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")

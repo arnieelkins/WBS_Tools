@@ -45,7 +45,7 @@ def afterInitAll(self):
 
 
 def createBizobjs(self):
-	app = self.Form.Application
+	app = self.Application
 
 	lessonsBizobj = app.biz.LessonsBizobj(app.dbConnection)
 	self.addBizobj(lessonsBizobj)

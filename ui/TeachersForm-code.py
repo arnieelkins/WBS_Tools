@@ -64,7 +64,7 @@ def onHit(self, evt):
 def addTeacher(self):
 	try:
 		self.new()
-		dlg = dabo.ui.info('Output from save operation = ' + str(self.save()) + '.\nIf it says None, that is a Good Thing!')
+		dlg = dabo.ui.info('Output from save operation = ' + str(self.save()) + '.\n')
 		self.requery()
 	except:
 		dabo.ui.exclaim('Uh oh, something went wrong!  Better check the log file!')
@@ -94,8 +94,8 @@ def deleteTeacher(self):
 									requestUserAttention=True)
 	if response == True:
 		try:
-			dlg = dabo.ui.info('Output from delete operation = ' + str(bizObj.delete()) + '.\nIf it says None, that is a Good Thing!')
-			dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\nIf it says None, that is a Good Thing!')
+			dlg = dabo.ui.info('Output from delete operation = ' + str(bizObj.delete()) + '.\n')
+			dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\n')
 			self.requery()
 		except:
 			dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")

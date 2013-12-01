@@ -12,4 +12,3 @@
 # Now you can refer to these classes as: self.Application.reports.FirstClass and
 # self.Application.reports.SecondClass
 ######
-

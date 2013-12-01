@@ -11,8 +11,8 @@ from dabo.dLocalize import _
 # The loading of the UI needs to happen before the importing of the
 # db, biz, and ui packages:
 dabo.ui.loadUI("wx")
-
-if sys.platform == "windows":
+print sys.platform
+if sys.platform[:3] == "win":
 	dabo.MDI = True
 
 if sys.platform == "darwin":

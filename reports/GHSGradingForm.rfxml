@@ -262,7 +262,7 @@
 					</String>
 					<Memo>
 						<expr>self.GradeData</expr>
-						<fontname>'HelveticaMono'</fontname>
+						<fontname>'Courier'</fontname>
 						<height>224</height>
 						<leading>'double'</leading>
 						<width>190</width>

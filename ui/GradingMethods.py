@@ -75,7 +75,7 @@ def buildGradeReport(self, GradeReportRecord, OutBox):
 	headerLines.append('<b>' + str(currentDate) + '\t\t\t' + lessonName + '</b>\n\n')
 	tempString = 'Student:\t<b>' + studentFullName + '</b>'
 	# if there is no StudentID, skip that line
-	if studentID <> '':
+	if studentID != '' and studentID != None:
 		tempString = tempString + '\tStudent ID:\t<b>' + studentID + '</b>'
 	headerLines.append(tempString + '\n')
 	headerLines.append('Teacher:\t<b>' + teacherFullName + '</b>\n')
@@ -233,7 +233,7 @@ def saveGradeRecord(self, studentsRecNo, currentDate, lessonRecNo, score, commen
 					bizObj.Record.GradeLessonsRecNo = lessonRecNo
 					bizObj.Record.GradeScore = int(score)
 					bizObj.Record.GradeComments = comments
-					dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\nIf it says None, that is a Good Thing!')
+					dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\n')
 					self.requery()
 					return()
 				except:
@@ -249,7 +249,7 @@ def saveGradeRecord(self, studentsRecNo, currentDate, lessonRecNo, score, commen
 			bizObj.setFieldVal("GradeLessonsRecNo", lessonRecNo)
 			bizObj.setFieldVal("GradeScore", int(score))
 			bizObj.setFieldVal("GradeComments", comments)
-			dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\nIf it says None, that is a Good Thing!')
+			dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\n')
 			self.requery()
 	except:
 		dlg = dabo.ui.exclaim("Oh my! Something has gone wrong!")

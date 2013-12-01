@@ -57,7 +57,7 @@
 					<String>
 						<expr>'Intro'</expr>
 						<expr_def>'Helvetica-Bold'</expr_def>
-						<fontname>'HelveticaMono'</fontname>
+						<fontname>'Courier'</fontname>
 						<fontsize>18</fontsize>
 						<height>18</height>
 						<height_def>18</height_def>
@@ -262,7 +262,7 @@
 					</String>
 					<Memo>
 						<expr>self.GradeData</expr>
-						<fontname>'HelveticaMono'</fontname>
+						<fontname>'Courier'</fontname>
 						<height>224</height>
 						<leading>'double'</leading>
 						<width>190</width>
