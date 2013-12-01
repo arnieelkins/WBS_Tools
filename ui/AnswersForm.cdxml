@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<dForm code-ID="dForm-top" Name="dForm" Caption="WBS Tools - Answer Form" SaveRestorePosition="True" Top="167" Height="705" Width="543" designerClass="DesForm" CxnName="WBSRemoteUser" Left="688">
+	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top'}" designerClass="controlMix">
+			<dSizer SlotCount="2" designerClass="LayoutSizer" Orientation="Vertical">
+				<dSizer SlotCount="3" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': False}" designerClass="LayoutSizer" Orientation="Horizontal">
+					<dSizer SlotCount="2" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 13, 'Expand': False}" designerClass="LayoutSizer" Orientation="Vertical">
+						<dLabel Caption="Select Lesson" sizerInfo="{}" designerClass="controlMix" Name="dLabel4"></dLabel>
+						<dDropdownList code-ID="dDropdownList-dPanel" sizerInfo="{}" Name="dDropdownList1" Choices="[]" designerClass="controlMix" DataSource="Lessons" DataField="LessonShortName"></dDropdownList>
+					</dSizer>
+					<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 30, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
+					<dBorderSizer SlotCount="3" Caption="" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Center', 'VAlign': 'Middle', 'Border': 0, 'Expand': False}" designerClass="LayoutBorderSizer" Orientation="Horizontal">
+						<dButton code-ID="dButton-dPanel" Caption="Cancel" sizerInfo="{}" designerClass="controlMix" Name="dButton3"></dButton>
+						<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
+						<dButton code-ID="dButton-dPanel-265" Caption="Save" sizerInfo="{}" designerClass="controlMix" Name="dButton2"></dButton>
+					</dBorderSizer>
+				</dSizer>
+				<dSizer SlotCount="2" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSizer" Orientation="Horizontal">
+					<dBorderSizer SlotCount="1" Caption="Edit" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 4, 'Expand': False}" designerClass="LayoutBorderSizer" Orientation="Vertical">
+						<dSizer SlotCount="8" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 10, 'Expand': False}" designerClass="LayoutSizer" Orientation="Vertical">
+							<dLabel Caption="Record Number" sizerInfo="{'HAlign': 'Left'}" designerClass="controlMix"></dLabel>
+							<dTextBox Enabled="False" sizerInfo="{'BorderSides': ['Bottom'], 'HAlign': 'Left', 'Border': 5}" designerClass="controlMix" DataField="AnswerRecNo" DataSource="Answers"></dTextBox>
+							<dLabel Caption="Lesson" sizerInfo="{'HAlign': 'Left'}" designerClass="controlMix" Name="dLabel1"></dLabel>
+							<dDropdownList code-ID="dDropdownList-dPanel-309" sizerInfo="{}" designerClass="controlMix" DataSource="Answers" Choices="[]" DataField="LessonShortName"></dDropdownList>
+							<dLabel Caption="Question Number" sizerInfo="{'HAlign': 'Left'}" designerClass="controlMix" Name="dLabel2"></dLabel>
+							<dTextBox sizerInfo="{'BorderSides': ['Bottom'], 'HAlign': 'Left', 'Border': 5}" DataSource="Answers" designerClass="controlMix" Name="dTextBox2" DataField="AnswerQuestionNo"></dTextBox>
+							<dLabel Caption="Correct Answer" sizerInfo="{'HAlign': 'Left'}" designerClass="controlMix" Name="dLabel3"></dLabel>
+							<dTextBox sizerInfo="{'BorderSides': ['Bottom'], 'HAlign': 'Left', 'Border': 5}" DataSource="Answers" designerClass="controlMix" Name="dTextBox3" DataField="AnswerCorrectAnswer"></dTextBox>
+						</dSizer>
+					</dBorderSizer>
+					<dGrid ColumnCount="4" code-ID="dGrid-dPanel" sizerInfo="{'Border': 4}" designerClass="controlMix" DataSource="Answers">
+						<dColumn Caption="Record" DataField="AnswerRecNo" designerClass="controlMix" Order="0" Width="80"></dColumn>
+						<dColumn Caption="Lesson" DataField="LessonShortName" designerClass="controlMix" Order="10" Width="80"></dColumn>
+						<dColumn Caption="Question" DataField="AnswerQuestionNo" designerClass="controlMix" Order="20" Width="80"></dColumn>
+						<dColumn Caption="Answer" DataField="AnswerCorrectAnswer" designerClass="controlMix" Order="30" Width="80"></dColumn>
+					</dGrid>
+				</dSizer>
+			</dSizer>
+		</dPanel>
+	</dSizer>
+</dForm>

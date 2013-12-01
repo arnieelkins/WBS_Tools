@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<dForm code-ID="dForm-top" Name="dForm" Caption="Grading Form" SaveRestorePosition="False" Top="230" Height="700" Width="1022" designerClass="DesForm" CxnName="WBSRemoteUser" Left="449">
+	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Horizontal">
+		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top'}" designerClass="controlMix" Name="GradingdPanel">
+			<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+				<dSplitter SashPosition="232" sizerInfo="{'VAlign': 'Middle'}" designerClass="controlMix" Split="True" Orientation="Vertical">
+					<dPanel Width="232" designerClass="MixedSplitterPanel" Name="dPanel2" Height="618">
+						<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+							<dSplitter SashPosition="162" sizerInfo="{'VAlign': 'Middle'}" designerClass="controlMix" Split="True" Orientation="Horizontal">
+								<dPanel Width="232" designerClass="MixedSplitterPanel" Name="dPanel2" Height="162">
+									<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+										<dPanel BorderColor="(128, 128, 128)" RegID="StudentInfoPanel" sizerInfo="{'HAlign': 'Left', 'VAlign': 'Middle'}" designerClass="controlMix" Name="StudentInfoPanel">
+											<dSizer SlotCount="1" DefaultBorder="2" designerClass="LayoutSizer" Orientation="Horizontal">
+												<dGridSizer HGap="5" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 2, 'Expand': True}" Rows="5" designerClass="LayoutGridSizer" VGap="5" MaxDimension="r" Columns="2">
+													<dLabel Caption="Student ID" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1, 'HAlign': 'Right', 'ColExpand': True, 'RowExpand': True}" designerClass="controlMix" rowColPos="(0, 0)"></dLabel>
+													<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'RowExpand': True}" rowColPos="(0, 1)" ReadOnly="True" designerClass="controlMix" DataField="StudentID" DataSource="Students"></dTextBox>
+													<dLabel Caption="First Name" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True, 'RowExpand': True}" designerClass="controlMix" Name="dLabel1" rowColPos="(1, 0)"></dLabel>
+													<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'RowExpand': True}" Name="dTextBox1" rowColPos="(1, 1)" ReadOnly="True" designerClass="controlMix" DataField="StudentFirstName" DataSource="Students"></dTextBox>
+													<dLabel Caption="Last Name" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True, 'RowExpand': True}" designerClass="controlMix" Name="dLabel2" rowColPos="(2, 0)"></dLabel>
+													<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'RowExpand': True}" Name="dTextBox2" rowColPos="(2, 1)" ReadOnly="True" designerClass="controlMix" DataField="StudentLastName" DataSource="Students"></dTextBox>
+													<dLabel Caption="Rec No." sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True, 'RowExpand': True}" designerClass="controlMix" Name="dLabel3" rowColPos="(3, 0)"></dLabel>
+													<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'RowExpand': True}" Name="dTextBox3" rowColPos="(3, 1)" ReadOnly="True" designerClass="controlMix" DataField="StudentRecNo" DataSource="Students"></dTextBox>
+													<dButton code-ID="dButton-dPanel" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True, 'Expand': True, 'RowExpand': True}" Name="ResetFormButton" rowColPos="(4, 0)" Caption="Reset Form" designerClass="controlMix" RegID="ResetFormButton"></dButton>
+													<dCheckBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True, 'RowExpand': True}" RegID="EnterWrongAnswersCheckBox" Name="EnterWrongAnswersCheckBox" rowColPos="(4, 1)" Value="True" Caption="Wrong answers" FontSize="10" designerClass="controlMix" FontFace="Tahoma"></dCheckBox>
+												</dGridSizer>
+											</dSizer>
+										</dPanel>
+									</dSizer>
+								</dPanel>
+								<dPanel Width="232" designerClass="MixedSplitterPanel" Name="dPanel1" Height="452">
+									<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Horizontal">
+										<dScrollPanel BorderColor="(128, 128, 128)" sizerInfo="{'HAlign': 'Center'}" Name="AnswerPanel" designerClass="controlMix" BackColor="(255, 255, 255)" RegID="AnswerPanel">
+											<dGridSizer Rows="1" designerClass="LayoutGridSizer" Columns="1">
+												<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False, 'VAlign': 'Middle', 'Border': 8, 'Expand': False, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(0, 0)"></dPanel>
+											</dGridSizer>
+										</dScrollPanel>
+									</dSizer>
+								</dPanel>
+							</dSplitter>
+						</dSizer>
+					</dPanel>
+					<dPanel Width="770" designerClass="MixedSplitterPanel" Name="dPanel1" Height="618">
+						<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+							<dPanel RegID="OutputPanel" sizerInfo="{'VAlign': 'Middle'}" designerClass="controlMix" Name="OutputPanel">
+								<dSizer SlotCount="3" designerClass="LayoutSizer" Orientation="Vertical">
+									<dSizer SlotCount="2" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSizer" Orientation="Horizontal">
+										<dLabel sizerInfo="{'Proportion': 1, 'VAlign': 'Bottom'}" Name="OutputLabel" FontFace="Tahoma" Caption="Output" FontSize="14" RegID="OutputLabel" designerClass="controlMix"></dLabel>
+										<dButton code-ID="dButton-dPanel-646" Caption="Clear Output" sizerInfo="{'HAlign': 'Right', 'VAlign': 'Bottom', 'Border': 2, 'Expand': True}" designerClass="controlMix" Name="ClearOutputButton" RegID="ClearOutputButton"></dButton>
+									</dSizer>
+									<dEditBox RegID="OutBox" sizerInfo="{'HAlign': 'Left'}" designerClass="controlMix" Name="OutBox"></dEditBox>
+									<dSizer DefaultBorder="4" SlotCount="7" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': False}" designerClass="LayoutSizer" Orientation="Horizontal">
+										<dButton code-ID="dButton-dPanel-3" Caption="Score" sizerInfo="{'Border': 8}" designerClass="controlMix" Name="ScoreButton" RegID="ScoreButton"></dButton>
+										<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 4, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
+										<dButton code-ID="dButton-dPanel-71" sizerInfo="{}" Name="CommentsButton" Enabled="False" Caption="Comments" designerClass="controlMix" RegID="CommentsButton"></dButton>
+										<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 4, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
+										<dButton code-ID="dButton-dPanel-253" Caption="Save PDF" sizerInfo="{'Border': 8}" designerClass="controlMix" Name="SavePDFButton" RegID="SavePDFButton"></dButton>
+										<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 4, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
+										<dButton code-ID="dButton-dPanel-373" Caption="Write to DB" sizerInfo="{'Border': 8, 'Expand': True}" designerClass="controlMix" Name="WriteToDBButton" RegID="WriteToDBButton"></dButton>
+									</dSizer>
+								</dSizer>
+							</dPanel>
+						</dSizer>
+					</dPanel>
+				</dSplitter>
+			</dSizer>
+		</dPanel>
+	</dSizer>
+</dForm>

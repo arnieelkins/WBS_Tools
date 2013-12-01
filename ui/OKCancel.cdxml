@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<dOkCancelDialog Caption="Dabo Class Designer" designerClass="DesForm">
+	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+		<dButton code-ID="dButton-dOkCancelDialog" Caption="Button" sizerInfo="{}" designerClass="controlMix"></dButton>
+	</dSizer>
+</dOkCancelDialog>

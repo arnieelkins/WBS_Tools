@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<dForm Caption="Dabo Class Designer" SaveRestorePosition="True" Top="177" Height="367" Width="349" designerClass="DesForm" Left="621">
+	<dSizer classID="5266603-7814797" SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical" DefaultBorder="0">
+		<dPanel classID="7779415" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="path://..\PrintOrPreviewPanel.cdxml" savedClass="True">
+			<dBorderSizer classID="7779415-8417297" SlotCount="2" designerClass="LayoutBorderSizer">
+				<dSizer classID="7779415-7942469" SlotCount="2" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Center', 'VAlign': 'Top', 'Border': 0, 'Expand': False}" designerClass="LayoutSizer" Orientation="Horizontal">
+					<dButton classID="7779415-8104441" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Middle', 'Border': 10, 'Expand': False}" designerClass="controlMix" Name="dButton"></dButton>
+					<dButton classID="7779415-8104359" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Middle', 'Border': 10, 'Expand': False}" designerClass="controlMix"></dButton>
+				</dSizer>
+				<dSizer classID="7779415-7937747" SlotCount="7" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Center', 'VAlign': 'Top', 'Border': 0, 'Expand': False}" designerClass="LayoutSizer">
+					<dCheckBox classID="7779415-8162617" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Middle', 'Border': 4, 'Expand': False}" designerClass="controlMix" Name="dCheckBox"></dCheckBox>
+					<dCheckBox classID="7779415-8291775" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Middle', 'Border': 4, 'Expand': False}" designerClass="controlMix"></dCheckBox>
+					<dCheckBox classID="7779415-8324809" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Middle', 'Border': 4, 'Expand': False}" designerClass="controlMix"></dCheckBox>
+					<dCheckBox classID="7779415-8336347" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Middle', 'Border': 4, 'Expand': False}" designerClass="controlMix"></dCheckBox>
+					<dCheckBox classID="7779415-8351699" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Middle', 'Border': 4, 'Expand': False}" designerClass="controlMix"></dCheckBox>
+					<dCheckBox classID="7779415-8351693" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Middle', 'Border': 4, 'Expand': False}" designerClass="controlMix"></dCheckBox>
+					<dCheckBox classID="7779415-8396667" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Middle', 'Border': 4, 'Expand': False}" designerClass="controlMix"></dCheckBox>
+				</dSizer>
+			</dBorderSizer>
+		</dPanel>
+	</dSizer>
+</dForm>

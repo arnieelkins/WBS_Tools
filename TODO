@@ -1,0 +1,67 @@
+The save() function in AnswerForm is trying to save the Lessons table, which should NOT happen.  It should only save data to the Answers table!!
+
+first name on graded lesson should be only the string up to the first space in the first name field.- DONE
+
+Choose comments - save list, edits done on grading form, convert data to print format on print - DONE
+
+standard blurb for Intro - DONE
+
+first save should confirm - DONE
+
+pre-build boxes for grading forms - DONE, forms now use wx.CheckBox instead of dabo dCheckBox
+
+Gender field should be a dropdown - DONE
+
+Age should be blank if age in db = 0 - DONE - null is now default for Age and BirthDate
+
+grading form answer box should be larger - DONE
+
+'wrong answers' checkbox should be checked by default - DONE
+
+Teacher and Contact should be verified after pressing the Grade Lesson button befoe the form is displayed to choose a lesson.  No Teacher, No Contact, No Grading! - DONE
+
+string substitution on comments should happen on the Comments form - DONE
+
+Comments button should be disabled until Score has been computed, so that the number of missed questions will be available to the Comments form for string substitution
+
+rearrange buttons on the Students form, grouping them by similar function - DONE
+
+New Student does not work if Lookup has been used - DONE
+
+new student data - tab order - DONE
+
+duplicate name check when changing name on student record - DONE
+
+Teacher/Contact dropdowns should sort alpha by last name - DONE
+
+remove 'Has done WBS before?' from grading sheets - DONE
+
+If a lookup finds no records, pop up a dialog to inform the user - DONE
+
+Can Contacts and Teachers forms be Modal?  -- not currently, as they run from the menu, and I have
+not found a way to set the Modal option.  Perhaps I should create a 'maintenance' dialog that has buttons for
+the db forms, and open that from the menu.  It could have buttons to select the table you want, and open the
+forms in Modal so you have to close them to continue.  Since the maintenance dialog would be modal as well,
+when it is closed the Students form could update the controls to get any changes.  Or, if there is a way to
+open a form in Modal from a menu, do that.  Either way, we need to notify the Students form when changes
+are made to the Teachers or Contacts table, so it can refresh the controls. - DONE!  Right-clicking
+on the Contacts or Teachers field will bring up the relevant form, from which the user
+can add or delete entries.  The forms are Modal, so the user must close them to continue.
+When they close, the StudentsForm knows about it, and updates the relevant field.  This is
+all possible because StudentsForm is calling the other forms directly, rather than the
+menu, which is not part of the form itself, calling the form.  When the menu does it,
+the form does not know about it, and so cannot update itself when the form is closed.
+
+Deleting a contact not working - foreign key failure because records existed pointing to that contact. Need to 
+inform the user when either a Teacher or a Contact is being deleted, and records exist pointing to that person. 
+Ask user who to point those records to instead, update the records, then delete. - PARTIALLY
+DONE.  Deleting a Contact works, if the Contact is not associated with any students.  The
+same will apply to Teachers.  If they ARE associated, the program will need to set the
+associated records to point to someone else, or delete them.  The best thing might be to
+require the user to delete or re-point Student records before removing a Contact or
+Teacher.  However, the possibility also exists to have the program automatically point
+affected Student records to the default Contact or Teacher, which is always record 1,
+and the name fields are blank.  Need to discuss this with the users to determine how
+they would like to handle this situation.
+
+

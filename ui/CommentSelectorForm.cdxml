@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<dDialog code-ID="dDialog-top" Name="dDialog" Caption="Select Comments" Top="142" Height="546" Width="734" designerClass="DesForm" Left="423">
+	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top'}" designerClass="controlMix" Name="dPanel1">
+			<dSizer SlotCount="2" designerClass="LayoutSizer" Orientation="Horizontal">
+				<dSizer DefaultBorder="4" SlotCount="3" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSizer" Orientation="Vertical">
+					<dLabel Caption="Active Comments" sizerInfo="{'Border': 4}" designerClass="controlMix"></dLabel>
+					<dBorderSizer SlotCount="1" Caption="" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 4, 'Expand': True}" designerClass="LayoutBorderSizer" Orientation="Horizontal">
+						<dTextBox code-ID="dTextBox-dPanel" sizerInfo="{'HAlign': 'Center', 'VAlign': 'Top', 'Expand': True}" Name="ActiveCommentTextBox" designerClass="controlMix" DataSource="ActiveCommentTextBox" RegID="ActiveCommentTextBox" DataField="ActiveCommentString">
+							<properties>
+								<ActiveCommentString>
+									<comment></comment>
+									<defaultValue></defaultValue>
+									<deller>delActiveCommentString</deller>
+									<getter>getActiveCommentString</getter>
+									<propName>ActiveCommentString</propName>
+									<defaultType>string</defaultType>
+									<setter>setActiveCommentString</setter>
+								</ActiveCommentString>
+							</properties>
+						</dTextBox>
+					</dBorderSizer>
+					<dSizer sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 4, 'Expand': True}" Orientation="Vertical" SlotCount="3" DefaultBorderBottom="True" designerClass="LayoutSizer" DefaultBorder="8">
+						<dCheckBox code-ID="dCheckBox-dPanel" sizerInfo="{'BorderSides': ['Bottom'], 'Proportion': 1, 'Border': 8, 'Expand': True}" Name="dCheckBox1" Caption="Greeting" Tag="1" designerClass="controlMix" RegID="dCheckBox1"></dCheckBox>
+						<dCheckBox code-ID="dCheckBox-dPanel-839" sizerInfo="{'BorderSides': ['Bottom'], 'Proportion': 1, 'Border': 8, 'Expand': True}" Name="dCheckBox2" Caption="Closing" Tag="2" designerClass="controlMix" RegID="dCheckBox2"></dCheckBox>
+						<dGridSizer sizerInfo="{'BorderSides': ['Bottom'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 8, 'Expand': True}" Rows="9" designerClass="LayoutGridSizer" VGap="8" MaxDimension="r" Columns="3">
+							<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(8, 2)"></dPanel>
+							<dCheckBox code-ID="dCheckBox-dPanel-230" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxA" Caption="A" rowColPos="(0, 0)" Width="36" Tag="A" designerClass="controlMix" RegID="dCheckBoxA"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-886" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxB" Caption="B" rowColPos="(0, 1)" Width="36" Tag="B" designerClass="controlMix" RegID="dCheckBoxB"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-856" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxC" Caption="C" rowColPos="(0, 2)" Width="36" Tag="C" designerClass="controlMix" RegID="dCheckBoxC"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-429" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxD" Caption="D" rowColPos="(1, 0)" Width="36" Tag="D" designerClass="controlMix" RegID="dCheckBoxD"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-514" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxE" Caption="E" rowColPos="(1, 1)" Width="36" Tag="E" designerClass="controlMix" RegID="dCheckBoxE"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-132" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxF" Caption="F" rowColPos="(1, 2)" Width="36" Tag="F" designerClass="controlMix" RegID="dCheckBoxF"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-978" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxG" Caption="G" rowColPos="(2, 0)" Width="36" Tag="G" designerClass="controlMix" RegID="dCheckBoxG"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-84" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxH" Caption="H" rowColPos="(2, 1)" Width="36" Tag="H" designerClass="controlMix" RegID="dCheckBoxH"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-288" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxI" Caption="I" rowColPos="(2, 2)" Width="36" Tag="I" designerClass="controlMix" RegID="dCheckBoxI"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-582" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxJ" Caption="J" rowColPos="(3, 0)" Width="36" Tag="J" designerClass="controlMix" RegID="dCheckBoxJ"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-646" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxK" Caption="K" rowColPos="(3, 1)" Width="36" Tag="K" designerClass="controlMix" RegID="dCheckBoxK"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-166" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxL" Caption="L" rowColPos="(3, 2)" Width="36" Tag="L" designerClass="controlMix" RegID="dCheckBoxL"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-134" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxM" Caption="M" rowColPos="(4, 0)" Width="36" Tag="M" designerClass="controlMix" RegID="dCheckBoxM"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-802" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxN" Caption="N" rowColPos="(4, 1)" Width="36" Tag="N" designerClass="controlMix" RegID="dCheckBoxN"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-673" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxO" Caption="O" rowColPos="(4, 2)" Width="36" Tag="O" designerClass="controlMix" RegID="dCheckBoxO"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-284" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxP" Caption="P" rowColPos="(5, 0)" Width="36" Tag="P" designerClass="controlMix" RegID="dCheckBoxP"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-931" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxQ" Caption="Q" rowColPos="(5, 1)" Width="36" Tag="Q" designerClass="controlMix" RegID="dCheckBoxQ"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-221" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxR" Caption="R" rowColPos="(5, 2)" Width="36" Tag="R" designerClass="controlMix" RegID="dCheckBoxR"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-123" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxS" Caption="S" rowColPos="(6, 0)" Width="36" Tag="S" designerClass="controlMix" RegID="dCheckBoxS"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-359" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxT" Caption="T" rowColPos="(6, 1)" Width="36" Tag="T" designerClass="controlMix" RegID="dCheckBoxT"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-875" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxU" Caption="U" rowColPos="(6, 2)" Width="36" Tag="U" designerClass="controlMix" RegID="dCheckBoxU"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-710" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxV" Caption="V" rowColPos="(7, 0)" Width="36" Tag="V" designerClass="controlMix" RegID="dCheckBoxV"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-524" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxW" Caption="W" rowColPos="(7, 1)" Width="36" Tag="W" designerClass="controlMix" RegID="dCheckBoxW"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-78" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxX" Caption="X" rowColPos="(7, 2)" Width="36" Tag="X" designerClass="controlMix" RegID="dCheckBoxX"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-800" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxZ" Caption="Z" rowColPos="(8, 1)" Width="36" Tag="Z" designerClass="controlMix" RegID="dCheckBoxZ"></dCheckBox>
+							<dCheckBox code-ID="dCheckBox-dPanel-928" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 1}" Name="dCheckBoxY" Caption="Y" rowColPos="(8, 0)" Width="36" Tag="Y" designerClass="controlMix" RegID="dCheckBoxY"></dCheckBox>
+						</dGridSizer>
+					</dSizer>
+				</dSizer>
+				<dScrollPanel RegID="ScrollPanel" code-ID="dScrollPanel-dPanel" sizerInfo="{'Proportion': 3, 'HAlign': 'Center'}" designerClass="controlMix" Name="ScrollPanel">
+					<dSizer SlotCount="2" designerClass="LayoutSizer" Orientation="Vertical">
+						<dSizer sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" Orientation="Vertical" DefaultBorderTop="True" DefaultBorderRight="True" DefaultBorderBottom="True" SlotCount="1" DefaultBorderLeft="True" designerClass="LayoutSizer" DefaultBorder="2">
+							<dBorderSizer SlotCount="1" Caption="Greeting" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 2, 'Expand': True}" designerClass="LayoutBorderSizer" Orientation="Vertical">
+								<dEditBox sizerInfo="{}" Name="GreetingEditBox" Visible="False" ReadOnly="True" designerClass="controlMix" RegID="GreetingEditBox"></dEditBox>
+							</dBorderSizer>
+						</dSizer>
+						<dSizer DefaultBorder="5" SlotCount="5" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSizer" Orientation="Horizontal">
+							<dPanel sizerInfo="{'BorderSides': ['All'], 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 5}" designerClass="LayoutPanel"></dPanel>
+							<dButton code-ID="dButton-dScrollPanel" Caption="Cancel" sizerInfo="{'Border': 5}" designerClass="controlMix"></dButton>
+							<dPanel sizerInfo="{'BorderSides': ['All'], 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 5}" designerClass="LayoutPanel"></dPanel>
+							<dButton code-ID="dButton-dScrollPanel-812" Caption="OK" sizerInfo="{'Border': 5}" designerClass="controlMix" Name="dButton1"></dButton>
+							<dPanel sizerInfo="{'BorderSides': ['All'], 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 5}" designerClass="LayoutPanel"></dPanel>
+						</dSizer>
+					</dSizer>
+				</dScrollPanel>
+			</dSizer>
+		</dPanel>
+	</dSizer>
+</dDialog>

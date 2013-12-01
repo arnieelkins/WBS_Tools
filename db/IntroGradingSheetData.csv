@@ -1,0 +1,34 @@
+StudentFullName,TeacherFullName,ContactFullName,StudentAge,StudentBaptismType,StudentBible,StudentBirthdate,StudentChurchName,StudentContactsRecNo,StudentCountry,StudentEmailAddress,StudentFirstName,StudentGender,StudentHasBeenBaptized,StudentID,StudentLastName,StudentMaritalStatus,StudentNotes,StudentOccupation,StudentPhone1,StudentPhone2,StudentPostalAddress,StudentRecNo,StudentReligion,StudentRequestedBaptism,StudentState,StudentStreetAddress,StudentTeachersRecNo,StudentTown,StudentWBSBefore,StudentWBSID,GradeDateGraded,GradeLessonsRecNo,GradeScore
+Burton Lazaro Mwansamale,Alyssa Boulton,Willy Yudah,33,NULL,0,12/11/1978,Church of Christ,1,,,Burton Lazaro,M,0,,Mwansamale,Married,,Teacher,,,,862,Christian,0,,,1,,0,AL-091,11/22/2011,1,100
+Burton Lazaro Mwansamale,Alyssa Boulton,Willy Yudah,33,NULL,0,12/11/1978,Church of Christ,1,,,Burton Lazaro,M,0,,Mwansamale,Married,,Teacher,,,,862,Christian,0,,,1,,0,AL-091,4/27/2012,2,99
+Burton Lazaro Mwansamale,Alyssa Boulton,Willy Yudah,33,NULL,0,12/11/1978,Church of Christ,1,,,Burton Lazaro,M,0,,Mwansamale,Married,,Teacher,,,,862,Christian,0,,,1,,0,AL-091,12/15/2011,3,100
+Burton Lazaro Mwansamale,Alyssa Boulton,Willy Yudah,33,NULL,0,12/11/1978,Church of Christ,1,,,Burton Lazaro,M,0,,Mwansamale,Married,,Teacher,,,,862,Christian,0,,,1,,0,AL-091,4/27/2012,4,100
+Burton Lazaro Mwansamale,Alyssa Boulton,Willy Yudah,33,NULL,0,12/11/1978,Church of Christ,1,,,Burton Lazaro,M,0,,Mwansamale,Married,,Teacher,,,,862,Christian,0,,,1,,0,AL-091,4/27/2012,6,100
+Burton Lazaro Mwansamale,Alyssa Boulton,Willy Yudah,33,NULL,0,12/11/1978,Church of Christ,1,,,Burton Lazaro,M,0,,Mwansamale,Married,,Teacher,,,,862,Christian,0,,,1,,0,AL-091,9/8/2012,7,98
+Burton Lazaro Mwansamale,Alyssa Boulton,Willy Yudah,33,NULL,0,12/11/1978,Church of Christ,1,,,Burton Lazaro,M,0,,Mwansamale,Married,,Teacher,,,,862,Christian,0,,,1,,0,AL-091,9/25/2012,5,99
+Patrick Edward Zakaria Mwaduma,Alyssa Boulton,Willy Yudah,16,NULL,0,4/28/1995,BCIC,1,,,Patrick Edward Zakaria,M,0,W0004,Mwaduma,Single,,Student,,,"P.O. Box 158 - ChimalaKinondoniDar-Es-Salaam, Tanzania",1229,Christian,0,,"P.O. Box 158 - ChimalaKinondoniDar-Es-Salaam, Tanzania",1,,0,AL-091,4/5/2012,1,100
+Patrick Edward Zakaria Mwaduma,Alyssa Boulton,Willy Yudah,16,NULL,0,4/28/1995,BCIC,1,,,Patrick Edward Zakaria,M,0,W0004,Mwaduma,Single,,Student,,,"P.O. Box 158 - ChimalaKinondoniDar-Es-Salaam, Tanzania",1229,Christian,0,,"P.O. Box 158 - ChimalaKinondoniDar-Es-Salaam, Tanzania",1,,0,AL-091,5/29/2013,2,89
+Kelvin Willy Wkwama,Alyssa Boulton,Willy Yudah,18,NULL,0,2/27/1994,Church of Christ,1,,,Kelvin Willy,M,0,W0005,Wkwama,Single,,Student,,,P.O. Box 158 - ChimalaChmalaTanzania,1233,Christian,0,,P.O. Box 158 - ChimalaChmalaTanzania,1,,0,AL-091,4/5/2012,1,100
+Peter Kitsindu,Alyssa Boulton,Willy Yudah,0,NULL,0,0000-00-00,,1,,,Peter,,0,W0058,Kitsindu,,,,,,"Po. O. Box 1003Mbeya, Tanzania",1351,,0,,"Po. O. Box 1003Mbeya, Tanzania",1,,0,AL-091,9/8/2012,2,98
+Edward M. Malambugi,Alyssa Boulton,Lairumbe Laizer,54,NULL,0,7/17/1957,Church of Christ,3,,,Edward M.,M,0,,Malambugi,Married,"Introduction lesson sent by mail instead of being emailed by Willy
+ 
+Has been baptized per BWS",,,,"P. O. Box 4173, IyungaMbeya, Tanzania",892,Christian,0,,"P. O. Box 4173, IyungaMbeya, Tanzania",1,,0,AL-091,12/5/2011,1,100
+Edward M. Malambugi,Alyssa Boulton,Lairumbe Laizer,54,NULL,0,7/17/1957,Church of Christ,3,,,Edward M.,M,0,,Malambugi,Married,"Introduction lesson sent by mail instead of being emailed by Willy
+ 
+Has been baptized per BWS",,,,"P. O. Box 4173, IyungaMbeya, Tanzania",892,Christian,0,,"P. O. Box 4173, IyungaMbeya, Tanzania",1,,0,AL-091,9/25/2012,3,92
+Edward M. Malambugi,Alyssa Boulton,Lairumbe Laizer,54,NULL,0,7/17/1957,Church of Christ,3,,,Edward M.,M,0,,Malambugi,Married,"Introduction lesson sent by mail instead of being emailed by Willy
+ 
+Has been baptized per BWS",,,,"P. O. Box 4173, IyungaMbeya, Tanzania",892,Christian,0,,"P. O. Box 4173, IyungaMbeya, Tanzania",1,,0,AL-091,9/26/2012,6,98
+Edward M. Malambugi,Alyssa Boulton,Lairumbe Laizer,54,NULL,0,7/17/1957,Church of Christ,3,,,Edward M.,M,0,,Malambugi,Married,"Introduction lesson sent by mail instead of being emailed by Willy
+ 
+Has been baptized per BWS",,,,"P. O. Box 4173, IyungaMbeya, Tanzania",892,Christian,0,,"P. O. Box 4173, IyungaMbeya, Tanzania",1,,0,AL-091,10/9/2012,4,99
+Edward M. Malambugi,Alyssa Boulton,Lairumbe Laizer,54,NULL,0,7/17/1957,Church of Christ,3,,,Edward M.,M,0,,Malambugi,Married,"Introduction lesson sent by mail instead of being emailed by Willy
+ 
+Has been baptized per BWS",,,,"P. O. Box 4173, IyungaMbeya, Tanzania",892,Christian,0,,"P. O. Box 4173, IyungaMbeya, Tanzania",1,,0,AL-091,10/9/2012,7,86
+Godfrey Ramadhani Seguke,Alyssa Boulton,Michael Mitalami,29,NULL,0,6/10/1982,Pentecostal,4,,,Godfrey Ramadhani,M,0,,Seguke,Married,,Teacher,,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",984,Christian,0,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",1,,0,AL-091,1/12/2012,1,90
+Godfrey Ramadhani Seguke,Alyssa Boulton,Michael Mitalami,29,NULL,0,6/10/1982,Pentecostal,4,,,Godfrey Ramadhani,M,0,,Seguke,Married,,Teacher,,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",984,Christian,0,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",1,,0,AL-091,1/12/2012,2,97
+Godfrey Ramadhani Seguke,Alyssa Boulton,Michael Mitalami,29,NULL,0,6/10/1982,Pentecostal,4,,,Godfrey Ramadhani,M,0,,Seguke,Married,,Teacher,,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",984,Christian,0,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",1,,0,AL-091,1/12/2012,3,96
+Godfrey Ramadhani Seguke,Alyssa Boulton,Michael Mitalami,29,NULL,0,6/10/1982,Pentecostal,4,,,Godfrey Ramadhani,M,0,,Seguke,Married,,Teacher,,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",984,Christian,0,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",1,,0,AL-091,1/12/2012,4,98
+Godfrey Ramadhani Seguke,Alyssa Boulton,Michael Mitalami,29,NULL,0,6/10/1982,Pentecostal,4,,,Godfrey Ramadhani,M,0,,Seguke,Married,,Teacher,,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",984,Christian,0,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",1,,0,AL-091,1/12/2012,6,100
+Godfrey Ramadhani Seguke,Alyssa Boulton,Michael Mitalami,29,NULL,0,6/10/1982,Pentecostal,4,,,Godfrey Ramadhani,M,0,,Seguke,Married,,Teacher,,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",984,Christian,0,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",1,,0,AL-091,5/25/2012,5,99
+Godfrey Ramadhani Seguke,Alyssa Boulton,Michael Mitalami,29,NULL,0,6/10/1982,Pentecostal,4,,,Godfrey Ramadhani,M,0,,Seguke,Married,,Teacher,,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",984,Christian,0,,"Ganako High SchoolP. O. Box 180 KaratuArusha, Tanzania",1,,0,AL-091,1/26/2012,7,96

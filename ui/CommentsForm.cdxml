@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<dForm code-ID="dForm-top" Name="dForm" SaveRestorePosition="True" Top="305" Height="429" Caption="WBS Tools - Comments Form" designerClass="DesForm" CxnName="WBSRemoteUser" Left="760">
+	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top'}" designerClass="controlMix">
+			<dSizer SlotCount="3" DefaultBorder="2" designerClass="LayoutSizer" Orientation="Vertical">
+				<dSizer DefaultBorder="4" SlotCount="3" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Center', 'VAlign': 'Top', 'Border': 0, 'Expand': False}" designerClass="LayoutSizer" Orientation="Horizontal">
+					<dButton code-ID="dButton-dPanel" Caption="Requery" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="dButton4"></dButton>
+					<dPanel sizerInfo="{'BorderSides': ['All'], 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 4}" designerClass="LayoutPanel"></dPanel>
+					<dButton code-ID="dButton-dPanel-99" Caption="Save" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="dButton5"></dButton>
+				</dSizer>
+				<dGridSizer HGap="5" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 10, 'Expand': True}" Rows="3" designerClass="LayoutGridSizer" VGap="5" MaxDimension="r" Columns="2">
+					<dLabel Caption="Rec No" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" rowColPos="(0, 0)"></dLabel>
+					<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'Expand': False}" rowColPos="(0, 1)" Width="113" designerClass="controlMix" DataField="CommentRecNo" DataSource="Comments"></dTextBox>
+					<dLabel Caption="Tag" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="dLabel1" rowColPos="(1, 0)"></dLabel>
+					<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'Expand': False}" Name="dTextBox1" rowColPos="(1, 1)" Width="113" designerClass="controlMix" DataField="CommentTag" DataSource="Comments"></dTextBox>
+					<dLabel Caption="Comment" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'RowExpand': True}" designerClass="controlMix" Name="dLabel2" rowColPos="(2, 0)"></dLabel>
+					<dEditBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'RowExpand': True}" rowColPos="(2, 1)" designerClass="controlMix" DataField="CommentContent" DataSource="Comments"></dEditBox>
+				</dGridSizer>
+				<dBorderSizer sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Center', 'VAlign': 'Top', 'Border': 0, 'Expand': False}" Orientation="Horizontal" SlotCount="4" Caption="Navigation" designerClass="LayoutBorderSizer" DefaultBorder="4">
+					<dButton code-ID="dButton-dPanel-334" Caption="&#060;&#060;- First" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="dButton1"></dButton>
+					<dButton code-ID="dButton-dPanel-454" Caption="&#060;- Prior" sizerInfo="{'Border': 4}" designerClass="controlMix"></dButton>
+					<dButton code-ID="dButton-dPanel-154" Caption="Next -&#062;" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="dButton2"></dButton>
+					<dButton code-ID="dButton-dPanel-53" Width="78" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="dButton3" Caption="Last -&#062;&#062;"></dButton>
+				</dBorderSizer>
+			</dSizer>
+		</dPanel>
+	</dSizer>
+</dForm>

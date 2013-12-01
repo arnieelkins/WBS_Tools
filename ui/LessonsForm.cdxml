@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<dForm code-ID="dForm-top" Name="dForm" SaveRestorePosition="True" Top="305" Height="429" Caption="WBS Tools - Lessons Form" designerClass="DesForm" CxnName="WBSRemoteUser" Left="760">
+	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top'}" designerClass="controlMix">
+			<dSizer SlotCount="3" DefaultBorder="2" designerClass="LayoutSizer" Orientation="Vertical">
+				<dSizer DefaultBorder="4" SlotCount="3" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Center', 'VAlign': 'Top', 'Border': 0, 'Expand': False}" designerClass="LayoutSizer" Orientation="Horizontal">
+					<dButton code-ID="dButton-dPanel" Caption="Requery" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="dButton4"></dButton>
+					<dPanel sizerInfo="{'BorderSides': ['All'], 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 4}" designerClass="LayoutPanel"></dPanel>
+					<dButton code-ID="dButton-dPanel-133" Caption="Save" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="dButton5"></dButton>
+				</dSizer>
+				<dGridSizer HGap="5" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Center', 'VAlign': 'Top', 'Border': 10, 'Expand': False}" Rows="3" designerClass="LayoutGridSizer" VGap="5" MaxDimension="r" Columns="2">
+					<dLabel Caption="LessonRecNo" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" designerClass="controlMix" rowColPos="(0, 0)"></dLabel>
+					<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" rowColPos="(0, 1)" designerClass="controlMix" DataField="LessonRecNo" DataSource="Lessons"></dTextBox>
+					<dLabel Caption="LessonShortName" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" designerClass="controlMix" Name="dLabel1" rowColPos="(1, 0)"></dLabel>
+					<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="dTextBox1" rowColPos="(1, 1)" designerClass="controlMix" DataField="LessonShortName" DataSource="Lessons"></dTextBox>
+					<dLabel Caption="LessonName" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" designerClass="controlMix" Name="dLabel2" rowColPos="(2, 0)"></dLabel>
+					<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'ColExpand': False, 'Expand': False}" Name="dTextBox2" rowColPos="(2, 1)" Width="113" designerClass="controlMix" DataField="LessonName" DataSource="Lessons"></dTextBox>
+				</dGridSizer>
+				<dBorderSizer sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Center', 'VAlign': 'Top', 'Border': 0, 'Expand': False}" Orientation="Horizontal" SlotCount="4" Caption="Navigation" designerClass="LayoutBorderSizer" DefaultBorder="4">
+					<dButton code-ID="dButton-dPanel-613" Caption="&#060;&#060;- First" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="dButton1"></dButton>
+					<dButton code-ID="dButton-dPanel-507" Caption="&#060;- Prior" sizerInfo="{'Border': 4}" designerClass="controlMix"></dButton>
+					<dButton code-ID="dButton-dPanel-297" Caption="Next -&#062;" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="dButton2"></dButton>
+					<dButton code-ID="dButton-dPanel-697" Width="78" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="dButton3" Caption="Last -&#062;&#062;"></dButton>
+				</dBorderSizer>
+			</dSizer>
+		</dPanel>
+	</dSizer>
+</dForm>
