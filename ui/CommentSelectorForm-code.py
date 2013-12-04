@@ -238,10 +238,10 @@ def buildCommentDictList(self, bizobj):
 							{'Name':'X','Caption':'X','Comment':'','Box':self.dCheckBoxX},
 							{'Name':'Y','Caption':'Y','Comment':'','Box':self.dCheckBoxY},
 							{'Name':'Z','Caption':'Z','Comment':'','Box':self.dCheckBoxZ},
-							{'Name':'1','Caption':self.lessonName + 'Greeting','Comment':'','Box':self.dCheckBox1},
-							{'Name':'2','Caption':self.lessonName + 'Closing','Comment':'','Box':self.dCheckBox2},
+							{'Name':'1','Caption':self.lessonShortName + 'Greeting','Comment':'','Box':self.dCheckBox1},
+							{'Name':'2','Caption':self.lessonShortName + 'Closing','Comment':'','Box':self.dCheckBox2},
 							]
-	app.ui.GradingMethods.lookupComments(self, self.CommentDictList, bizobj, self.TextTags)
+	self.lookupComments(self.CommentDictList, bizobj, self.TextTags)
 	for item in self.CommentDictList:
 		box = item['Box']
 		box.Tag == item['Name']
@@ -268,6 +268,27 @@ def initProperties(self):
 	self.ActiveCommentDict = []
 	self.MinimumSize = (720, 600)
 	self.Centered = True
+
+
+def lookupComments(self, dictList, bizObj, tagDict):
+	print "lookupComments is running\n"
+	if len(dictList) >= 1:
+		tempCursor = bizObj.getTempCursor()
+		tempString = '('
+		for item in dictList:
+			tempString = tempString + "'" + item['Caption'] + "',"
+		tempString = tempString[0:-1] + ")"
+		tempCursor.UserSQL = 'select CommentTag, CommentContent from Comments where CommentTag in ' + tempString
+		tempCursor.requery()
+		for item in dictList:
+			for record in tempCursor:
+				if item['Caption'] == record['CommentTag']:
+					thisComment = record['CommentContent']
+					# replace any tags in the comment with the actual values
+					for key in tagDict:
+						if key in thisComment:
+							thisComment = thisComment.replace(key, tagDict[key])
+					item['Comment'] = thisComment
 
 
 def processSelected(self, evt):

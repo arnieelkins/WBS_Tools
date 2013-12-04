@@ -58,7 +58,7 @@
 						<expr>'This Is Good News'</expr>
 						<expr_def>'Lesson name'</expr_def>
 						<fontname>'Helvetica-Bold'</fontname>
-						<fontsize>18</fontsize>
+						<fontsize>16</fontsize>
 						<height>18</height>
 						<height_def>18</height_def>
 						<width>300</width>
@@ -68,7 +68,7 @@
 					<String>
 						<expr>self.currentDate</expr>
 						<fontname>'Helvetica-Bold'</fontname>
-						<fontsize>18</fontsize>
+						<fontsize>16</fontsize>
 						<height>18</height>
 						<width>100</width>
 						<x>'448.0 pt'</x>
@@ -1388,8 +1388,9 @@
 						<y>'228.0 pt'</y>
 					</String>
 					<String>
-						<expr>'Failed   Incomplete    A    B    C    D    E    F    G    H    I    J    K    L    M    N    O    P    Q    R    S    T    U    V    W    X    Y    Z'</expr>
+						<expr>'Failed   Incomplete   A   B   C   D   E   F   G   H   I   J   K   L   M   N   O   P   Q   R   S   T   U   V   W   X   Y   Z'</expr>
 						<fontname>'Helvetica-Bold'</fontname>
+						<fontsize>11</fontsize>
 						<width>560</width>
 						<x>'0.0 pt'</x>
 						<y>'209.0 pt'</y>

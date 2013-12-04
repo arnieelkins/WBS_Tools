@@ -7,5 +7,4 @@
 from FrmMain import FrmMain
 from FrmReportBase import FrmReportBase
 from FrmIntroGradingForm import FrmIntroGradingForm
-import GradingMethods as GradingMethods
 from FrmPreviewPDF import FrmPreviewPDF

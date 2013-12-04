@@ -25,7 +25,7 @@ class FrmPreviewPDF(FrmReportBase):
 		"""Called by preview in FrmReportBase, it's time to requery the dataset."""
 		# Send whatever parameters your function requires, perhaps as entered by the
 		# user in the controls you've exposed in this form.
-		self.DataSet = [{'headerblock':self.output}]
+		self.DataSet = [{'headerblock':self.headerOutput + self.missedOutput + self.commentOutput}]
 
 	def runReport(self, mode):
 		"""Run the report and then preview or print it."""
@@ -41,16 +41,18 @@ class FrmPreviewPDF(FrmReportBase):
 			raise ValueError, "Mode needs to be 'preview' or 'print'."
 
 	def FormatOutput(self, input):
-		headerBlock = ''
+		outputBlock = ''
 		for line in input:
 			for item in line:
 				itemString = str(item)
-				tempString1 = itemString.replace('\n', '<br/>')
-				tempString2 = tempString1.replace('\t', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
-				headerBlock = headerBlock + tempString2
-		print 'headerBlock is coming next!!!!!!'
-		print headerBlock
-		return(headerBlock)
+				tempString = itemString.replace('\n', '<br/>')
+				tempString = tempString.replace('\t', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+				tempString = tempString.replace('<sp>', '&nbsp;')
+				outputBlock = outputBlock + tempString
+		print "outputBlock to follow"
+		print outputBlock
+		print "end of outputBlock"
+		return(outputBlock)
 
 
 
@@ -65,8 +67,10 @@ class FrmPreviewPDF(FrmReportBase):
 
 	def afterInitAll(self):
 		app = self.Application
-		self.output = self.FormatOutput(self.input)
-		self.ReportForm = "reports/GradeReport.rfxml"
+		self.headerOutput = self.FormatOutput(self.headerInput)
+		self.missedOutput = self.FormatOutput(self.missedInput)
+		self.commentOutput = self.FormatOutput(self.commentInput)
+		self.ReportForm = "reports//GradeReport.rfxml"
 		print "self.ReportForm = " + str(self.ReportForm)
 		self.runReport("preview")
 		self.safeDestroy()

@@ -12,6 +12,7 @@
 	</ReportBegin>
 
 	<ReportEnd>
+		<Height>0</Height>
 		<Objects></Objects>
 	</ReportEnd>
 
@@ -41,20 +42,20 @@
 	</PageHeader>
 
 	<Detail>
-		<height>648</height>
+		<height>600</height>
 		<Objects>
 			<Memo>
 				<expr>self.headerblock</expr>
 				<fontsize>10.5</fontsize>
-				<height>648</height>
+				<height>600</height>
 				<width>525</width>
-				<y>'648.0 pt'</y>
+				<y>600</y>
 			</Memo>
 		</Objects>
 	</Detail>
 
 	<PageFooter>
-		<height>0</height>
+		<Height>0</Height>
 		<Objects></Objects>
 	</PageFooter>
 
