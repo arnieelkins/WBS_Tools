@@ -101,7 +101,7 @@ def buildBoxes(self, answerData, AnswerPanel, testMode):
 	return(answerCheckBoxList)
 
 
-def buildGradeReport(self):
+def buildScreenGradeReport(self):
 	print "buildGradeReport is running\n"
 	app = self.Application
 	self.headerLines = []
@@ -136,6 +136,32 @@ def buildGradeReport(self):
 	self.commentLines.append('Your study helper,\n')
 	self.commentLines.append(self.gradeRecord['teacherFirstName'])
 
+def buildPDFGradeReport(self):
+	print "buildPDFGradeReport is running\n"
+	app = self.Application
+	# self.PDFHeaders is a list of lists of 3 strings
+	self.PDFHeaders = []
+	if self.gradeRecord['studentID'] != None and self.gradeRecord['studentID'] != '':
+		self.PDFHeaders.append([str(self.gradeRecord['currentDate']), self.gradeRecord['lessonFullName'], 'StudentID: ' + self.gradeRecord['studentID']])
+	else:
+		self.PDFHeaders.append([str(self.gradeRecord['currentDate']), self.gradeRecord['lessonFullName'], ''])
+	self.PDFHeaders.append(['Student:', self.gradeRecord['studentFullName'], ''])
+	self.PDFHeaders.append(['Teacher:', self.gradeRecord['teacherFullName'], ''])
+	self.PDFHeaders.append(['Contact:', self.gradeRecord['contactFullName'], ''])
+	self.PDFHeaders.append(['Score:', str(self.gradeRecord['grade']) + '%', ''])
+	# self.PDFMissed is a list of lists of 3 strings
+	self.PDFMissed = []
+	if self.gradeRecord['numberMissed'] == 0:
+		self.PDFMissed.append(["No questions missed!", '', ''])
+	else:
+		self.PDFMissed.append(["Question\nmissed", "Your\nanswer", "Correct\nanswer"])
+	for line in self.gradeRecord['missedList']:
+		self.PDFMissed.append(line)
+		print 'self.PDFMissed start'
+		print self.PDFMissed
+		print 'self.PDFMissed end'
+	# self.PDFComments is a list of strings, which will be reportlab paragraphs
+	self.PDFComments = self.CommentOutBox.Value.splitlines(False)
 
 
 def getAnswerData(self, lessonNumber, bizObj):
@@ -273,23 +299,36 @@ def scoreQuestions(self, answerCheckBoxList, answerDataSet):
 				else:
 					numberMissed = numberMissed + 1
 					studentAnswer = ''
-					if boxAValue == True:
-						studentAnswer = 'A'
-					if boxBValue == True:
-						if len(studentAnswer) > 0:
-							studentAnswer = studentAnswer + ',B'
+					if boxNAValue == True:
+						if boxAValue == False and boxBValue == False and boxCValue == False:
+							studentAnswer = 'NA'
+							questionMissedDict['questionNumber'] = questionNumber
+							questionMissedDict['correctAnswer'] = correctAnswer
+							questionMissedDict['studentAnswer'] = studentAnswer
+							print 'studentAnswer is NA'
 						else:
-							studentAnswer = 'B'
-					if boxCValue == True:
-						if len(studentAnswer) > 0:
-							studentAnswer = studentAnswer + ',C'
-						else:
-							studentAnswer = 'C'
-					# when a question is missed, store the question number, the student answer,
-					# and the correct answer for that question
-					questionMissedDict['questionNumber'] = questionNumber
-					questionMissedDict['studentAnswer'] = studentAnswer
-					questionMissedDict['correctAnswer'] = correctAnswer
+							# present error dialog if both NA and another answer are marked
+							errorMessage = "You can't answer NA and something else too!\nQuestion " + questionNumber + " has NA and another answer!"
+							dlg = dabo.ui.info(errorMessage)
+							return(0, '')
+					else:
+						if boxAValue == True:
+							studentAnswer = 'A'
+						if boxBValue == True:
+							if len(studentAnswer) > 0:
+								studentAnswer = studentAnswer + ',B'
+							else:
+								studentAnswer = 'B'
+						if boxCValue == True:
+							if len(studentAnswer) > 0:
+								studentAnswer = studentAnswer + ',C'
+							else:
+								studentAnswer = 'C'
+						# when a question is missed, store the question number, the student answer,
+						# and the correct answer for that question
+						questionMissedDict['questionNumber'] = questionNumber
+						questionMissedDict['studentAnswer'] = studentAnswer
+						questionMissedDict['correctAnswer'] = correctAnswer
 			if questionMissedDict.has_key('questionNumber'):
 				# add the missed question info to missedList so we can reference
 				# that list to build the output dataset
@@ -328,6 +367,7 @@ def scoreWrongAnswers(self, answerCheckBoxList, answerDataSet):
 							questionMissedDict['questionNumber'] = questionNumber
 							questionMissedDict['correctAnswer'] = correctAnswer
 							questionMissedDict['studentAnswer'] = studentAnswer
+							print 'studentAnswer was NA in scoreWrongAnswers'
 						else:
 							# present error dialog if both NA and another answer are marked
 							errorMessage = "You can't answer NA and something else too!\nQuestion " + questionNumber + " has NA and another answer!"
@@ -358,10 +398,13 @@ def scoreWrongAnswers(self, answerCheckBoxList, answerDataSet):
 							questionMissedDict['questionNumber'] = questionNumber
 							questionMissedDict['correctAnswer'] = correctAnswer
 							questionMissedDict['studentAnswer'] = studentAnswer
+			print questionMissedDict
 			if questionMissedDict.has_key('questionNumber'):
 				# add the missed question info to missedList so we can reference
 				# that list to build the output dataset
-				missedList.append(questionMissedDict)
+				missedList.append([questionMissedDict['questionNumber'], questionMissedDict['studentAnswer'], questionMissedDict['correctAnswer']])
+				print 'found a dict with questionNumber'
+				print questionMissedDict
 	return(numberCorrect, missedList)
 
 
@@ -417,7 +460,6 @@ def afterInitAll(self):
 						'commentList':[],
 						}
 	self.refresh()
-
 
 
 def clearAnswerCheckBoxes(self):
@@ -514,7 +556,7 @@ def openCommentSelectorForm(self):
 				if char == dict['letter']:
 					self.gradeRecord['commentList'].append(dict['control'].Value)
 					break
-		self.buildGradeReport()
+		self.buildScreenGradeReport()
 		self.displayOutput()
 	newForm.safeDestroy()
 
@@ -525,21 +567,67 @@ def saveCurrentGradeRecord(self):
 	now = datetime.date.today()
 	print 'attempting to save grade record\n'
 	self.saveGradeRecord(self,
-											studentsRecNo = self.PrimaryBizobj.Record["StudentRecNo"],
-											currentDate = now,
-											lessonRecNo = self.lessonRecNo,
-											score = self.GradeReportRecord['Grade'],
-											comments = self.selectedComments)
+						studentsRecNo = self.PrimaryBizobj.Record["StudentRecNo"],
+						currentDate = now,
+						lessonRecNo = self.lessonRecNo,
+						score = self.gradeRecord['grade'],
+						comments = self.gradeRecord['commentString'])
 
 
 def savePDF(self):
 	app = self.Application
-	newForm = app.ui.FrmPreviewPDF(self)
-	newForm.headerInput = self.headerLines
-	newForm.missedInput = self.missedLines
-	newForm.commentInput = self.commentLines
-	newForm.show()
+	self.buildPDFGradeReport()
 
+	from reportlab.lib.styles import getSampleStyleSheet
+	from reportlab.lib import colors
+	from reportlab.lib.pagesizes import letter, inch
+	from reportlab.platypus import Paragraph, SimpleDocTemplate, Table, TableStyle
+
+	styles = getSampleStyleSheet()
+	doc = SimpleDocTemplate("gradeReport.pdf", pagesize=letter)
+	# container for the 'Flowable' objects
+	elements = []
+	 
+	Hdata = self.PDFHeaders
+	print "Hdata start"
+	print Hdata
+	print "Hdata end"
+	t1=Table(Hdata,[.75*inch, 2*inch, 1.5*inch], 14)
+	#t1=Table(Hdata,2*[1.3*inch], 5*[0.2*inch])
+	t1.setStyle(TableStyle([('ALIGN',(0,0), (0,4),'RIGHT'),
+							('ALIGN',(1,0), (1,4),'LEFT'),
+							]))
+	
+	Mdata = self.PDFMissed
+	print "Mdata start"
+	print Mdata
+	print "Mdata end"
+	if len(Mdata) == 1:
+		t2=Table(Mdata, None, [28])
+		t2.setStyle(TableStyle([('ALIGN',(0,0), (-1,-1),'LEFT'),
+								('ALIGN',(0,1), (0,-1),'RIGHT'),
+								]))
+	elif len(Mdata) >=2:
+		heightList = []
+		heightList.append(28)
+		for value in range(1, len(Mdata)):
+			heightList.append(14)
+		t2=Table(Mdata, None, heightList)
+		t2.setStyle(TableStyle([('ALIGN',(0,0), (-1,-1),'CENTER'),
+								('ALIGN',(0,1), (0,-1),'RIGHT'),
+								('GRID', (0,0), (-1,-1), None, colors.black),
+								]))
+	t1.hAlign = 'LEFT'
+	t2.hAlign = 'LEFT'
+	elements.append(t1)
+	elements.append(t2)
+
+	for line in self.PDFComments:
+		para = Paragraph(line, styles["BodyText"])
+		elements.append(para)
+	# write the document to disk
+	doc.build(elements)
+	dabo.lib.reportUtils.previewPDF('gradeReport.pdf')
 
 def scoreLesson(self):
 	app = self.Application
@@ -555,7 +643,7 @@ def scoreLesson(self):
 		(self.gradeRecord['numberCorrect'], self.gradeRecord['missedList']) = self.scoreQuestions(self.answerCheckBoxList, self.answerDataSet)
 	self.gradeRecord['numberMissed'] = self.gradeRecord['totalQuestions'] - self.gradeRecord['numberCorrect']
 	self.gradeRecord['grade'] = str((100.0 / self.gradeRecord['totalQuestions']) * self.gradeRecord['numberCorrect'])
-	self.buildGradeReport()
+	self.buildScreenGradeReport()
 	self.displayOutput()
 
 
