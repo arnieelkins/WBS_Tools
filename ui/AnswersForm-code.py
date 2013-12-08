@@ -8,7 +8,7 @@
 def afterInit(self):
 	mybiz = self.Form.getBizobj('Lessons')
 	(self.Choices, self.Keys) = mybiz.getAvailableTypes()
-
+	self.SaveRestorePosition="True"
 
 def onInteractiveChange(self, evt):
 	self.Form.PrimaryBizobj.moveToRowNumber(self.KeyValue - 1)

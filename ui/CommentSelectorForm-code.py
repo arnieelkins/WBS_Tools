@@ -260,6 +260,7 @@ def clearCommentCheckBoxes(self):
 
 def initProperties(self):
 	app = self.Application
+	self.SaveRestorePosition="True"
 	self.bizobj = None
 	self.BorderResizable = True
 	self.FontSize = app.PreferenceManager.getValue('fontsize')
