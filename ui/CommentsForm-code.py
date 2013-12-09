@@ -48,10 +48,13 @@ def onHit(self, evt):
 
 ## *!* ## Dabo Code ID: dForm-top
 def initProperties(self):
+
+	SaveRestorePosition="True"
 	app = self.Application
 	self.FontSize = app.PreferenceManager.getValue("fontsize")
 
 def afterInitAll(self):
+	SaveRestorePosition="True"
 	self.setupMenu()
 	self.requery()
 

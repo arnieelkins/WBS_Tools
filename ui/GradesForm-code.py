@@ -4,24 +4,33 @@
 ### 		'Dabo Code ID: XXXX',
 ### as these are needed to link the code to the objects.
 
-## *!* ## Dabo Code ID: dButton-dPanel-224
+## *!* ## Dabo Code ID: dButton-dPanel-821
 def onHit(self, evt):
-	self.Form.first()
+	self.Form.next()
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-10
+## *!* ## Dabo Code ID: dButton-dPanel-194
 def onHit(self, evt):
 	self.Form.save()
 
 
 
-## *!* ## Dabo Code ID: dForm-top
-def initProperties(self):
-	app = self.Application
-	self.FontSize = app.PreferenceManager.getValue("fontsize")
+## *!* ## Dabo Code ID: dButton-dPanel-359
+def onHit(self, evt):
+	self.Form.first()
 
+
+
+## *!* ## Dabo Code ID: dButton-dPanel
+def onHit(self, evt):
+	self.Form.requery()
+
+
+
+## *!* ## Dabo Code ID: dForm-top
 def afterInitAll(self):
+	SaveRestorePosition="True"
 	self.setupMenu()
 	self.requery()
 
@@ -31,7 +40,6 @@ def createBizobjs(self):
 
 	gradesBizobj = app.biz.GradesBizobj(app.dbConnection)
 	self.addBizobj(gradesBizobj)
-
 
 
 def fillFileOpenMenu(self):
@@ -57,31 +65,27 @@ def fillReportsMenu(self):
 	idx += 1
 	self.MenuBar.insertMenu(idx, menReports)
 
+
+def initProperties(self):
+	self.SaveRestorePosition="True"
+	app = self.Application
+	self.FontSize = app.PreferenceManager.getValue("fontsize")
+
+
 def setupMenu(self):
 	self.fillFileOpenMenu()
 	self.fillReportsMenu()
 
 
-## *!* ## Dabo Code ID: dButton-dPanel
-def onHit(self, evt):
-	self.Form.requery()
 
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-251
-def onHit(self, evt):
-	self.Form.next()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-656
-def onHit(self, evt):
-	self.Form.prior()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-452
+## *!* ## Dabo Code ID: dButton-dPanel-282
 def onHit(self, evt):
 	self.Form.last()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-944
+def onHit(self, evt):
+	self.Form.prior()
 
 
