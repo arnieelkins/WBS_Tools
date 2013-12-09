@@ -12,7 +12,22 @@ import traceback
 import datetime
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-353
+## *!* ## Dabo Code ID: dButton-dPanel-85
+def onHit(self, evt):
+	# SavePDF button
+	app = self.Application
+	self.Form.savePDF()
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-682
+def onHit(self, evt):
+	# Incomplete checkbox
+	self.Form.onIncompleteCheckBox()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-174
 def onHit(self, evt):
 	#clearoutput button
 	app = self.Application
@@ -22,7 +37,14 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-640
+## *!* ## Dabo Code ID: dButton-dPanel-136
+def onHit(self, evt):
+	# Comments button
+	self.Form.openCommentSelectorForm()
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel
 def onHit(self, evt):
 	# Failed checkbox
 	app = self.Application
@@ -30,52 +52,11 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel
-def onHit(self, evt):
-	# Incomplete checkbox
-	self.Form.onIncompleteCheckBox()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-399
-def onHit(self, evt):
-	# Comments button
-	self.Form.openCommentSelectorForm()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-645
-def onHit(self, evt):
-	# WriteToDB button
-	self.Form.saveCurrentGradeRecord()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-675
+## *!* ## Dabo Code ID: dButton-dPanel-503
 def onHit(self, evt):
 	# Score button
 	app = self.Application
 	self.Form.scoreLesson()
-	self.Form.CommentsButton.Enabled = True
-	self.Form.CommentsButton.update()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel
-def onHit(self, evt):
-	#resetform button
-	self.Form.clearAnswerCheckBoxes()
-	self.Form.clearHeaderOutBox()
-	self.Form.clearMissedOutBox()
-	self.Form.clearCommentOutBox()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-766
-def onHit(self, evt):
-	# SavePDF button
-	app = self.Application
-	self.Form.savePDF()
 
 
 
@@ -106,6 +87,16 @@ def afterInitAll(self):
 	self.OutputScrollPanel.Sizer.prepend(self.HeaderOutBox, proportion=1, layout='expand', border=2)
 	# getAnswerData needs the lesson number to look up the answer data
 	(self.answerDataSet, totalQuestions) = self.getAnswerData(self.lessonRecNo, self.getBizobj('Answers'))
+	# TIGNa is lessonRecNo 8, which is a copy of lessonRecNo 3 with different question numbers
+	# once we get the data with the right question numbers, we need to update the info to act
+	# as if it is just the normal TIGN data
+	if self.lessonRecNo == 8:
+		self.lessonRecNo = 3
+		self.lessonShortName = 'TIGN'
+		self.lessonFullName = 'This Is Good News'
+		self.OutputLabel.Caption = self.lessonShortName + ' Output'
+		for record in self.answerDataSet:
+			record['AnswerLessonsRecNo'] = 3
 	#print self.answerDataSet
 	self.AnswerPanel.Freeze()
 	self.answerCheckBoxList = self.buildBoxes(self.answerDataSet, self.AnswerPanel, self.testMode)
@@ -332,6 +323,10 @@ def onFailedCheckBox(self):
 		if self.IncompleteCheckBox.Value == True:
 			self.IncompleteCheckBox.Value = False
 			self.IncompleteCheckBox.raiseEvent(dabo.dEvents.Hit)
+		self.EnterGradeSpinner.Enabled = True
+		self.EnterGradeSpinner.setFocus()
+	else:
+		self.EnterGradeSpinner.Enabled = False
 
 
 def onIncompleteCheckBox(self):
@@ -425,7 +420,7 @@ def saveGradeRecord(self, studentsRecNo, currentDate, lessonRecNo, score, commen
 		tempCursor = bizObj.getTempCursor('select count(*) as count from Grades where GradeStudentsRecNo = %s and GradeLessonsRecNo = %s', (studentsRecNo, lessonRecNo))
 		numberOfRecords = tempCursor.Record.count
 		if numberOfRecords > 1:
-			dlg = dabo.ui.exclaim('Something is terribly wrong!\nThere are more than one grade records for this student and lesson!\nCall someone quick!')
+			dlg = dabo.ui.exclaim('Something is terribly wrong!\nThere are more than one grade records for this lesson!\nCall someone quick!')
 			return()
 		elif numberOfRecords == 1:
 			bizObj.execute("""select * from Grades where GradeStudentsRecNo = %s and GradeLessonsRecNo = %s""", (studentsRecNo, lessonRecNo))
@@ -443,7 +438,11 @@ def saveGradeRecord(self, studentsRecNo, currentDate, lessonRecNo, score, commen
 					bizObj.Record.GradeLessonsRecNo = lessonRecNo
 					bizObj.Record.GradeScore = int(score)
 					bizObj.Record.GradeComments = comments
-					dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\n')
+					returnCode = bizObj.save()
+					if returnCode == None:
+						dabo.ui.info('Update successful!')
+					else:
+						dabo.ui.exclaim('Unexpected returnCode = ' + str(returnCode) + ' from save operation!')
 					self.requery()
 					return()
 				except:
@@ -459,7 +458,11 @@ def saveGradeRecord(self, studentsRecNo, currentDate, lessonRecNo, score, commen
 			bizObj.setFieldVal("GradeLessonsRecNo", lessonRecNo)
 			bizObj.setFieldVal("GradeScore", int(score))
 			bizObj.setFieldVal("GradeComments", comments)
-			dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\n')
+			returnCode = bizObj.save()
+			if returnCode == None:
+				dabo.ui.info('Grade record created successfully!')
+			else:
+				dabo.ui.exclaim('Unexpected returnCode = ' + str(returnCode) + ' attempting to create a new grade record!')
 			self.requery()
 	except:
 		dlg = dabo.ui.exclaim("Oh my! Something has gone wrong!")
@@ -529,14 +532,23 @@ def scoreLesson(self):
 	self.MissedOutBox.refresh()
 	self.CommentOutBox.Clear()
 	self.CommentOutBox.refresh()
-	if self.EnterWrongAnswersCheckBox.Value == True:
+	if self.FailedCheckBox.Value == True:
+		if int(self.EnterGradeSpinner.Value) >= 0 and int(self.EnterGradeSpinner.Value) <=100:
+			self.gradeRecord['grade'] = int(self.EnterGradeSpinner.Value)
+		else:
+			dabo.ui.exclaim("Grade must be an integer between 0 and 100!")
+			return
+	elif self.EnterWrongAnswersCheckBox.Value == True:
 		(self.gradeRecord['numberCorrect'], self.gradeRecord['missedList']) = self.scoreWrongAnswers(self.answerCheckBoxList, self.answerDataSet)
 	else:
 		(self.gradeRecord['numberCorrect'], self.gradeRecord['missedList']) = self.scoreQuestions(self.answerCheckBoxList, self.answerDataSet)
-	self.gradeRecord['numberMissed'] = self.gradeRecord['totalQuestions'] - self.gradeRecord['numberCorrect']
-	self.gradeRecord['grade'] = ((100.0 / self.gradeRecord['totalQuestions']) * self.gradeRecord['numberCorrect'])
+	if not self.FailedCheckBox.Value == True:
+		self.gradeRecord['numberMissed'] = self.gradeRecord['totalQuestions'] - self.gradeRecord['numberCorrect']
+		self.gradeRecord['grade'] = ((100.0 / self.gradeRecord['totalQuestions']) * self.gradeRecord['numberCorrect'])
 	self.buildScreenGradeReport()
 	self.displayOutput()
+	self.CommentsButton.Enabled = True
+	self.CommentsButton.update()
 
 
 def scoreQuestions(self, answerCheckBoxList, answerDataSet):
@@ -655,7 +667,6 @@ def scoreWrongAnswers(self, answerCheckBoxList, answerDataSet):
 							questionMissedDict['questionNumber'] = questionNumber
 							questionMissedDict['correctAnswer'] = correctAnswer
 							questionMissedDict['studentAnswer'] = studentAnswer
-							print 'studentAnswer was NA in scoreWrongAnswers'
 						else:
 							# present error dialog if both NA and another answer are marked
 							errorMessage = "You can't answer NA and something else too!\nQuestion " + questionNumber + " has NA and another answer!"
@@ -686,13 +697,27 @@ def scoreWrongAnswers(self, answerCheckBoxList, answerDataSet):
 							questionMissedDict['questionNumber'] = questionNumber
 							questionMissedDict['correctAnswer'] = correctAnswer
 							questionMissedDict['studentAnswer'] = studentAnswer
-			print questionMissedDict
 			if questionMissedDict.has_key('questionNumber'):
 				# add the missed question info to missedList so we can reference
 				# that list to build the output dataset
 				missedList.append([questionMissedDict['questionNumber'], questionMissedDict['studentAnswer'], questionMissedDict['correctAnswer']])
-				print 'found a dict with questionNumber'
-				print questionMissedDict
 	return(numberCorrect, missedList)
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-686
+def onHit(self, evt):
+	# WriteToDB button
+	self.Form.saveCurrentGradeRecord()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel
+def onHit(self, evt):
+	#resetform button
+	self.Form.clearAnswerCheckBoxes()
+	self.Form.clearHeaderOutBox()
+	self.Form.clearMissedOutBox()
+	self.Form.clearCommentOutBox()
 
 

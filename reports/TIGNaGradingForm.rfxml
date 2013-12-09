@@ -359,7 +359,7 @@
 				</Objects>
 			</GroupHeader>
 			<GroupFooter>
-				<height>0</height>
+				<Height>0</Height>
 				<printatbottom>True</printatbottom>
 				<Objects>
 					<String>
@@ -842,7 +842,7 @@
 					</String>
 					<String>
 						<align>'right'</align>
-						<expr>'24</expr>
+						<expr>'24'</expr>
 						<height>11</height>
 						<width>20</width>
 						<x>'144.0'</x>
