@@ -62,14 +62,17 @@ require the user to delete or re-point Student records before removing a Contact
 Teacher.  However, the possibility also exists to have the program automatically point
 affected Student records to the default Contact or Teacher, which is always record 1,
 and the name fields are blank.  Need to discuss this with the users to determine how
-they would like to handle this situation.
+they would like to handle this situation.  UPDATE: The users have decided that deleting a Teacher
+or Contact should cause the associated student records to default to the blank Teacher or Contact,
+ie. record number 1.  As these are updated, a list should be created that the user can print
+or save so that they know which records were updated.
 
 Can I create a form in the application that will read in data from the Access DB and save it to 
 the MySQL DB?  That would be a nice way to migrate.  The old programs for Access have everything
 needed to fetch the data, and this one has everything to write to MySQL.  If a form could load the
 Access data by using the old code, then Dabo could be used to save the data to the new DB.
 
-Grades form should show student name instead of rec_no, and lesson short name instead of lesson_rec_no
+Grades form should show student name instead of rec_no, and lesson short name instead of lesson_rec_no - DONE
 
 Many save() functions were enclosed in try/except blocks, which is fine, but at the same time
 dialogs with status messages were put in to alert the user.  Many of them have output
