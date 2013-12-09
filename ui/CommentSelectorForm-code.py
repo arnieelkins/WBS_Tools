@@ -4,63 +4,64 @@
 ### 		'Dabo Code ID: XXXX',
 ### as these are needed to link the code to the objects.
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-646
+## *!* ## Dabo Code ID: dCheckBox-dPanel-828
 def onHit(self, evt):
-	#box K
+	#box D
 	self.Form.processSelected(evt)
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-230
+## *!* ## Dabo Code ID: dCheckBox-dPanel-357
 def onHit(self, evt):
-	#box A
+	# Incomplete box (4)
+	if self.Form.IncompleteCheckBox.Value == True:
+		if self.Form.FailedCheckBox.Value == True:
+			self.Form.FailedCheckBox.Value = False
+			self.Form.FailedCheckBox.raiseEvent(dabo.dEvents.Hit)
 	self.Form.processSelected(evt)
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-875
+## *!* ## Dabo Code ID: dCheckBox-dPanel-823
 def onHit(self, evt):
-	#box U
+	#box B
 	self.Form.processSelected(evt)
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-359
+## *!* ## Dabo Code ID: dCheckBox-dPanel-629
 def onHit(self, evt):
-	#box T
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-123
-def onHit(self, evt):
-	#box S
+	#box X
 	self.Form.processSelected(evt)
 
 
 
 ## *!* ## Dabo Code ID: dCheckBox-dPanel
 def onHit(self, evt):
-	#box 1
+	# Greeting box (1)
 	self.Form.processSelected(evt)
 
 
 
 ## *!* ## Dabo Code ID: dCheckBox-dPanel-800
 def onHit(self, evt):
+	# Failed box (3)
+	if self.Form.FailedCheckBox.Value == True:
+		if self.Form.IncompleteCheckBox.Value == True:
+			self.Form.IncompleteCheckBox.Value = False
+			self.Form.IncompleteCheckBox.raiseEvent(dabo.dEvents.Hit)
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-403
+def onHit(self, evt):
 	#box Z
 	self.Form.processSelected(evt)
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-802
-def onHit(self, evt):
-	#box N
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dButton-dScrollPanel
+## *!* ## Dabo Code ID: dButton-dScrollPanel-589
 def onHit(self, evt):
 	#cancel button
 	self.Form.Accepted = False
@@ -68,30 +69,30 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-78
+## *!* ## Dabo Code ID: dCheckBox-dPanel-343
 def onHit(self, evt):
-	#box X
+	#box R
 	self.Form.processSelected(evt)
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-928
+## *!* ## Dabo Code ID: dCheckBox-dPanel-425
 def onHit(self, evt):
-	#box Y
+	#box J
 	self.Form.processSelected(evt)
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-978
+## *!* ## Dabo Code ID: dCheckBox-dPanel-684
 def onHit(self, evt):
-	#box G
+	# Closing box (2)
 	self.Form.processSelected(evt)
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-524
+## *!* ## Dabo Code ID: dCheckBox-dPanel-995
 def onHit(self, evt):
-	#box W
+	#box V
 	self.Form.processSelected(evt)
 
 
@@ -129,57 +130,73 @@ def setActiveCommentString(self, val):
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-429
-def onHit(self, evt):
-	#box D
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-84
-def onHit(self, evt):
-	#box H
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-166
-def onHit(self, evt):
-	#box L
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-582
-def onHit(self, evt):
-	#box J
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-221
-def onHit(self, evt):
-	#box R
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-839
-def onHit(self, evt):
-	#box 2
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-856
+## *!* ## Dabo Code ID: dCheckBox-dPanel-461
 def onHit(self, evt):
 	#box C
 	self.Form.processSelected(evt)
 
 
 
+## *!* ## Dabo Code ID: dCheckBox-dPanel-892
+def onHit(self, evt):
+	#box O
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-429
+def onHit(self, evt):
+	#box I
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-566
+def onHit(self, evt):
+	#box U
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-219
+def onHit(self, evt):
+	#box R
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-334
+def onHit(self, evt):
+	#box Y
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-605
+def onHit(self, evt):
+	#box N
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-339
+def onHit(self, evt):
+	#box L
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dScrollPanel-dPanel
+def initProperties(self):
+	SaveRestorePosition="True"
+	import wx
+	self._addWindowStyleFlag(wx.ALWAYS_SHOW_SB)
+
+
+
 ## *!* ## Dabo Code ID: dDialog-top
 def afterInitAll(self):
+	SaveRestorePosition="True"
 	#dDialog
 	import wx
 	#self.ScrollPanel._addWindowStyleFlag(wx.ALWAYS_SHOW_SB)
@@ -191,7 +208,7 @@ def afterInitAll(self):
 	self.CommentSizer = self.GreetingEditBoxSizer.ControllingSizer
 	print self.CommentSizer
 	self.letterList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-				'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2']
+				'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4']
 	self.BorderSizerList = []
 	for letter in self.letterList:
 		newBorderSizer = dabo.ui.dBorderSizer(self.ScrollPanel, Caption = letter, Orientation='Vertical', Visible = False)
@@ -199,15 +216,18 @@ def afterInitAll(self):
 			newBorderSizer.Caption = 'Greeting'
 		elif newBorderSizer.Caption == '2':
 			newBorderSizer.Caption = 'Closing'
-		#newBorderSizer.Parent = self.ScrollPanel
-		#newBorderSizer.Box.Parent = self.ScrollPanel
+		if newBorderSizer.Caption == '3':
+			newBorderSizer.Caption = 'Failed'
+		elif newBorderSizer.Caption == '4':
+			newBorderSizer.Caption = 'Incomplete'
 		newEditBox = dabo.ui.uiwx.dEditBox(self.ScrollPanel, Visible = False, MinimumSize = (500, 200))
-		#newEditBox.Parent = self.ScrollPanel
 		newBorderSizer.append(newEditBox, layout = 'expand', proportion = 1, halign = 'right')
 		for item in self.CommentDictList:
 			if item['Name'] == letter:
 				newEditBox.Value = item['Comment']
 				self.BorderSizerList.append(newBorderSizer)
+	if self.FailedCheckBox.Value == True:
+		self.FailedCheckBox.raiseEvent(dabo.dEvents.Hit)
 
 
 def buildCommentDictList(self, bizobj):
@@ -238,8 +258,10 @@ def buildCommentDictList(self, bizobj):
 							{'Name':'X','Caption':'X','Comment':'','Box':self.dCheckBoxX},
 							{'Name':'Y','Caption':'Y','Comment':'','Box':self.dCheckBoxY},
 							{'Name':'Z','Caption':'Z','Comment':'','Box':self.dCheckBoxZ},
-							{'Name':'1','Caption':self.lessonShortName + 'Greeting','Comment':'','Box':self.dCheckBox1},
-							{'Name':'2','Caption':self.lessonShortName + 'Closing','Comment':'','Box':self.dCheckBox2},
+							{'Name':'1','Caption':self.lessonShortName + 'Greeting','Comment':'','Box':self.GreetingCheckBox},
+							{'Name':'2','Caption':self.lessonShortName + 'Closing','Comment':'','Box':self.ClosingCheckBox},
+							{'Name':'3','Caption':'Failed','Comment':'','Box':self.FailedCheckBox},
+							{'Name':'4','Caption':'Incomplete','Comment':'','Box':self.IncompleteCheckBox},
 							]
 	self.lookupComments(self.CommentDictList, bizobj, self.TextTags)
 	for item in self.CommentDictList:
@@ -259,8 +281,8 @@ def clearCommentCheckBoxes(self):
 
 
 def initProperties(self):
+	SaveRestorePosition="True"
 	app = self.Application
-	self.SaveRestorePosition="True"
 	self.bizobj = None
 	self.BorderResizable = True
 	self.FontSize = app.PreferenceManager.getValue('fontsize')
@@ -268,7 +290,7 @@ def initProperties(self):
 	# on one of the currently selected comments
 	self.ActiveCommentDict = []
 	self.MinimumSize = (720, 600)
-	self.Centered = True
+	#self.Centered = True
 
 
 def lookupComments(self, dictList, bizObj, tagDict):
@@ -290,11 +312,12 @@ def lookupComments(self, dictList, bizObj, tagDict):
 						if key in thisComment:
 							thisComment = thisComment.replace(key, tagDict[key])
 					item['Comment'] = thisComment
+			print item
 
 
 def processSelected(self, evt):
 	app = self.Application
-	source = evt._eventObject
+	source = evt.EventObject
 	# is box checked?
 	if 'dCheckBox' in str(type(source)):
 		print 'source = ' + str(source)
@@ -385,14 +408,56 @@ def processSelected(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-132
+## *!* ## Dabo Code ID: dCheckBox-dPanel-791
+def onHit(self, evt):
+	#box T
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-793
+def onHit(self, evt):
+	#box E
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-795
+def onHit(self, evt):
+	#box S
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-63
+def onHit(self, evt):
+	#box W
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-516
+def onHit(self, evt):
+	#box M
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-775
+def onHit(self, evt):
+	#box A
+	self.Form.processSelected(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-691
 def onHit(self, evt):
 	#box F
 	self.Form.processSelected(evt)
 
 
 
-## *!* ## Dabo Code ID: dButton-dScrollPanel-812
+## *!* ## Dabo Code ID: dButton-dScrollPanel
 def onHit(self, evt):
 	#OK button
 	# build list of comments for calling form
@@ -403,65 +468,30 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-673
+## *!* ## Dabo Code ID: dCheckBox-dPanel-884
 def onHit(self, evt):
-	#box O
+	#box G
 	self.Form.processSelected(evt)
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-134
-def onHit(self, evt):
-	#box M
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-931
-def onHit(self, evt):
-	#box R
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-284
+## *!* ## Dabo Code ID: dCheckBox-dPanel-307
 def onHit(self, evt):
 	#box P
 	self.Form.processSelected(evt)
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-288
+## *!* ## Dabo Code ID: dCheckBox-dPanel-90
 def onHit(self, evt):
-	#box I
+	#box K
 	self.Form.processSelected(evt)
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-514
+## *!* ## Dabo Code ID: dCheckBox-dPanel-894
 def onHit(self, evt):
-	#box E
+	#box H
 	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-886
-def onHit(self, evt):
-	#box B
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-710
-def onHit(self, evt):
-	#box V
-	self.Form.processSelected(evt)
-
-
-
-## *!* ## Dabo Code ID: dScrollPanel-dPanel
-def initProperties(self):
-	import wx
-	self._addWindowStyleFlag(wx.ALWAYS_SHOW_SB)
 
 

@@ -11,20 +11,53 @@ from wxPython.lib import colourdb
 import traceback
 import datetime
 
-## *!* ## Dabo Code ID: dButton-dPanel-739
+
+## *!* ## Dabo Code ID: dButton-dPanel-353
+def onHit(self, evt):
+	#clearoutput button
+	app = self.Application
+	self.Form.clearHeaderOutBox()
+	self.Form.clearMissedOutBox()
+	self.Form.clearCommentOutBox()
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-640
+def onHit(self, evt):
+	# Failed checkbox
+	app = self.Application
+	self.Form.onFailedCheckBox()
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel
+def onHit(self, evt):
+	# Incomplete checkbox
+	self.Form.onIncompleteCheckBox()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-399
+def onHit(self, evt):
+	# Comments button
+	self.Form.openCommentSelectorForm()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-645
+def onHit(self, evt):
+	# WriteToDB button
+	self.Form.saveCurrentGradeRecord()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-675
 def onHit(self, evt):
 	# Score button
 	app = self.Application
 	self.Form.scoreLesson()
 	self.Form.CommentsButton.Enabled = True
 	self.Form.CommentsButton.update()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-47
-def onHit(self, evt):
-	# Comments button
-	self.Form.openCommentSelectorForm()
 
 
 
@@ -38,7 +71,7 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-455
+## *!* ## Dabo Code ID: dButton-dPanel-766
 def onHit(self, evt):
 	# SavePDF button
 	app = self.Application
@@ -46,17 +79,62 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-637
-def onHit(self, evt):
-	#clearoutput button
-	app = self.Application
-	self.Form.clearHeaderOutBox()
-	self.Form.clearMissedOutBox()
-	self.Form.clearCommentOutBox()
-
-
-
 ## *!* ## Dabo Code ID: dForm-top
+def afterInitAll(self):
+	SaveRestorePosition="True"
+	import wx
+	app = self.Application
+	# self.lessonShortName is set by the LessonSelector form when calling GradingForm
+	# look up the record number and the full name in the database
+	tempCursor = self.getBizobj('Lessons').getTempCursor("select LessonName from Lessons where LessonShortName = %s", (self.lessonShortName,))
+	self.lessonFullName = tempCursor.Record.LessonName
+	tempCursor = self.getBizobj('Lessons').getTempCursor("select LessonRecNo from Lessons where LessonShortName = %s", (self.lessonShortName,))
+	self.lessonRecNo = tempCursor.Record.LessonRecNo
+	self.OutputLabel.Caption = self.lessonShortName + ' Output'
+	self.Caption = self.lessonShortName + ' Grading Form'
+	self.OutputScrollPanel.Sizer.remove(self.HeaderOutBox, destroy=True)
+	self.OutputScrollPanel.Sizer.remove(self.MissedOutBox, destroy=True)
+	self.OutputScrollPanel.Sizer.remove(self.CommentOutBox, destroy=True)
+	self.HeaderOutBox = dabo.ui.uiwx.dRichTextBox(self.OutputScrollPanel)
+	self.HeaderOutBox.ReadOnly=True
+	self.MissedOutBox = dabo.ui.uiwx.dRichTextBox(self.OutputScrollPanel)
+	self.MissedOutBox.ReadOnly=True
+	self.CommentOutBox = dabo.ui.uiwx.dRichTextBox(self.OutputScrollPanel)
+	self.CommentOutBox._addWindowStyleFlag(wx.WANTS_CHARS|wx.TE_PROCESS_ENTER|wx.TE_PROCESS_TAB)
+	self.OutputScrollPanel.Sizer.prepend(self.CommentOutBox, proportion=1, layout='expand', border=2)
+	self.OutputScrollPanel.Sizer.prepend(self.MissedOutBox, proportion=1, layout='expand', border=2)
+	self.OutputScrollPanel.Sizer.prepend(self.HeaderOutBox, proportion=1, layout='expand', border=2)
+	# getAnswerData needs the lesson number to look up the answer data
+	(self.answerDataSet, totalQuestions) = self.getAnswerData(self.lessonRecNo, self.getBizobj('Answers'))
+	#print self.answerDataSet
+	self.AnswerPanel.Freeze()
+	self.answerCheckBoxList = self.buildBoxes(self.answerDataSet, self.AnswerPanel, self.testMode)
+	self.AnswerPanel.Thaw()
+	self.PrimaryBizobj.addWhere("StudentRecNo = " + str(self.StudentRecNo))
+	self.requery()
+	studentRecord = self.PrimaryBizobj.Record
+	# now we have the info we need to initialize the gradeRecord
+	self.gradeRecord = {'currentDate':datetime.date.today(),
+						'lessonShortName':self.lessonShortName,
+						'lessonFullName':self.lessonFullName,
+						'studentFullName':studentRecord['StudentFullName'],
+						'studentFirstName':studentRecord['StudentFirstName'],
+						'teacherFullName':studentRecord['TeacherFullName'],
+						'teacherFirstName':studentRecord['TeacherFirstName'],
+						'contactFullName':studentRecord['ContactFullName'],
+						'contactFirstName':studentRecord['ContactFirstName'],
+						'studentID':studentRecord['StudentID'],
+						'totalQuestions':totalQuestions,
+						'numberCorrect':-1,
+						'numberMissed':-1,
+						'grade':-1,
+						'missedList':[],
+						'commentString':'',
+						'commentList':[],
+						}
+	self.refresh()
+
+
 def buildBoxes(self, answerData, AnswerPanel, testMode):
 	colordb = wx.TheColourDatabase
 	print "buildBoxes is running\n"
@@ -101,41 +179,6 @@ def buildBoxes(self, answerData, AnswerPanel, testMode):
 	return(answerCheckBoxList)
 
 
-def buildScreenGradeReport(self):
-	print "buildGradeReport is running\n"
-	app = self.Application
-	self.headerLines = []
-	self.headerLines.append('<b>' + str(self.gradeRecord['currentDate']) + '\t\t\t' + self.gradeRecord['lessonFullName'] + '</b>\n\n')
-	tempString = 'Student:\t<b>' + self.gradeRecord['studentFullName'] + '</b>'
-	# if there is no StudentID, skip that line
-	if self.gradeRecord['studentID'] != '' and self.gradeRecord['studentID'] != None:
-		tempString = tempString + '\tStudent ID:\t<b>' + self.gradeRecord['studentID'] + '</b>'
-	self.headerLines.append(tempString + '\n')
-	self.headerLines.append('Teacher:\t<b>' + self.gradeRecord['teacherFullName'] + '</b>\n')
-	self.headerLines.append('Contact:\t<b>' + self.gradeRecord['contactFullName'] + '</b>\n')
-	self.headerLines.append('Score:\t<b>' + self.gradeRecord['grade'] + '%</b>\n\n')
-	self.missedLines = []
-	if self.gradeRecord['numberMissed'] == 0:
-		self.missedLines.append("<b>No questions missed!</b>")
-	else:
-		self.missedLines.append("<b>Question missed\tYour answer\tCorrect answer</b>\n")
-	for line in self.gradeRecord['missedList']:
-		self.missedLines.append('<b>' + line[0] + '\t' + line[1] + '\t' + line[2] + '</b>\n')
-		print 'self.missedLines start'
-		print self.missedLines
-		print 'self.missedLines end'
-	self.commentLines = []
-	if ' ' in self.gradeRecord['studentFirstName']:
-		index = self.gradeRecord['studentFirstName'].find(' ')
-		shortFirstName = self.gradeRecord['studentFirstName'][0:index]
-	else:
-		shortFirstName = self.gradeRecord['studentFirstName']
-	self.commentLines.append('\nDear ' + shortFirstName + ',\n\n')
-	for line in self.gradeRecord['commentList']:
-		self.commentLines.append(line + '\n\n')
-	self.commentLines.append('Your study helper,\n')
-	self.commentLines.append(self.gradeRecord['teacherFirstName'])
-
 def buildPDFGradeReport(self):
 	print "buildPDFGradeReport is running\n"
 	app = self.Application
@@ -164,6 +207,104 @@ def buildPDFGradeReport(self):
 	self.PDFComments = self.CommentOutBox.Value.splitlines(False)
 
 
+def buildScreenGradeReport(self):
+	print "buildGradeReport is running\n"
+	app = self.Application
+	self.headerLines = []
+	self.headerLines.append('<b>' + str(self.gradeRecord['currentDate']) + '\t\t\t' + self.gradeRecord['lessonFullName'] + '</b>\n\n')
+	tempString = 'Student:\t<b>' + self.gradeRecord['studentFullName'] + '</b>'
+	# if there is no StudentID, skip that line
+	if self.gradeRecord['studentID'] != '' and self.gradeRecord['studentID'] != None:
+		tempString = tempString + '\tStudent ID:\t<b>' + self.gradeRecord['studentID'] + '</b>'
+	self.headerLines.append(tempString + '\n')
+	self.headerLines.append('Teacher:\t<b>' + self.gradeRecord['teacherFullName'] + '</b>\n')
+	self.headerLines.append('Contact:\t<b>' + self.gradeRecord['contactFullName'] + '</b>\n')
+	self.headerLines.append('Score:\t<b>' + str(self.gradeRecord['grade']) + '%</b>\n\n')
+	self.missedLines = []
+	if self.gradeRecord['numberMissed'] == 0:
+		self.missedLines.append("<b>No questions missed!</b>")
+	else:
+		self.missedLines.append("<b>Question missed\tYour answer\tCorrect answer</b>\n")
+	for line in self.gradeRecord['missedList']:
+		self.missedLines.append('<b>' + line[0] + '\t' + line[1] + '\t' + line[2] + '</b>\n')
+		print 'self.missedLines start'
+		print self.missedLines
+		print 'self.missedLines end'
+	self.commentLines = []
+	if ' ' in self.gradeRecord['studentFirstName']:
+		index = self.gradeRecord['studentFirstName'].find(' ')
+		shortFirstName = self.gradeRecord['studentFirstName'][0:index]
+	else:
+		shortFirstName = self.gradeRecord['studentFirstName']
+	self.commentLines.append('\nDear ' + shortFirstName + ',\n\n')
+	for line in self.gradeRecord['commentList']:
+		self.commentLines.append(line + '\n\n')
+	self.commentLines.append('Your study helper,\n')
+	self.commentLines.append(self.gradeRecord['teacherFirstName'])
+
+
+def clearAnswerCheckBoxes(self):
+	app = self.Application
+	for line in self.answerCheckBoxList:
+		# self.answerCheckBoxList contains a list of dictionary objects
+		# each row has 4 checkboxes and a label
+		line['A'].Value = False
+		line['B'].Value = False
+		line['C'].Value = False
+		line['NA'].Value = False
+	self.refresh()
+
+
+def clearCommentOutBox(self):
+	app = self.Application
+	self.CommentOutBox.Clear()
+	self.CommentOutBox.refresh()
+
+
+def clearHeaderOutBox(self):
+	app = self.Application
+	self.HeaderOutBox.Clear()
+	self.HeaderOutBox.refresh()
+
+
+def clearMissedOutBox(self):
+	app = self.Application
+	self.MissedOutBox.Clear()
+	self.MissedOutBox.refresh()
+
+
+def createBizobjs(self):
+	app = self.Application
+
+	studentsBizobj = app.biz.StudentsBizobj(app.dbConnection)
+	self.addBizobj(studentsBizobj)
+
+	answersBizobj = app.biz.AnswersBizobj(app.dbConnection)
+	self.addBizobj(answersBizobj)
+
+	gradesBizobj = app.biz.GradesBizobj(app.dbConnection)
+	self.addBizobj(gradesBizobj)
+
+	lessonsBizobj = app.biz.LessonsBizobj(app.dbConnection)
+	self.addBizobj(lessonsBizobj)
+
+
+def displayOutput(self):
+	app = self.Application
+	print "displayOutput is running\n"
+	self.HeaderOutBox.Clear()
+	self.HeaderOutBox.refresh()
+	self.MissedOutBox.Clear()
+	self.MissedOutBox.refresh()
+	self.CommentOutBox.Clear()
+	self.CommentOutBox.refresh()
+	# output all lines, starting and ending Bold as needed
+	self.outputLines(self.headerLines, self.HeaderOutBox)
+	if not self.FailedCheckBox.Value and not self.IncompleteCheckBox.Value:
+		self.outputLines(self.missedLines, self.MissedOutBox)
+	self.outputLines(self.commentLines, self.CommentOutBox)
+
+
 def getAnswerData(self, lessonNumber, bizObj):
 	print "getAnswerData is running\n"
 	tempCursor = bizObj.getTempCursor()
@@ -172,6 +313,66 @@ def getAnswerData(self, lessonNumber, bizObj):
 	tempCursor.requery()
 	totalQuestions = len(tempCursor.getDataSet())
 	return(tempCursor.getDataSet(), totalQuestions)
+
+
+def initProperties(self):
+	SaveRestorePosition="True"
+	app = self.Application
+	self.FontSize = app.PreferenceManager.getValue('fontsize')
+	self.RegID = 'GradingForm'
+	# testMode colors the boxes for the correct answers green
+	self.testMode = True
+	self.lessonScored = False
+	self.commentsSelected = False
+	#self.Centered = True
+
+
+def onFailedCheckBox(self):
+	if self.FailedCheckBox.Value == True:
+		if self.IncompleteCheckBox.Value == True:
+			self.IncompleteCheckBox.Value = False
+			self.IncompleteCheckBox.raiseEvent(dabo.dEvents.Hit)
+
+
+def onIncompleteCheckBox(self):
+	if self.IncompleteCheckBox.Value == True:
+		if self.FailedCheckBox.Value == True:
+			self.FailedCheckBox.Value = False
+			self.FailedCheckBox.raiseEvent(dabo.dEvents.Hit)
+
+
+def openCommentSelectorForm(self):
+	app = self.Application
+	print 'self.Form = ' + str(self.Form)
+	newForm = app.ui.CommentSelectorForm(self.Form, Modal=True)
+	print "self.gradeRecord start"
+	print self.gradeRecord
+	print "self.gradeRecord end"
+	newForm.TextTags = ({'<ContactFirstName>':self.gradeRecord['contactFirstName'], '<NumberOfQuestionsMissed>':str(self.gradeRecord['totalQuestions'] - self.gradeRecord['numberCorrect'])})
+	newForm.lessonShortName = self.gradeRecord['lessonShortName']
+	newForm.buildCommentDictList(self.PrimaryBizobj)
+	newForm.SaveRestorePosition = True
+	if self.FailedCheckBox.Value == True:
+		newForm.FailedCheckBox.Value = True
+	newForm.show()
+	if newForm.Accepted:
+		#get our value, then destroy the form
+		self.gradeRecord['commentList'] = []
+		self.gradeRecord['commentString'] = newForm.ActiveCommentTextBox.getActiveCommentString()
+		for char in self.gradeRecord['commentString']:
+			print 'char = ' + str(char) + '\n'
+			for dict in newForm.ActiveCommentDict:
+				print "dict['letter'] = " + str(dict['letter'])
+				if char == dict['letter']:
+					self.gradeRecord['commentList'].append(dict['control'].Value)
+					break
+		if newForm.FailedCheckBox.Value == True:
+			self.FailedCheckBox.Value = True
+		elif newForm.IncompleteCheckBox.Value == True:
+			self.IncompleteCheckBox.Value = True
+		self.buildScreenGradeReport()
+		self.displayOutput()
+	newForm.safeDestroy()
 
 
 def outputLines(self, Lines, OutputBox):
@@ -198,6 +399,18 @@ def outputLines(self, Lines, OutputBox):
 					OutputBox.EndBold()
 					line = line[endBold + 4:]
 		OutputBox.WriteText(line)
+
+
+def saveCurrentGradeRecord(self):
+	app = self.Application
+	import datetime
+	now = datetime.date.today()
+	print 'attempting to save grade record\n'
+	self.saveGradeRecord(studentsRecNo = self.PrimaryBizobj.Record["StudentRecNo"],
+						currentDate = now,
+						lessonRecNo = self.lessonRecNo,
+						score = self.gradeRecord['grade'],
+						comments = self.gradeRecord['commentString'])
 
 
 def saveGradeRecord(self, studentsRecNo, currentDate, lessonRecNo, score, comments):
@@ -250,6 +463,80 @@ def saveGradeRecord(self, studentsRecNo, currentDate, lessonRecNo, score, commen
 			self.requery()
 	except:
 		dlg = dabo.ui.exclaim("Oh my! Something has gone wrong!")
+
+
+def savePDF(self):
+	app = self.Application
+	self.buildPDFGradeReport()
+
+	from reportlab.lib.styles import getSampleStyleSheet
+	from reportlab.lib import colors
+	from reportlab.lib.pagesizes import letter, inch
+	from reportlab.platypus import Paragraph, SimpleDocTemplate, Table, TableStyle
+
+	styles = getSampleStyleSheet()
+	doc = SimpleDocTemplate("gradeReport.pdf", pagesize=letter)
+	# container for the 'Flowable' objects
+	elements = []
+	 
+	Hdata = self.PDFHeaders
+	print "Hdata start"
+	print Hdata
+	print "Hdata end"
+	t1=Table(Hdata,[.75*inch, 2*inch, 1.5*inch], 14)
+	t1.setStyle(TableStyle([('ALIGN',(0,0), (0,4),'RIGHT'),
+							('ALIGN',(1,0), (1,4),'LEFT'),
+							]))
+	
+	Mdata = self.PDFMissed
+	print "Mdata start"
+	print Mdata
+	print "Mdata end"
+	if len(Mdata) == 1:
+		t2=Table(Mdata, None, [28])
+		t2.setStyle(TableStyle([('ALIGN',(0,0), (-1,-1),'LEFT'),
+								('ALIGN',(0,1), (0,-1),'RIGHT'),
+								]))
+	elif len(Mdata) >=2:
+		heightList = []
+		heightList.append(28)
+		for value in range(1, len(Mdata)):
+			heightList.append(14)
+		t2=Table(Mdata, None, heightList)
+		t2.setStyle(TableStyle([('ALIGN',(0,0), (-1,-1),'CENTER'),
+								('ALIGN',(0,1), (0,-1),'RIGHT'),
+								('GRID', (0,0), (-1,-1), None, colors.black),
+								]))
+	t1.hAlign = 'LEFT'
+	t2.hAlign = 'LEFT'
+	elements.append(t1)
+	if not self.FailedCheckBox.Value and not self.IncompleteCheckBox.Value and not self.gradeRecord['grade'] == 100:
+		elements.append(t2)
+
+	for line in self.PDFComments:
+		para = Paragraph(line, styles["BodyText"])
+		elements.append(para)
+	# write the document to disk
+	doc.build(elements)
+	dabo.lib.reportUtils.previewPDF('gradeReport.pdf')
+
+
+def scoreLesson(self):
+	app = self.Application
+	self.HeaderOutBox.Clear()
+	self.HeaderOutBox.refresh()
+	self.MissedOutBox.Clear()
+	self.MissedOutBox.refresh()
+	self.CommentOutBox.Clear()
+	self.CommentOutBox.refresh()
+	if self.EnterWrongAnswersCheckBox.Value == True:
+		(self.gradeRecord['numberCorrect'], self.gradeRecord['missedList']) = self.scoreWrongAnswers(self.answerCheckBoxList, self.answerDataSet)
+	else:
+		(self.gradeRecord['numberCorrect'], self.gradeRecord['missedList']) = self.scoreQuestions(self.answerCheckBoxList, self.answerDataSet)
+	self.gradeRecord['numberMissed'] = self.gradeRecord['totalQuestions'] - self.gradeRecord['numberCorrect']
+	self.gradeRecord['grade'] = ((100.0 / self.gradeRecord['totalQuestions']) * self.gradeRecord['numberCorrect'])
+	self.buildScreenGradeReport()
+	self.displayOutput()
 
 
 def scoreQuestions(self, answerCheckBoxList, answerDataSet):
@@ -335,6 +622,7 @@ def scoreQuestions(self, answerCheckBoxList, answerDataSet):
 				missedList.append([questionMissedDict['questionNumber'], questionMissedDict['studentAnswer'], questionMissedDict['correctAnswer']])
 	return(numberCorrect, missedList)
 
+
 def scoreWrongAnswers(self, answerCheckBoxList, answerDataSet):
 	print "scoreWrongAnswers is running\n"
 	numberCorrect = 0
@@ -406,251 +694,5 @@ def scoreWrongAnswers(self, answerCheckBoxList, answerDataSet):
 				print 'found a dict with questionNumber'
 				print questionMissedDict
 	return(numberCorrect, missedList)
-
-
-def afterInitAll(self):
-	import wx
-	app = self.Application
-	# self.lessonShortName is set by the LessonSelector form when calling GradingForm
-	# look up the record number and the full name in the database
-	tempCursor = self.getBizobj('Lessons').getTempCursor("select LessonName from Lessons where LessonShortName = %s", (self.lessonShortName,))
-	self.lessonFullName = tempCursor.Record.LessonName
-	tempCursor = self.getBizobj('Lessons').getTempCursor("select LessonRecNo from Lessons where LessonShortName = %s", (self.lessonShortName,))
-	self.lessonRecNo = tempCursor.Record.LessonRecNo
-	self.OutputLabel.Caption = self.lessonShortName + ' Output'
-	self.Caption = self.lessonShortName + ' Grading Form'
-	self.OutputScrollPanel.Sizer.remove(self.HeaderOutBox, destroy=True)
-	self.OutputScrollPanel.Sizer.remove(self.MissedOutBox, destroy=True)
-	self.OutputScrollPanel.Sizer.remove(self.CommentOutBox, destroy=True)
-	self.HeaderOutBox = dabo.ui.uiwx.dRichTextBox(self.OutputScrollPanel)
-	self.HeaderOutBox.ReadOnly=True
-	self.MissedOutBox = dabo.ui.uiwx.dRichTextBox(self.OutputScrollPanel)
-	self.MissedOutBox.ReadOnly=True
-	self.CommentOutBox = dabo.ui.uiwx.dRichTextBox(self.OutputScrollPanel)
-	self.CommentOutBox._addWindowStyleFlag(wx.WANTS_CHARS|wx.TE_PROCESS_ENTER|wx.TE_PROCESS_TAB)
-	self.OutputScrollPanel.Sizer.prepend(self.CommentOutBox, proportion=1, layout='expand', border=2)
-	self.OutputScrollPanel.Sizer.prepend(self.MissedOutBox, proportion=1, layout='expand', border=2)
-	self.OutputScrollPanel.Sizer.prepend(self.HeaderOutBox, proportion=1, layout='expand', border=2)
-	# getAnswerData needs the lesson number to look up the answer data
-	(self.answerDataSet, totalQuestions) = self.getAnswerData(self.lessonRecNo, self.getBizobj('Answers'))
-	#print self.answerDataSet
-	self.AnswerPanel.Freeze()
-	self.answerCheckBoxList = self.buildBoxes(self.answerDataSet, self.AnswerPanel, self.testMode)
-	self.AnswerPanel.Thaw()
-	self.PrimaryBizobj.addWhere("StudentRecNo = " + str(self.StudentRecNo))
-	self.requery()
-	studentRecord = self.PrimaryBizobj.Record
-	# now we have the info we need to initialize the gradeRecord
-	self.gradeRecord = {'currentDate':datetime.date.today(),
-						'lessonShortName':self.lessonShortName,
-						'lessonFullName':self.lessonFullName,
-						'studentFullName':studentRecord['StudentFullName'],
-						'studentFirstName':studentRecord['StudentFirstName'],
-						'teacherFullName':studentRecord['TeacherFullName'],
-						'teacherFirstName':studentRecord['TeacherFirstName'],
-						'contactFullName':studentRecord['ContactFullName'],
-						'contactFirstName':studentRecord['ContactFirstName'],
-						'studentID':studentRecord['StudentID'],
-						'totalQuestions':totalQuestions,
-						'numberCorrect':-1,
-						'numberMissed':-1,
-						'grade':-1,
-						'missedList':[],
-						'commentString':'',
-						'commentList':[],
-						}
-	self.refresh()
-
-
-def clearAnswerCheckBoxes(self):
-	app = self.Application
-	for line in self.answerCheckBoxList:
-		# self.answerCheckBoxList contains a list of dictionary objects
-		# each row has 4 checkboxes and a label
-		line['A'].Value = False
-		line['B'].Value = False
-		line['C'].Value = False
-		line['NA'].Value = False
-	self.refresh()
-
-
-def clearCommentOutBox(self):
-	app = self.Application
-	self.CommentOutBox.Clear()
-	self.CommentOutBox.refresh()
-
-
-def clearHeaderOutBox(self):
-	app = self.Application
-	self.HeaderOutBox.Clear()
-	self.HeaderOutBox.refresh()
-
-
-def clearMissedOutBox(self):
-	app = self.Application
-	self.MissedOutBox.Clear()
-	self.MissedOutBox.refresh()
-
-
-def createBizobjs(self):
-	app = self.Application
-
-	studentsBizobj = app.biz.StudentsBizobj(app.dbConnection)
-	self.addBizobj(studentsBizobj)
-
-	answersBizobj = app.biz.AnswersBizobj(app.dbConnection)
-	self.addBizobj(answersBizobj)
-
-	gradesBizobj = app.biz.GradesBizobj(app.dbConnection)
-	self.addBizobj(gradesBizobj)
-
-	lessonsBizobj = app.biz.LessonsBizobj(app.dbConnection)
-	self.addBizobj(lessonsBizobj)
-
-
-def displayOutput(self):
-	app = self.Application
-	print "displayOutput is running\n"
-	self.HeaderOutBox.Clear()
-	self.HeaderOutBox.refresh()
-	self.MissedOutBox.Clear()
-	self.MissedOutBox.refresh()
-	self.CommentOutBox.Clear()
-	self.CommentOutBox.refresh()
-	# output all lines, starting and ending Bold as needed
-	self.outputLines(self.headerLines, self.HeaderOutBox)
-	self.outputLines(self.missedLines, self.MissedOutBox)
-	self.outputLines(self.commentLines, self.CommentOutBox)
-
-
-def initProperties(self):
-	app = self.Application
-	self.FontSize = app.PreferenceManager.getValue('fontsize')
-	self.RegID = 'GradingForm'
-	# testMode colors the boxes for the correct answers green
-	self.testMode = True
-	self.lessonScored = False
-	self.commentsSelected = False
-	self.Centered = True
-
-
-def openCommentSelectorForm(self):
-	app = self.Application
-	newForm = app.ui.CommentSelectorForm(app.MainForm, Modal=True)
-	print "self.gradeRecord start"
-	print self.gradeRecord
-	print "self.gradeRecord end"
-	newForm.TextTags = ({'<ContactFirstName>':self.gradeRecord['contactFirstName'], '<NumberOfQuestionsMissed>':str(self.gradeRecord['totalQuestions'] - self.gradeRecord['numberCorrect'])})
-	newForm.lessonShortName = self.gradeRecord['lessonShortName']
-	newForm.buildCommentDictList(self.PrimaryBizobj)
-	newForm.SaveRestorePosition = True
-	newForm.show()
-	if newForm.Accepted:
-		#get our value, then destroy the form
-		self.gradeRecord['commentList'] = []
-		self.gradeRecord['commentString'] = newForm.ActiveCommentTextBox.getActiveCommentString()
-		for char in self.gradeRecord['commentString']:
-			print 'char = ' + str(char) + '\n'
-			for dict in newForm.ActiveCommentDict:
-				print "dict['letter'] = " + str(dict['letter'])
-				if char == dict['letter']:
-					self.gradeRecord['commentList'].append(dict['control'].Value)
-					break
-		self.buildScreenGradeReport()
-		self.displayOutput()
-	newForm.safeDestroy()
-
-
-def saveCurrentGradeRecord(self):
-	app = self.Application
-	import datetime
-	now = datetime.date.today()
-	print 'attempting to save grade record\n'
-	self.saveGradeRecord(self,
-						studentsRecNo = self.PrimaryBizobj.Record["StudentRecNo"],
-						currentDate = now,
-						lessonRecNo = self.lessonRecNo,
-						score = self.gradeRecord['grade'],
-						comments = self.gradeRecord['commentString'])
-
-
-def savePDF(self):
-	app = self.Application
-	self.buildPDFGradeReport()
-
-	from reportlab.lib.styles import getSampleStyleSheet
-	from reportlab.lib import colors
-	from reportlab.lib.pagesizes import letter, inch
-	from reportlab.platypus import Paragraph, SimpleDocTemplate, Table, TableStyle
-
-	styles = getSampleStyleSheet()
-	doc = SimpleDocTemplate("gradeReport.pdf", pagesize=letter)
-	# container for the 'Flowable' objects
-	elements = []
-	 
-	Hdata = self.PDFHeaders
-	print "Hdata start"
-	print Hdata
-	print "Hdata end"
-	t1=Table(Hdata,[.75*inch, 2*inch, 1.5*inch], 14)
-	#t1=Table(Hdata,2*[1.3*inch], 5*[0.2*inch])
-	t1.setStyle(TableStyle([('ALIGN',(0,0), (0,4),'RIGHT'),
-							('ALIGN',(1,0), (1,4),'LEFT'),
-							]))
-	
-	Mdata = self.PDFMissed
-	print "Mdata start"
-	print Mdata
-	print "Mdata end"
-	if len(Mdata) == 1:
-		t2=Table(Mdata, None, [28])
-		t2.setStyle(TableStyle([('ALIGN',(0,0), (-1,-1),'LEFT'),
-								('ALIGN',(0,1), (0,-1),'RIGHT'),
-								]))
-	elif len(Mdata) >=2:
-		heightList = []
-		heightList.append(28)
-		for value in range(1, len(Mdata)):
-			heightList.append(14)
-		t2=Table(Mdata, None, heightList)
-		t2.setStyle(TableStyle([('ALIGN',(0,0), (-1,-1),'CENTER'),
-								('ALIGN',(0,1), (0,-1),'RIGHT'),
-								('GRID', (0,0), (-1,-1), None, colors.black),
-								]))
-	t1.hAlign = 'LEFT'
-	t2.hAlign = 'LEFT'
-	elements.append(t1)
-	elements.append(t2)
-
-	for line in self.PDFComments:
-		para = Paragraph(line, styles["BodyText"])
-		elements.append(para)
-	# write the document to disk
-	doc.build(elements)
-	dabo.lib.reportUtils.previewPDF('gradeReport.pdf')
-
-def scoreLesson(self):
-	app = self.Application
-	self.HeaderOutBox.Clear()
-	self.HeaderOutBox.refresh()
-	self.MissedOutBox.Clear()
-	self.MissedOutBox.refresh()
-	self.CommentOutBox.Clear()
-	self.CommentOutBox.refresh()
-	if self.EnterWrongAnswersCheckBox.Value == True:
-		(self.gradeRecord['numberCorrect'], self.gradeRecord['missedList']) = self.scoreWrongAnswers(self.answerCheckBoxList, self.answerDataSet)
-	else:
-		(self.gradeRecord['numberCorrect'], self.gradeRecord['missedList']) = self.scoreQuestions(self.answerCheckBoxList, self.answerDataSet)
-	self.gradeRecord['numberMissed'] = self.gradeRecord['totalQuestions'] - self.gradeRecord['numberCorrect']
-	self.gradeRecord['grade'] = str((100.0 / self.gradeRecord['totalQuestions']) * self.gradeRecord['numberCorrect'])
-	self.buildScreenGradeReport()
-	self.displayOutput()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-435
-def onHit(self, evt):
-	# WriteToDB button
-	self.Form.saveCurrentGradeRecord()
 
 

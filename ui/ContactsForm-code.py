@@ -69,6 +69,7 @@ def addContact(self):
 		dabo.ui.exclaim('Uh oh, something went wrong!  Better check the log file!')
 
 def afterInitAll(self):
+	SaveRestorePosition="True"
 	self.requery()
 
 
@@ -101,6 +102,8 @@ def deleteContact(self):
 
 
 def initProperties(self):
+
+	SaveRestorePosition="True"
 	app = self.Application
 	self.FontSize = app.PreferenceManager.getValue("fontsize")
 
