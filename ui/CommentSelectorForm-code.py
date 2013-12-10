@@ -228,6 +228,8 @@ def afterInitAll(self):
 				self.BorderSizerList.append(newBorderSizer)
 	if self.FailedCheckBox.Value == True:
 		self.FailedCheckBox.raiseEvent(dabo.dEvents.Hit)
+	if self.IncompleteCheckBox.Value == True:
+		self.IncompleteCheckBox.raiseEvent(dabo.dEvents.Hit)
 
 
 def buildCommentDictList(self, bizobj):

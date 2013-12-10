@@ -31,7 +31,6 @@ class FrmPreviewPDF(FrmReportBase):
 		"""Run the report and then preview or print it."""
 		print "running report +++++++++++++++++++++++++++++++++"
 		self.requery()
-		print self.DataSet
 		f = self.write()
 		if mode == "preview":
 			dabo.lib.reportUtils.previewPDF(f)
@@ -49,9 +48,6 @@ class FrmPreviewPDF(FrmReportBase):
 				tempString = tempString.replace('\t', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
 				tempString = tempString.replace('<sp>', '&nbsp;')
 				outputBlock = outputBlock + tempString
-		print "outputBlock to follow"
-		print outputBlock
-		print "end of outputBlock"
 		return(outputBlock)
 
 
@@ -71,6 +67,5 @@ class FrmPreviewPDF(FrmReportBase):
 		self.missedOutput = self.FormatOutput(self.missedInput)
 		self.commentOutput = self.FormatOutput(self.commentInput)
 		self.ReportForm = "reports//GradeReport.rfxml"
-		print "self.ReportForm = " + str(self.ReportForm)
 		self.runReport("preview")
 		self.safeDestroy()

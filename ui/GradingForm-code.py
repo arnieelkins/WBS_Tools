@@ -349,6 +349,8 @@ def openCommentSelectorForm(self):
 	newForm.SaveRestorePosition = True
 	if self.FailedCheckBox.Value == True:
 		newForm.FailedCheckBox.Value = True
+	if self.IncompleteCheckBox.Value == True:
+		newForm.IncompleteCheckBox.Value = True
 	newForm.show()
 	if newForm.Accepted:
 		#get our value, then destroy the form
@@ -471,14 +473,23 @@ def saveGradeRecord(self, studentsRecNo, currentDate, lessonRecNo, score, commen
 def savePDF(self):
 	app = self.Application
 	self.buildPDFGradeReport()
-
+	print "self.gradeRecord['studentFullName'] = " + self.gradeRecord['studentFullName']
+	idx = self.gradeRecord['studentFullName'].rfind(" ")
+	print 'index = ' + str(idx)
+	if idx != None:
+		lastName = self.gradeRecord['studentFullName'][idx:]
+	else:
+		lastName = self.gradeRecord['studentFullName']
+	grade = str(int(self.gradeRecord['grade']))
+	lesson = self.gradeRecord['lessonShortName']
+	fileName = lastName + '_' + lesson + '_' + grade + '.pdf'
 	from reportlab.lib.styles import getSampleStyleSheet
 	from reportlab.lib import colors
 	from reportlab.lib.pagesizes import letter, inch
 	from reportlab.platypus import Paragraph, SimpleDocTemplate, Table, TableStyle
 
 	styles = getSampleStyleSheet()
-	doc = SimpleDocTemplate("gradeReport.pdf", pagesize=letter)
+	doc = SimpleDocTemplate(fileName, pagesize=letter)
 	# container for the 'Flowable' objects
 	elements = []
 	 
@@ -521,7 +532,7 @@ def savePDF(self):
 		elements.append(para)
 	# write the document to disk
 	doc.build(elements)
-	dabo.lib.reportUtils.previewPDF('gradeReport.pdf')
+	dabo.lib.reportUtils.previewPDF(fileName)
 
 
 def scoreLesson(self):
