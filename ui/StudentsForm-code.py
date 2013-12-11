@@ -235,6 +235,15 @@ def onHit(self, evt):
 ## *!* ## Dabo Code ID: dButton-dPanel-606
 def onHit(self, evt):
 	# Print Forms button
+	teacher = self.Form.PrimaryBizobj.Record.TeacherFullName
+	if teacher == ' ' or teacher == None:
+		dlg = dabo.ui.areYouSure("There is no TEACHER assigned.  Do you still want to print?", defaultNo=True, cancelButton=False, parent=self.Form)
+		if dlg == False:
+			return()
+	contact = self.Form.PrimaryBizobj.Record.ContactFullName
+	if contact == ' ' or contact == None:
+		dabo.ui.exclaim("You need to assign a CONTACT before you can print a grading sheet!")
+		return()
 	self.Form.openPrintForm()
 
 

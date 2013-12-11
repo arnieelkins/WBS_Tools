@@ -499,6 +499,8 @@ def savePDF(self):
 	print "Hdata end"
 	t1=Table(Hdata,[.75*inch, 2*inch, 1.5*inch], 14)
 	t1.setStyle(TableStyle([('ALIGN',(0,0), (0,4),'RIGHT'),
+							('FONT',(0,0), (2,0),'Helvetica-Bold'),
+							('FONT',(1,0), (1,4),'Helvetica-Bold'),
 							('ALIGN',(1,0), (1,4),'LEFT'),
 							]))
 	
@@ -518,6 +520,7 @@ def savePDF(self):
 			heightList.append(14)
 		t2=Table(Mdata, None, heightList)
 		t2.setStyle(TableStyle([('ALIGN',(0,0), (-1,-1),'CENTER'),
+								('FONT',(0,0), (-1,-1),'Helvetica-Bold'),
 								('ALIGN',(0,1), (0,-1),'RIGHT'),
 								('GRID', (0,0), (-1,-1), None, colors.black),
 								]))

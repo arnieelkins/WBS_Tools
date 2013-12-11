@@ -38,6 +38,8 @@ remove 'Has done WBS before?' from grading sheets - DONE
 
 If a lookup finds no records, pop up a dialog to inform the user - DONE
 
+Add Failed/Incomplete function - DONE
+
 DONE! Can Contacts and Teachers forms be Modal?  -- not currently, as they run from the menu, and I have
 not found a way to set the Modal option.  Perhaps I should create a 'maintenance' dialog that has buttons for
 the db forms, and open that from the menu.  It could have buttons to select the table you want, and open the
@@ -52,6 +54,12 @@ all possible because StudentsForm is calling the other forms directly, rather th
 menu, which is not part of the form itself, calling the form.  When the menu does it,
 the form does not know about it, and so cannot update itself when the form is closed.
 
+TIGN - two possible sets of numbers for questions on grading form/output. DONE
+
+Grades form should show student name instead of rec_no, and lesson short name instead of lesson_rec_no - DONE
+
+Write to DB not working on GradingForm - DONE
+
 Deleting a contact not working - foreign key failure because records existed pointing to that contact. Need to 
 inform the user when either a Teacher or a Contact is being deleted, and records exist pointing to that person. 
 Ask user who to point those records to instead, update the records, then delete. - PARTIALLY
@@ -62,17 +70,13 @@ require the user to delete or re-point Student records before removing a Contact
 Teacher.  However, the possibility also exists to have the program automatically point
 affected Student records to the default Contact or Teacher, which is always record 1,
 and the name fields are blank.  Need to discuss this with the users to determine how
-they would like to handle this situation.  UPDATE: The users have decided that deleting a Teacher
-or Contact should cause the associated student records to default to the blank Teacher or Contact,
-ie. record number 1.  As these are updated, a list should be created that the user can print
-or save so that they know which records were updated.
+they would like to handle this situation.  -- Need to default students that are affected and print
+a list so the admins know who was affected by the change.
 
 Can I create a form in the application that will read in data from the Access DB and save it to 
 the MySQL DB?  That would be a nice way to migrate.  The old programs for Access have everything
 needed to fetch the data, and this one has everything to write to MySQL.  If a form could load the
 Access data by using the old code, then Dabo could be used to save the data to the new DB.
-
-Grades form should show student name instead of rec_no, and lesson short name instead of lesson_rec_no - DONE
 
 Many save() functions were enclosed in try/except blocks, which is fine, but at the same time
 dialogs with status messages were put in to alert the user.  Many of them have output
@@ -80,4 +84,7 @@ that does not match the message string, which is confusing enough, but some, lik
 when the user selects a Contact after getting the message that one is necessary before
 grading, don't seem to work correctly.  The contact is saved, the result = True instead of 
 None as the message would indicate, and the user still cannot grade.  Apparently the 
-form is not being refreshed?
+form is not being refreshed?  PARTIAL - form now updates correctly, but messages are still confusing.
+
+
+Need to create styles for the table output on the PDF
