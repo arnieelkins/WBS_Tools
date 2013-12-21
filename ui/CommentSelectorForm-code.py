@@ -4,7 +4,6 @@
 ### 		'Dabo Code ID: XXXX',
 ### as these are needed to link the code to the objects.
 
-
 ## *!* ## Dabo Code ID: dCheckBox-dPanel-828
 def onHit(self, evt):
 	#box D
