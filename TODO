@@ -1,4 +1,75 @@
-The save() function in AnswerForm is trying to save the Lessons table, which should NOT happen.  It should only save data to the Answers table!!
+
+==========
+Forms retrieve at most 1000 records at a time.  Currently there is no way to get the rest.  Need to
+find out how to deal with frames.
+
+==========
+Deleting a contact not working - foreign key failure because records existed pointing to that contact. Need to 
+inform the user when either a Teacher or a Contact is being deleted, and records exist pointing to that person. 
+Ask user who to point those records to instead, update the records, then delete. - PARTIALLY
+DONE.  Deleting a Contact works, if the Contact is not associated with any students.  The
+same will apply to Teachers.  If they ARE associated, the program will need to set the
+associated records to point to someone else, or delete them.  The best thing might be to
+require the user to delete or re-point Student records before removing a Contact or
+Teacher.  However, the possibility also exists to have the program automatically point
+affected Student records to the default Contact or Teacher, which is always record 1,
+and the name fields are blank.  Need to discuss this with the users to determine how
+they would like to handle this situation.  -- Need to default students that are affected and print
+a list so the admins know who was affected by the change.
+
+==========
+Many save() functions were enclosed in try/except blocks, which is fine, but at the same time
+dialogs with status messages were put in to alert the user.  Many of them have output
+that does not match the message string, which is confusing enough, but some, like 
+when the user selects a Contact after getting the message that one is necessary before
+grading, don't seem to work correctly.  The contact is saved, the result = True instead of 
+None as the message would indicate, and the user still cannot grade.  Apparently the 
+form is not being refreshed?  PARTIAL - form now updates correctly, but messages are still confusing.
+
+
+==========
+Comment area needs to be a defined space.  The answers can only go up to 30 items, because if we 
+have more than that it is a failure.  Since the headers are a known size, and the max size of the 
+answer data can be determined, whatever space is left will be allocated for comments.  Somehow we 
+need to define the remaining space, so that the users know how much space they have remaining.
+
+==========
+Directory on dropbox:
+root
+	contact fullname email
+	contact fullname
+		studentid_lastname_firstname
+			studentid_lastname_firstname_lesson_grade
+
+Outgoing files should be in the contact's email.  The program should, when prompted,
+make a list of the outgoing files, the student they are associated with, and the date sent.
+This list should be in a new table, linked to the contacts and the students.  Once files are
+recorded they should be moved into the directory of the student
+
+==========
+Fields that should be dropdowns with the ability to choose something that is not in the list:
+
+Occupation - student
+Religion - Christian/Islamic
+Church Name?  Pentecostal, Roman Catholic, Baptist, Lutheran, CofC
+Country - Tanzania
+City - Arusha, Mbeya
+
+==========
+Default buttons:
+
+Print or Preview - Print
+Lesson Selector - Select
+Lookup - Lookup
+
+
+==========
+On the GradingForm, the boxes should be broken up into sections by lesson number
+
+
+Completed changes
++++++++++++++++++++++++++++++++++++++++++++++++++++
+The save() function in AnswerForm is trying to save the Lessons table, which should NOT happen.  It should only save data to the Answers table!! DONE
 
 first name on graded lesson should be only the string up to the first space in the first name field.- DONE
 
@@ -60,31 +131,32 @@ Grades form should show student name instead of rec_no, and lesson short name in
 
 Write to DB not working on GradingForm - DONE
 
-Deleting a contact not working - foreign key failure because records existed pointing to that contact. Need to 
-inform the user when either a Teacher or a Contact is being deleted, and records exist pointing to that person. 
-Ask user who to point those records to instead, update the records, then delete. - PARTIALLY
-DONE.  Deleting a Contact works, if the Contact is not associated with any students.  The
-same will apply to Teachers.  If they ARE associated, the program will need to set the
-associated records to point to someone else, or delete them.  The best thing might be to
-require the user to delete or re-point Student records before removing a Contact or
-Teacher.  However, the possibility also exists to have the program automatically point
-affected Student records to the default Contact or Teacher, which is always record 1,
-and the name fields are blank.  Need to discuss this with the users to determine how
-they would like to handle this situation.  -- Need to default students that are affected and print
-a list so the admins know who was affected by the change.
+========== DONE
+Need to create styles for the table output on the PDF
 
+==========
+DONE! - Temporary files should be deleted! -- There is now a TMP directory created in the program 
+directory that is used for creating PDF files.  That directory is emptied of PDF files when the 
+program exits.
+
+==========
+OBSOLETE - Data converted manually for both Monrovia and Mayfair's Nigeria DB.
 Can I create a form in the application that will read in data from the Access DB and save it to 
 the MySQL DB?  That would be a nice way to migrate.  The old programs for Access have everything
 needed to fetch the data, and this one has everything to write to MySQL.  If a form could load the
 Access data by using the old code, then Dabo could be used to save the data to the new DB.
 
-Many save() functions were enclosed in try/except blocks, which is fine, but at the same time
-dialogs with status messages were put in to alert the user.  Many of them have output
-that does not match the message string, which is confusing enough, but some, like 
-when the user selects a Contact after getting the message that one is necessary before
-grading, don't seem to work correctly.  The contact is saved, the result = True instead of 
-None as the message would indicate, and the user still cannot grade.  Apparently the 
-form is not being refreshed?  PARTIAL - form now updates correctly, but messages are still confusing.
+==========
+DONE!  Reset Form is not resetting all the controls on grading form
 
+==========
+DONE! Test score with decimal.   Always an int
 
-Need to create styles for the table output on the PDF
+==========
+DONE! - PDF - save only works once.  Trying to save again fails because it creates a duplicate
+filename.
+
+==========
+DONE! Can answer table be broken into two columns?  If it is too long, it needs to wrap.  Something needs
+to keep the questions from taking up too much vertical space.  Anything that can cut down on 
+vertical space should be considered.

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<connectiondefs xmlns="http://www.dabodev.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.dabodev.com conn.xsd"
+xsi:noNamespaceSchemaLocation = "http://dabodev.com/schema/conn.xsd">
+
+	<connection dbtype="MySQL">
+		<name>wbsmonro_user</name>
+		<host>mysql.monrovia.org</host>
+		<database>wbs_monrovia</database>
+		<user>wbsmonro_user</user>
+		<password>M71icTf+tprRj2ue5Rr9GmEFJ8Ccd5/B/A==</password>
+		<port>3306</port>
+	</connection>
+	<connection dbtype="MySQL">
+		<name>Connection_2</name>
+		<host></host>
+		<database></database>
+		<user></user>
+		<password></password>
+		<port>3306</port>
+	</connection>
+
+
+</connectiondefs>

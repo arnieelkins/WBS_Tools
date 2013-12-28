@@ -34,6 +34,12 @@ app.db = db
 app.biz = biz
 app.ui = ui
 app.reports = reports
+app.tempdir = str(os.path.join(os.getcwd(), 'tmp'))
+if not os.path.exists(app.tempdir):
+	try:
+		os.mkdir(app.tempdir)
+	except:
+		dabo.ui.exclaim('Unable to create a temp directory!!')
 
 # Make it easy to find any images or other files you put in the resources
 # directory.
@@ -44,7 +50,7 @@ app.MainFormClass = app.ui.FrmMain
 app.PreferenceManager.setValue("fontsize", 11)
 app.NoneDisplay = ""
 # Set up a global connection to the database that all bizobjs will share:
-app.dbConnection = app.getConnectionByName("WBSRemoteUser")
+app.dbConnection = app.getConnectionByName("wbsmonro_user")
 #app.dbConnection.LogEvents = ['All']
 
 

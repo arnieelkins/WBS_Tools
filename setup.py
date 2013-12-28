@@ -104,7 +104,7 @@ class Target:
 			self.icon_resources=[(1, _appIcon)]
 
 
-data_files=[("db", ["db/wbstools.cnxml"]),
+data_files=[("db", glob.glob("db/*.cnxml")),
 		("ui", glob.glob("ui/*.cdxml")),
 		("ui", glob.glob("ui/*.py*")),
 		("resources", glob.glob(os.path.join(iconDir, "*.ico"))),

@@ -4,42 +4,27 @@
 ### 		'Dabo Code ID: XXXX',
 ### as these are needed to link the code to the objects.
 
-## *!* ## Dabo Code ID: dButton-dPanel-61
-def onHit(self, evt):
-	# Grade button
-	print "\nGrade button pressed, attempting to open LessonSelector\n"
-	app = self.Application
-	teacher = self.Form.PrimaryBizobj.Record.TeacherFullName
-	if teacher == ' ' or teacher == None:
-		dabo.ui.exclaim("Hey, you have to assign a TEACHER before you can grade a lesson!")
-		return()
-	contact = self.Form.PrimaryBizobj.Record.ContactFullName
-	if contact == ' ' or contact == None:
-		dabo.ui.exclaim("Hey, you have to assign a CONTACT before you can grade a lesson!")
-		return()
-	newForm = app.ui.LessonSelector(app.MainForm, Modal=True)
-	newForm.StudentRecNo = self.Form.PrimaryBizobj.Record['StudentRecNo']
-	newForm.show()
-	newForm.safeDestroy()
-	self.Form.requery()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPage-965
-def onHit(self, evt):
-	self.Form.first()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-561
-def onHit(self, evt):
-	self.Form.last()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPage-802
+## *!* ## Dabo Code ID: dButton-dPage-81
 def onHit(self, evt):
 	self.Form.requery()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-527
+def onHit(self, evt):
+	# Save Button
+	try:
+		dlg = dabo.ui.info('Output from Form.save operation = ' + str(self.Form.save()) + '.\n')
+		self.Form.requery()
+		self.Form.update()
+	except:
+		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+
+
+
+## *!* ## Dabo Code ID: dButton-dPage-923
+def onHit(self, evt):
+	self.Form.prior()
 
 
 
@@ -57,19 +42,22 @@ def onMouseRightDown(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-613
+## *!* ## Dabo Code ID: dButton-dPage-408
 def onHit(self, evt):
-	# Save Button
-	try:
-		dlg = dabo.ui.info('Output from Form.save operation = ' + str(self.Form.save()) + '.\n')
-		self.Form.requery()
-		self.Form.update()
-	except:
-		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+	bizObj = self.Form.PrimaryBizobj
+	self.Form.StudentIDText.Value = ""
+	self.Form.FirstNameText.Value = ""
+	self.Form.LastNameText.Value = ""
+	self.Form.ContactText.Value = ""
+	self.Form.TeacherText.Value = ""
+	self.Form.StudentRecordText.Value = ""
+	self.Form.PhoneText.Value = ""
+	bizObj.setWhereClause("")
+	self.Form.requery()
 
 
 
-## *!* ## Dabo Code ID: dDropdownList-dPanel-870
+## *!* ## Dabo Code ID: dDropdownList-dPanel-183
 def afterInit(self):
 	mybiz = self.Form.getBizobj('Teachers')
 	(self.Choices, self.Keys) = mybiz.getAvailableTypes()
@@ -83,12 +71,6 @@ def onMouseRightDown(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPage-213
-def onHit(self, evt):
-	self.Form.last()
-
-
-
 ## *!* ## Dabo Code ID: dGrid-dPage
 def onGridMouseLeftDoubleClick(self, evt):
 	if self.CurrentRow >= 0:
@@ -97,7 +79,7 @@ def onGridMouseLeftDoubleClick(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-958
+## *!* ## Dabo Code ID: dButton-dPanel-931
 def onHit(self, evt):
 	# Print Forms button
 	teacher = self.Form.PrimaryBizobj.Record.TeacherFullName
@@ -113,9 +95,55 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPage-57
+## *!* ## Dabo Code ID: dButton-dPanel-290
+def onHit(self, evt):
+	# Refresh button
+	self.Form.requery()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPage-950
+def onHit(self, evt):
+	try:
+		returnCode = self.Form.save()
+		if returnCode == None:
+			dlg = dabo.ui.info('Save successful!')
+		else:
+			dabo.ui.exclaim('returnCode from save was not what I expected!\nreturnCode = ' + str(returnCode) + '\nPlease make a note of what you were attempting to do and the returnCode and contact the author!')
+			return()
+		self.Form.update()
+	except:
+		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+
+
+
+## *!* ## Dabo Code ID: dButton-dPage-854
+def onHit(self, evt):
+	self.Form.first()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-343
+def onHit(self, evt):
+	self.Form.last()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-399
 def onHit(self, evt):
 	self.Form.next()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-457
+def onHit(self, evt):
+	self.Form.prior()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPage-296
+def onHit(self, evt):
+	self.Form.last()
 
 
 
@@ -168,75 +196,29 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-413
-def onHit(self, evt):
-	self.Form.first()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-791
-def onHit(self, evt):
-	# Delete grade button
-	self.Form.deleteGrade()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-249
-def onHit(self, evt):
-	# Add grade button
-	app = self.Application
-	choices = ('Intro', 'GHS', 'TIGN', 'KJ', 'BWS', 'FOG', 'LLL')
-	choiceDict = {'Intro':1, 'GHS':2, 'TIGN':3, 'KJ':4, 'BWS':5, 'FOG':6, 'LLL':7}
-	lesson = dabo.ui.getChoice(choices, message='Choose a lesson', caption='Choose a lesson', defaultPos=None)
-	if not lesson == None:
-		bizObj = self.Form.getBizobj('Grades')
-		recordNumber = self.Form.PrimaryBizobj.Record['StudentRecNo']
-		import datetime
-		currentDate = datetime.date.today()
-		bizObj.new()
-		bizObj.setFieldVal("GradeStudentsRecNo", recordNumber)
-		bizObj.setFieldVal("GradeDateGraded", currentDate)
-		bizObj.setFieldVal("GradeLessonsRecNo", choiceDict[lesson])
-		try:
-			dlg = dabo.ui.info('Output from bizObj save operation = ' + str(bizObj.save()) + '.\n')
-		except:
-			dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
-		self.Form.requery()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-987
+## *!* ## Dabo Code ID: dButton-dPage-242
 def onHit(self, evt):
 	self.Form.next()
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-432
+## *!* ## Dabo Code ID: dButton-dPanel-163
 def onHit(self, evt):
-	self.Form.prior()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPage-817
-def onHit(self, evt):
-	bizObj = self.Form.PrimaryBizobj
-	self.Form.StudentIDText.Value = ""
-	self.Form.FirstNameText.Value = ""
-	self.Form.LastNameText.Value = ""
-	self.Form.ContactText.Value = ""
-	self.Form.TeacherText.Value = ""
-	self.Form.StudentRecordText.Value = ""
-	self.Form.PhoneText.Value = ""
-	bizObj.setWhereClause("")
-	self.Form.requery()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-352
-def onHit(self, evt):
-	# Delete button
-	print 'bizobj deleteChildLogic == ' + str(self.Form.PrimaryBizobj.deleteChildLogic) + '\n'
-	self.Form.delete(dataSource='Students')
+	# Grade button
+	print "\nGrade button pressed, attempting to open LessonSelector\n"
+	app = self.Application
+	teacher = self.Form.PrimaryBizobj.Record.TeacherFullName
+	if teacher == ' ' or teacher == None:
+		dabo.ui.exclaim("Hey, you have to assign a TEACHER before you can grade a lesson!")
+		return()
+	contact = self.Form.PrimaryBizobj.Record.ContactFullName
+	if contact == ' ' or contact == None:
+		dabo.ui.exclaim("Hey, you have to assign a CONTACT before you can grade a lesson!")
+		return()
+	newForm = app.ui.LessonSelector(app.MainForm, Modal=True)
+	newForm.StudentRecNo = self.Form.PrimaryBizobj.Record['StudentRecNo']
+	newForm.show()
+	newForm.safeDestroy()
 	self.Form.requery()
 
 
@@ -267,16 +249,16 @@ def onGridCellEdited(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPage-260
+## *!* ## Dabo Code ID: dButton-dPanel-707
 def onHit(self, evt):
-	self.Form.prior()
+	# Delete grade button
+	self.Form.deleteGrade()
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-929
+## *!* ## Dabo Code ID: dButton-dPanel-141
 def onHit(self, evt):
-	# Refresh button
-	self.Form.requery()
+	self.Form.first()
 
 
 
@@ -287,18 +269,12 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPage-266
+## *!* ## Dabo Code ID: dButton-dPanel-729
 def onHit(self, evt):
-	try:
-		returnCode = self.Form.save()
-		if returnCode == None:
-			dlg = dabo.ui.info('Save successful!')
-		else:
-			dabo.ui.exclaim('returnCode from save was not what I expected!\nreturnCode = ' + str(returnCode) + '\nPlease make a note of what you were attempting to do and the returnCode and contact the author!')
-			return()
-		self.Form.update()
-	except:
-		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+	# Delete button
+	print 'bizobj deleteChildLogic == ' + str(self.Form.PrimaryBizobj.deleteChildLogic) + '\n'
+	self.Form.delete(dataSource='Students')
+	self.Form.requery()
 
 
 
@@ -450,8 +426,8 @@ def setTabOrder(self):
 	self.ContactDropdownList.MoveAfterInTabOrder(self.LastNameTextBox)
 	self.TeacherDropdownList.MoveAfterInTabOrder(self.ContactDropdownList)
 	self.GenderDropdownList.MoveAfterInTabOrder(self.TeacherDropdownList)
-	self.OccupationComboBox.MoveAfterInTabOrder(self.GenderDropdownList)
-	self.ReligionTextBox.MoveAfterInTabOrder(self.OccupationComboBox)
+	self.OccupationTextBox.MoveAfterInTabOrder(self.GenderDropdownList)
+	self.ReligionTextBox.MoveAfterInTabOrder(self.OccupationTextBox)
 	self.ChurchNameTextBox.MoveAfterInTabOrder(self.ReligionTextBox)
 	self.AgeTextBox.MoveAfterInTabOrder(self.ChurchNameTextBox)
 	self.BirthdateTextBox.MoveAfterInTabOrder(self.AgeTextBox)
@@ -476,5 +452,29 @@ def setTabOrder(self):
 def setupMenu(self):
 	self.fillFileOpenMenu()
 	self.fillReportsMenu()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-259
+def onHit(self, evt):
+	# Add grade button
+	app = self.Application
+	choices = ('Intro', 'GHS', 'TIGN', 'KJ', 'BWS', 'FOG', 'LLL')
+	choiceDict = {'Intro':1, 'GHS':2, 'TIGN':3, 'KJ':4, 'BWS':5, 'FOG':6, 'LLL':7}
+	lesson = dabo.ui.getChoice(choices, message='Choose a lesson', caption='Choose a lesson', defaultPos=None)
+	if not lesson == None:
+		bizObj = self.Form.getBizobj('Grades')
+		recordNumber = self.Form.PrimaryBizobj.Record['StudentRecNo']
+		import datetime
+		currentDate = datetime.date.today()
+		bizObj.new()
+		bizObj.setFieldVal("GradeStudentsRecNo", recordNumber)
+		bizObj.setFieldVal("GradeDateGraded", currentDate)
+		bizObj.setFieldVal("GradeLessonsRecNo", choiceDict[lesson])
+		try:
+			dlg = dabo.ui.info('Output from bizObj save operation = ' + str(bizObj.save()) + '.\n')
+		except:
+			dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+		self.Form.requery()
 
 

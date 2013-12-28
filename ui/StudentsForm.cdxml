@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="cp1252" standalone="no"?>
-<dForm code-ID="dForm-top" Name="dForm" Caption="Students Form" SaveRestorePosition="False" Top="245" Height="662" Width="774" designerClass="DesForm" CxnName="WBSRemoteUser" Left="573">
+<dForm code-ID="dForm-top" Name="dForm" Caption="Students Form" SaveRestorePosition="False" Top="82" Height="662" Width="774" designerClass="DesForm" CxnName="wbsmonro_user" Left="381">
 	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
 		<dPageFrame RegID="StudentFrame" sizerInfo="{'VAlign': 'Middle'}" designerClass="controlMix" Name="StudentFrame" PageCount="3">
 			<dPage RegID="StudentDataPage" Caption="Student Data" designerClass="controlMix" Name="StudentDataPage">
@@ -8,49 +8,50 @@
 						<dSizer SlotCount="3" designerClass="LayoutSizer" Orientation="Vertical">
 							<dGridSizer HGap="30" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 3, 'Expand': True}" Rows="1" designerClass="LayoutGridSizer" Columns="4">
 								<dButton code-ID="dButton-dPanel" Caption="New Student" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Expand': True}" designerClass="controlMix" Name="NewButton" rowColPos="(0, 0)"></dButton>
-								<dButton code-ID="dButton-dPanel-558" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Expand': True}" Name="SaveButton" rowColPos="(0, 1)" Caption="Save Student" designerClass="controlMix" RegID="SaveButton"></dButton>
-								<dButton code-ID="dButton-dPanel-606" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Expand': True}" Name="PrintFormsButton" rowColPos="(0, 2)" Caption="Print Forms" designerClass="controlMix" RegID="PrintFormsButton"></dButton>
-								<dButton code-ID="dButton-dPanel-174" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Expand': True}" Name="GradeButton" rowColPos="(0, 3)" Caption="Grade Lesson" designerClass="controlMix" RegID="GradeButton"></dButton>
+								<dButton code-ID="dButton-dPanel-613" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Expand': True}" Name="SaveButton" rowColPos="(0, 1)" Caption="Save Student" designerClass="controlMix" RegID="SaveButton"></dButton>
+								<dButton code-ID="dButton-dPanel-958" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Expand': True}" Name="PrintFormsButton" rowColPos="(0, 2)" Caption="Print Forms" designerClass="controlMix" RegID="PrintFormsButton"></dButton>
+								<dButton code-ID="dButton-dPanel-61" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Expand': True}" Name="GradeButton" rowColPos="(0, 3)" Caption="Grade Lesson" designerClass="controlMix" RegID="GradeButton"></dButton>
 							</dGridSizer>
 							<dBorderSizer SlotCount="2" Caption="Student Info" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutBorderSizer" Orientation="Horizontal">
 								<dSizer SlotCount="3" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSizer" Orientation="Vertical">
-									<dGridSizer HGap="3" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 3, 'Expand': True}" Rows="10" designerClass="LayoutGridSizer" VGap="3" MaxDimension="r" Columns="5">
+									<dGridSizer HGap="3" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 3, 'Expand': True}" Rows="10" designerClass="LayoutGridSizer" VGap="3" MaxDimension="r" Columns="4">
 										<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': True, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(9, 0)"></dPanel>
 										<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(9, 1)"></dPanel>
-										<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': True, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(5, 2)"></dPanel>
-										<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': True, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(9, 2)"></dPanel>
 										<dLabel Caption="StudentID:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True}" designerClass="controlMix" Name="StudnetIDLabel" rowColPos="(0, 0)"></dLabel>
-										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 2, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="StudentIDTextBox" TextLength="10" rowColPos="(0, 1)" designerClass="controlMix" DataSource="Students" RegID="StudentIDTextBox" DataField="StudentID"></dTextBox>
+										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="StudentIDTextBox" TextLength="10" rowColPos="(0, 1)" designerClass="controlMix" DataSource="Students" RegID="StudentIDTextBox" DataField="StudentID"></dTextBox>
 										<dLabel Caption="First Name:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True}" designerClass="controlMix" Name="FirstNameLabel" rowColPos="(1, 0)"></dLabel>
-										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 2, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="FirstNameTextBox" TextLength="32" rowColPos="(1, 1)" designerClass="controlMix" DataSource="Students" RegID="FirstNameTextBox" DataField="StudentFirstName"></dTextBox>
+										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="FirstNameTextBox" TextLength="32" rowColPos="(1, 1)" designerClass="controlMix" DataSource="Students" RegID="FirstNameTextBox" DataField="StudentFirstName"></dTextBox>
 										<dLabel Caption="Last Name:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True}" designerClass="controlMix" Name="LastNameLabel" rowColPos="(2, 0)"></dLabel>
-										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 2, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="LastNameTextBox" TextLength="17" rowColPos="(2, 1)" designerClass="controlMix" DataSource="Students" RegID="LastNameTextBox" DataField="StudentLastName"></dTextBox>
+										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="LastNameTextBox" TextLength="17" rowColPos="(2, 1)" designerClass="controlMix" DataSource="Students" RegID="LastNameTextBox" DataField="StudentLastName"></dTextBox>
 										<dLabel Caption="Contact:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True}" designerClass="controlMix" Name="ContactLabel" rowColPos="(3, 0)"></dLabel>
 										<dLabel Caption="Gender:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True}" designerClass="controlMix" Name="GenderLabel" rowColPos="(5, 0)"></dLabel>
 										<dLabel Caption="Teacher:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True}" designerClass="controlMix" Name="TeacherLabel" rowColPos="(4, 0)"></dLabel>
 										<dLabel Caption="Church Name:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True}" designerClass="controlMix" Name="ChurchNameLabel" rowColPos="(8, 0)"></dLabel>
-										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 2, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="ChurchNameTextBox" rowColPos="(8, 1)" designerClass="controlMix" DataField="StudentChurchName" RegID="ChurchNameTextBox" DataSource="Students"></dTextBox>
+										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="ChurchNameTextBox" rowColPos="(8, 1)" designerClass="controlMix" DataField="StudentChurchName" RegID="ChurchNameTextBox" DataSource="Students"></dTextBox>
 										<dLabel Caption="Occupation:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True}" designerClass="controlMix" Name="OccupationLabel" rowColPos="(6, 0)"></dLabel>
-										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 2, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="OccupationTextBox" rowColPos="(6, 1)" designerClass="controlMix" DataField="StudentOccupation" RegID="OccupationTextBox" DataSource="Students"></dTextBox>
 										<dLabel Caption="Religion:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'ColExpand': True}" designerClass="controlMix" Name="ReligionLabel" rowColPos="(7, 0)"></dLabel>
-										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 2, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="ReligionTextBox" rowColPos="(7, 1)" designerClass="controlMix" DataField="StudentReligion" RegID="ReligionTextBox" DataSource="Students"></dTextBox>
-										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left'}" Name="StudentRecNoTextBox" rowColPos="(0, 4)" ReadOnly="True" designerClass="controlMix" DataField="StudentRecNo" RegID="StudentRecNoTextBox" DataSource="Students"></dTextBox>
-										<dLabel sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'VAlign': 'Bottom'}" Name="RecordNumberLabel" TabStop="False" rowColPos="(0, 3)" Caption="Record Number:" designerClass="controlMix"></dLabel>
-										<dDropdownList code-ID="dDropdownList-dPanel" sizerInfo="{'RowSpan': 1, 'ColSpan': 2, 'Expand': True}" ValueMode="key" Name="ContactDropdownList" rowColPos="(3, 1)" Choices="[]" designerClass="controlMix" DataSource="Students" RegID="ContactDropdownList" DataField="StudentContactsRecNo"></dDropdownList>
-										<dDropdownList code-ID="dDropdownList-dPanel-707" sizerInfo="{'RowSpan': 1, 'ColSpan': 2, 'Expand': True}" ValueMode="key" Name="TeacherDropdownList" rowColPos="(4, 1)" Choices="[]" designerClass="controlMix" DataSource="Students" RegID="TeacherDropdownList" DataField="StudentTeachersRecNo"></dDropdownList>
-										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="WBSBeforeDropdownList" rowColPos="(9, 4)" Value="" Choices="[u&apos;&apos;, u&apos;Yes&apos;, u&apos;No&apos;]" designerClass="controlMix" DataSource="Students" RegID="WBSBeforeDropdownList" DataField="StudentWBSBefore"></dDropdownList>
-										<dLabel Caption="WBS before?" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="WBSBeforeLabel" rowColPos="(9, 3)"></dLabel>
-										<dLabel Caption="Has a Bible?" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="HasABibleLabel" rowColPos="(8, 3)"></dLabel>
-										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="HasBibleDropdownList" rowColPos="(8, 4)" Value="" Choices="[u&apos;&apos;, u&apos;Yes&apos;, u&apos;No&apos;]" designerClass="controlMix" DataSource="Students" RegID="HasBibleDropdownList" DataField="StudentHasBible"></dDropdownList>
-										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="RequestedBaptismDropdownList" rowColPos="(7, 4)" Value="" Choices="[u&apos;&apos;, u&apos;Yes&apos;, u&apos;No&apos;]" designerClass="controlMix" DataSource="Students" RegID="RequestedBaptismDropdownList" DataField="StudentRequestedBaptism"></dDropdownList>
-										<dLabel Caption="Requested Baptism?" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="RequestedBaptismLabel" rowColPos="(7, 3)"></dLabel>
-										<dLabel Caption="Type of Baptism:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="TypeOfBaptismLabel" rowColPos="(6, 3)"></dLabel>
-										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="TypeOfBaptismDropdownList" rowColPos="(6, 4)" Value="" Choices="[u&apos;&apos;, u&apos;Immersed&apos;, u&apos;Sprinkled&apos;, u&apos;Poured&apos;, u&apos;Other&apos;]" designerClass="controlMix" DataSource="Students" RegID="TypeOfBaptismDropdownList" DataField="StudentBaptismType"></dDropdownList>
-										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="HasBeenBaptizedDropdownList" rowColPos="(5, 4)" Value="" Choices="[u&apos;&apos;, u&apos;Yes&apos;, u&apos;No&apos;]" designerClass="controlMix" DataSource="Students" RegID="HasBeenBaptizedDropdownList" DataField="StudentHasBeenBaptized"></dDropdownList>
-										<dLabel Caption="Has Been Baptized?" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="HasBeenBaptizedLabel" rowColPos="(5, 3)"></dLabel>
-										<dLabel Caption="Marital Status:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="MaritalStatusLabel" rowColPos="(4, 3)"></dLabel>
-										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="MaritalStatusDropdownList" rowColPos="(4, 4)" Value="" Choices="[u&apos;&apos;, u&apos;Single&apos;, u&apos;Married&apos;]" designerClass="controlMix" DataSource="Students" RegID="MaritalStatusDropdownList" DataField="StudentMaritalStatus"></dDropdownList>
-										<dDateTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="BirthdateTextBox" rowColPos="(3, 4)" DataSource="Students" designerClass="controlMix" DataField="StudentBirthdate" RegID="BirthdateTextBox" ToolTipText="Available Keys:
+										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False}" Name="ReligionTextBox" rowColPos="(7, 1)" designerClass="controlMix" DataField="StudentReligion" RegID="ReligionTextBox" DataSource="Students"></dTextBox>
+										<dDropdownList code-ID="dDropdownList-dPanel" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Expand': True}" ValueMode="key" Name="ContactDropdownList" rowColPos="(3, 1)" Choices="[]" designerClass="controlMix" DataSource="Students" RegID="ContactDropdownList" DataField="StudentContactsRecNo"></dDropdownList>
+										<dDropdownList code-ID="dDropdownList-dPanel-870" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Expand': True}" ValueMode="key" Name="TeacherDropdownList" rowColPos="(4, 1)" Choices="[]" designerClass="controlMix" DataSource="Students" RegID="TeacherDropdownList" DataField="StudentTeachersRecNo"></dDropdownList>
+										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" Name="GenderDropdownList" rowColPos="(5, 1)" Choices="[u&apos;&apos;, u&apos;M&apos;, u&apos;F&apos;]" Width="33" designerClass="controlMix" DataSource="Students" RegID="GenderDropdownList" DataField="StudentGender"></dDropdownList>
+										<dComboBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Expand': True}" Name="OccupationComboBox" rowColPos="(6, 1)" Choices="[u&apos;student&apos;]" designerClass="controlMix" DataField="StudentOccupation" AppendOnEnter="True" RegID="OccupationComboBox"></dComboBox>
+										<dLabel sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right', 'VAlign': 'Bottom'}" Name="RecordNumberLabel" TabStop="False" rowColPos="(0, 2)" Caption="Record Number:" designerClass="controlMix"></dLabel>
+										<dLabel Caption="WBS ID:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" rowColPos="(1, 2)"></dLabel>
+										<dLabel Caption="Age:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="AgeLabel" rowColPos="(2, 2)"></dLabel>
+										<dLabel Caption="Birthdate:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="BirthDateLabel" rowColPos="(3, 2)"></dLabel>
+										<dLabel Caption="Marital Status:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="MaritalStatusLabel" rowColPos="(4, 2)"></dLabel>
+										<dLabel Caption="Has Been Baptized?" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="HasBeenBaptizedLabel" rowColPos="(5, 2)"></dLabel>
+										<dLabel Caption="Type of Baptism:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="TypeOfBaptismLabel" rowColPos="(6, 2)"></dLabel>
+										<dLabel Caption="Requested Baptism?" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="RequestedBaptismLabel" rowColPos="(7, 2)"></dLabel>
+										<dLabel Caption="Has a Bible?" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="HasABibleLabel" rowColPos="(8, 2)"></dLabel>
+										<dLabel Caption="WBS before?" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="WBSBeforeLabel" rowColPos="(9, 2)"></dLabel>
+										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="WBSBeforeDropdownList" rowColPos="(9, 3)" Value="" Choices="[u&apos;&apos;, u&apos;Yes&apos;, u&apos;No&apos;]" designerClass="controlMix" DataSource="Students" RegID="WBSBeforeDropdownList" DataField="StudentWBSBefore"></dDropdownList>
+										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="HasBibleDropdownList" rowColPos="(8, 3)" Value="" Choices="[u&apos;&apos;, u&apos;Yes&apos;, u&apos;No&apos;]" designerClass="controlMix" DataSource="Students" RegID="HasBibleDropdownList" DataField="StudentHasBible"></dDropdownList>
+										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="RequestedBaptismDropdownList" rowColPos="(7, 3)" Value="" Choices="[u&apos;&apos;, u&apos;Yes&apos;, u&apos;No&apos;]" designerClass="controlMix" DataSource="Students" RegID="RequestedBaptismDropdownList" DataField="StudentRequestedBaptism"></dDropdownList>
+										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="TypeOfBaptismDropdownList" rowColPos="(6, 3)" Value="" Choices="[u&apos;&apos;, u&apos;Immersed&apos;, u&apos;Sprinkled&apos;, u&apos;Poured&apos;, u&apos;Other&apos;]" designerClass="controlMix" DataSource="Students" RegID="TypeOfBaptismDropdownList" DataField="StudentBaptismType"></dDropdownList>
+										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="HasBeenBaptizedDropdownList" rowColPos="(5, 3)" Value="" Choices="[u&apos;&apos;, u&apos;Yes&apos;, u&apos;No&apos;]" designerClass="controlMix" DataSource="Students" RegID="HasBeenBaptizedDropdownList" DataField="StudentHasBeenBaptized"></dDropdownList>
+										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="MaritalStatusDropdownList" rowColPos="(4, 3)" Value="" Choices="[u&apos;&apos;, u&apos;Single&apos;, u&apos;Married&apos;]" designerClass="controlMix" DataSource="Students" RegID="MaritalStatusDropdownList" DataField="StudentMaritalStatus"></dDropdownList>
+										<dDateTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left', 'ColExpand': True, 'Expand': True}" Name="BirthdateTextBox" rowColPos="(3, 3)" DataSource="Students" designerClass="controlMix" DataField="StudentBirthdate" RegID="BirthdateTextBox" ToolTipText="Available Keys:
 =============
 T : Today
 + : Up One Day
@@ -64,12 +65,9 @@ Y : First Day of Year
 R : Last Day of yeaR
 C: Popup Calendar to Select
 "></dDateTextBox>
-										<dLabel Caption="Birthdate:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="BirthDateLabel" rowColPos="(3, 3)"></dLabel>
-										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left'}" Name="AgeTextBox" rowColPos="(2, 4)" designerClass="controlMix" DataField="StudentAge" RegID="AgeTextBox" DataSource="Students"></dTextBox>
-										<dLabel Caption="Age:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" Name="AgeLabel" rowColPos="(2, 3)"></dLabel>
-										<dLabel Caption="WBS ID:" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Right'}" designerClass="controlMix" rowColPos="(1, 3)"></dLabel>
-										<dTextBox RegID="WBSIDTextBox" sizerInfo="{'RowSpan': 1, 'ColSpan': 1}" designerClass="controlMix" Name="WBSIDTextBox" rowColPos="(1, 4)"></dTextBox>
-										<dDropdownList sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Expand': True}" Name="GenderDropdownList" rowColPos="(5, 1)" Choices="[u&apos;&apos;, u&apos;M&apos;, u&apos;F&apos;]" designerClass="controlMix" DataField="StudentGender" RegID="GenderDropdownList" DataSource="Students"></dDropdownList>
+										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left'}" Name="AgeTextBox" rowColPos="(2, 3)" designerClass="controlMix" DataField="StudentAge" RegID="AgeTextBox" DataSource="Students"></dTextBox>
+										<dTextBox RegID="WBSIDTextBox" sizerInfo="{'RowSpan': 1, 'ColSpan': 1}" designerClass="controlMix" Name="WBSIDTextBox" rowColPos="(1, 3)"></dTextBox>
+										<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left'}" Name="StudentRecNoTextBox" rowColPos="(0, 3)" ReadOnly="True" designerClass="controlMix" DataField="StudentRecNo" RegID="StudentRecNoTextBox" DataSource="Students"></dTextBox>
 									</dGridSizer>
 									<dSizer DefaultBorder="3" SlotCount="1" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Center', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSizer" Orientation="Horizontal">
 										<dGridSizer sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 3, 'Expand': True}" Rows="2" designerClass="LayoutGridSizer" Columns="2">
@@ -97,16 +95,16 @@ C: Popup Calendar to Select
 								<dSizer SlotCount="3" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSizer" Orientation="Vertical">
 									<dBorderSizer SlotCount="1" Caption="Grade History" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutBorderSizer" Orientation="Vertical">
 										<dGrid ColumnCount="4" code-ID="dGrid-dPanel" sizerInfo="{'Proportion': 2}" Name="GradeHistoryGrid" designerClass="controlMix" DataSource="Grades" RegID="GradeHistoryGrid">
-											<dColumn Width="103" Editable="True" Caption="Graded" HorizontalAlignment="Center" DataField="GradeDateGraded" designerClass="controlMix" Order="0" Expand="True"></dColumn>
-											<dColumn Width="77" Editable="True" Caption="Lesson" HorizontalAlignment="Center" DataField="LessonShortName" designerClass="controlMix" Order="10" Expand="True"></dColumn>
+											<dColumn Width="104" Editable="True" Caption="Graded" HorizontalAlignment="Center" DataField="GradeDateGraded" designerClass="controlMix" Order="0" Expand="True"></dColumn>
+											<dColumn Width="78" Editable="True" Caption="Lesson" HorizontalAlignment="Center" DataField="LessonShortName" designerClass="controlMix" Order="10" Expand="True"></dColumn>
 											<dColumn Width="73" Editable="True" Caption="Score" HorizontalAlignment="Center" DataField="GradeScore" designerClass="controlMix" Order="20" Expand="True"></dColumn>
-											<dColumn Width="73" Editable="True" Caption="Comments" HorizontalAlignment="Center" DataField="GradeComments" designerClass="controlMix" Order="30" Expand="True"></dColumn>
+											<dColumn Width="71" Editable="True" Caption="Comments" HorizontalAlignment="Center" DataField="GradeComments" designerClass="controlMix" Order="30" Expand="True"></dColumn>
 										</dGrid>
 									</dBorderSizer>
 									<dSizer SlotCount="3" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Center', 'VAlign': 'Top', 'Border': 0, 'Expand': False}" designerClass="LayoutSizer" Orientation="Horizontal">
-										<dButton code-ID="dButton-dPanel-759" Caption="Add" sizerInfo="{}" designerClass="controlMix" Name="addGradeButton" RegID="addGradeButton"></dButton>
+										<dButton code-ID="dButton-dPanel-249" Caption="Add" sizerInfo="{}" designerClass="controlMix" Name="addGradeButton" RegID="addGradeButton"></dButton>
 										<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
-										<dButton code-ID="dButton-dPanel-891" sizerInfo="{}" Name="deleteGradeButton" Caption="Delete" Width="82" designerClass="controlMix" RegID="deleteGradeButton"></dButton>
+										<dButton code-ID="dButton-dPanel-791" sizerInfo="{}" Name="deleteGradeButton" Caption="Delete" Width="82" designerClass="controlMix" RegID="deleteGradeButton"></dButton>
 									</dSizer>
 									<dBorderSizer SlotCount="1" Caption="Notes" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutBorderSizer" Orientation="Vertical">
 										<dEditBox sizerInfo="{'HAlign': 'Left'}" Name="NotesEditBox" designerClass="controlMix" DataSource="Students" RegID="NotesEditBox" DataField="StudentNotes"></dEditBox>
@@ -114,14 +112,14 @@ C: Popup Calendar to Select
 								</dSizer>
 							</dBorderSizer>
 							<dBorderSizer sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Bottom', 'Border': 0, 'Expand': True}" Orientation="Horizontal" DefaultSpacing="4" Caption="Navigation" designerClass="LayoutBorderSizer" SlotCount="8" DefaultBorder="4">
-								<dButton code-ID="dButton-dPanel-619" Caption="&#060;&#060;- First" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="FirstButton" RegID="FirstButton"></dButton>
-								<dButton code-ID="dButton-dPanel-614" Caption="&#060;- Prior" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="PriorButton" RegID="PriorButton"></dButton>
-								<dButton code-ID="dButton-dPanel-713" Caption="Next -&#062;" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="NextButton" RegID="NextButton"></dButton>
-								<dButton code-ID="dButton-dPanel-498" Caption="Last -&#062;&#062;" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="LastButton" RegID="LastButton"></dButton>
+								<dButton code-ID="dButton-dPanel-413" Caption="&#060;&#060;- First" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="FirstButton" RegID="FirstButton"></dButton>
+								<dButton code-ID="dButton-dPanel-432" Caption="&#060;- Prior" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="PriorButton" RegID="PriorButton"></dButton>
+								<dButton code-ID="dButton-dPanel-987" Caption="Next -&#062;" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="NextButton" RegID="NextButton"></dButton>
+								<dButton code-ID="dButton-dPanel-561" Caption="Last -&#062;&#062;" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="LastButton" RegID="LastButton"></dButton>
 								<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 4, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
-								<dButton code-ID="dButton-dPanel-202" Caption="Delete Student" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="DeleteButton" RegID="DeleteButton"></dButton>
+								<dButton code-ID="dButton-dPanel-352" Caption="Delete Student" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="DeleteButton" RegID="DeleteButton"></dButton>
 								<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 4, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
-								<dButton code-ID="dButton-dPanel-986" Caption="Refresh Data" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="RefreshButton" RegID="RefreshButton"></dButton>
+								<dButton code-ID="dButton-dPanel-929" Caption="Refresh Data" sizerInfo="{'Border': 4, 'Expand': True}" designerClass="controlMix" Name="RefreshButton" RegID="RefreshButton"></dButton>
 							</dBorderSizer>
 						</dSizer>
 					</dPanel>
@@ -130,6 +128,8 @@ C: Popup Calendar to Select
 			<dPage RegID="StudentLookupPage" Caption="Lookup" designerClass="controlMix" Name="StudentLookupPage">
 				<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
 					<dGridSizer HGap="5" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 10, 'Expand': True}" Rows="9" designerClass="LayoutGridSizer" VGap="5" MaxDimension="r" Columns="2">
+						<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(7, 0)"></dPanel>
+						<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(7, 1)"></dPanel>
 						<dLabel Caption="StudentID" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" designerClass="controlMix" rowColPos="(0, 0)"></dLabel>
 						<dLabel Caption="FirstName" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" designerClass="controlMix" Name="dLabel1" rowColPos="(1, 0)"></dLabel>
 						<dLabel Caption="LastName" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" designerClass="controlMix" Name="dLabel2" rowColPos="(2, 0)"></dLabel>
@@ -144,10 +144,8 @@ C: Popup Calendar to Select
 						<dTextBox RegID="LastNameText" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'ColExpand': False}" designerClass="controlMix" Name="LastNameText" rowColPos="(2, 1)"></dTextBox>
 						<dTextBox RegID="FirstNameText" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'ColExpand': False}" designerClass="controlMix" Name="FirstNameText" rowColPos="(1, 1)"></dTextBox>
 						<dTextBox RegID="StudentIDText" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'ColExpand': False}" designerClass="controlMix" Name="StudentIDText" rowColPos="(0, 1)"></dTextBox>
-						<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(7, 1)"></dPanel>
 						<dButton code-ID="dButton-dPage" Caption="Lookup" sizerInfo="{'RowSpan': 1, 'ColSpan': 1}" designerClass="controlMix" Name="LookupButton" rowColPos="(8, 1)"></dButton>
-						<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': False, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(7, 0)"></dPanel>
-						<dButton code-ID="dButton-dPage-470" Caption="Clear" sizerInfo="{'RowSpan': 1, 'ColSpan': 1}" designerClass="controlMix" Name="ClearButton" rowColPos="(8, 0)"></dButton>
+						<dButton code-ID="dButton-dPage-817" Caption="Clear" sizerInfo="{'RowSpan': 1, 'ColSpan': 1}" designerClass="controlMix" Name="ClearButton" rowColPos="(8, 0)"></dButton>
 					</dGridSizer>
 				</dSizer>
 			</dPage>
@@ -185,14 +183,14 @@ C: Popup Calendar to Select
 					</dGrid>
 					<dSizer SlotCount="1" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSizer" Orientation="Horizontal">
 						<dBorderSizer SlotCount="8" Caption="" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutBorderSizer" Orientation="Horizontal">
-							<dButton code-ID="dButton-dPage-596" Caption="&#060;&#060;- First" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="TablePageFirstButton" RegID="TablePageFirstButton"></dButton>
-							<dButton code-ID="dButton-dPage-928" Caption="&#060;- Prior" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="TablePagePriorButton" RegID="TablePagePriorButton"></dButton>
-							<dButton code-ID="dButton-dPage-163" Caption="Next -&#062;" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="TablePageNextButton" RegID="TablePageNextButton"></dButton>
-							<dButton code-ID="dButton-dPage-69" Caption="Last -&#062;&#062;" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="TablePageLastButton" RegID="TablePageLastButton"></dButton>
+							<dButton code-ID="dButton-dPage-965" Caption="&#060;&#060;- First" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="TablePageFirstButton" RegID="TablePageFirstButton"></dButton>
+							<dButton code-ID="dButton-dPage-260" Caption="&#060;- Prior" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="TablePagePriorButton" RegID="TablePagePriorButton"></dButton>
+							<dButton code-ID="dButton-dPage-57" Caption="Next -&#062;" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="TablePageNextButton" RegID="TablePageNextButton"></dButton>
+							<dButton code-ID="dButton-dPage-213" Caption="Last -&#062;&#062;" sizerInfo="{'Border': 4}" designerClass="controlMix" Name="TablePageLastButton" RegID="TablePageLastButton"></dButton>
 							<dPanel Spacing="40" sizerInfo="{'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
-							<dButton code-ID="dButton-dPage-239" Caption="Requery" sizerInfo="{}" designerClass="controlMix"></dButton>
+							<dButton code-ID="dButton-dPage-802" Caption="Requery" sizerInfo="{}" designerClass="controlMix"></dButton>
 							<dPanel sizerInfo="{'BorderSides': ['All'], 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0}" designerClass="LayoutPanel"></dPanel>
-							<dButton code-ID="dButton-dPage-275" Caption="Save" sizerInfo="{}" designerClass="controlMix" Name="dButton1"></dButton>
+							<dButton code-ID="dButton-dPage-266" Caption="Save" sizerInfo="{}" designerClass="controlMix" Name="dButton1"></dButton>
 						</dBorderSizer>
 					</dSizer>
 				</dSizer>

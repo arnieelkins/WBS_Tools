@@ -10,9 +10,17 @@ import wx
 from wxPython.lib import colourdb
 import traceback
 import datetime
+import os
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-85
+## *!* ## Dabo Code ID: dButton-dPanel-44
+def onHit(self, evt):
+	# Comments button
+	self.Form.openCommentSelectorForm()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-595
 def onHit(self, evt):
 	# SavePDF button
 	app = self.Application
@@ -20,27 +28,10 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-682
+## *!* ## Dabo Code ID: dButton-dPanel-301
 def onHit(self, evt):
-	# Incomplete checkbox
-	self.Form.onIncompleteCheckBox()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-174
-def onHit(self, evt):
-	#clearoutput button
-	app = self.Application
-	self.Form.clearHeaderOutBox()
-	self.Form.clearMissedOutBox()
-	self.Form.clearCommentOutBox()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-136
-def onHit(self, evt):
-	# Comments button
-	self.Form.openCommentSelectorForm()
+	# WriteToDB button
+	self.Form.saveCurrentGradeRecord()
 
 
 
@@ -52,11 +43,28 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-503
+## *!* ## Dabo Code ID: dButton-dPanel-521
 def onHit(self, evt):
 	# Score button
 	app = self.Application
 	self.Form.scoreLesson()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-325
+def onHit(self, evt):
+	#clearoutput button
+	app = self.Application
+	self.Form.clearHeaderOutBox()
+	self.Form.clearMissedOutBox()
+	self.Form.clearCommentOutBox()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel
+def onHit(self, evt):
+	#resetform button
+	self.Form.onResetButton()
 
 
 
@@ -82,7 +90,7 @@ def afterInitAll(self):
 	self.MissedOutBox.ReadOnly=True
 	self.CommentOutBox = dabo.ui.uiwx.dRichTextBox(self.OutputScrollPanel)
 	self.CommentOutBox._addWindowStyleFlag(wx.WANTS_CHARS|wx.TE_PROCESS_ENTER|wx.TE_PROCESS_TAB)
-	self.OutputScrollPanel.Sizer.prepend(self.CommentOutBox, proportion=1, layout='expand', border=2)
+	self.OutputScrollPanel.Sizer.prepend(self.CommentOutBox, proportion=4, layout='expand', border=2)
 	self.OutputScrollPanel.Sizer.prepend(self.MissedOutBox, proportion=1, layout='expand', border=2)
 	self.OutputScrollPanel.Sizer.prepend(self.HeaderOutBox, proportion=1, layout='expand', border=2)
 	# getAnswerData needs the lesson number to look up the answer data
@@ -133,8 +141,45 @@ def buildBoxes(self, answerData, AnswerPanel, testMode):
 	checkBoxSizer = AnswerPanel.Sizer
 	checkBoxSizer.clear(destroy=True)
 	rowNum = 0
+	lessonStartNumber = 1
 	for item in answerData:
 		questionNumber = item['AnswerQuestionNo']
+		if '-' in questionNumber:
+			index = questionNumber.find('-')
+			lessonNumber = int(questionNumber[:index])
+			if lessonNumber > lessonStartNumber:
+				checkBoxSizer.appendSpacer(10)
+				rowNum = rowNum + 1
+				lessonStartNumber = lessonNumber
+		else:
+			lessonNumber = int(questionNumber)
+			if lessonNumber == 11:
+				checkBoxSizer.appendSpacer(10)
+				rowNum = rowNum + 1
+			elif lessonNumber == 21:
+				checkBoxSizer.appendSpacer(10)
+				rowNum = rowNum + 1
+			elif lessonNumber == 31:
+				checkBoxSizer.appendSpacer(10)
+				rowNum = rowNum + 1
+			elif lessonNumber == 41:
+				checkBoxSizer.appendSpacer(10)
+				rowNum = rowNum + 1
+			elif lessonNumber == 51:
+				checkBoxSizer.appendSpacer(10)
+				rowNum = rowNum + 1
+			elif lessonNumber == 61:
+				checkBoxSizer.appendSpacer(10)
+				rowNum = rowNum + 1
+			elif lessonNumber == 71:
+				checkBoxSizer.appendSpacer(10)
+				rowNum = rowNum + 1
+			elif lessonNumber == 81:
+				checkBoxSizer.appendSpacer(10)
+				rowNum = rowNum + 1
+			elif lessonNumber == 91:
+				checkBoxSizer.appendSpacer(10)
+				rowNum = rowNum + 1
 		questionNumberLabel = wx.StaticText(AnswerPanel, wx.ID_ANY, str(questionNumber) + ') ')
 		checkBoxSizer.append(questionNumberLabel, row=rowNum, col=0)
 		#checkBoxSizer.setItemProps(questionNumberLabel, {'ColExpand': True, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Center', 'RowSpan': 1, 'VAlign': 'Middle', 'Border': 1, 'Expand': False, 'RowExpand': False})
@@ -166,6 +211,7 @@ def buildBoxes(self, answerData, AnswerPanel, testMode):
 		rowNum = rowNum + 1
 	#dabo.ui.info("CheckBoxes created!")
 	checkBoxSizer.layout()
+	checkBoxSizer.FitInside(AnswerPanel)
 	#dabo.ui.info("CheckBox layout complete!")
 	return(answerCheckBoxList)
 
@@ -182,7 +228,7 @@ def buildPDFGradeReport(self):
 	self.PDFHeaders.append(['Student:', self.gradeRecord['studentFullName'], ''])
 	self.PDFHeaders.append(['Teacher:', self.gradeRecord['teacherFullName'], ''])
 	self.PDFHeaders.append(['Contact:', self.gradeRecord['contactFullName'], ''])
-	self.PDFHeaders.append(['Score:', str(self.gradeRecord['grade']) + '%', ''])
+	self.PDFHeaders.append(['Score:', str(int(self.gradeRecord['grade'])) + '%', ''])
 	# self.PDFMissed is a list of lists of 3 strings
 	self.PDFMissed = []
 	if self.gradeRecord['numberMissed'] == 0:
@@ -191,9 +237,6 @@ def buildPDFGradeReport(self):
 		self.PDFMissed.append(["Question\nmissed", "Your\nanswer", "Correct\nanswer"])
 	for line in self.gradeRecord['missedList']:
 		self.PDFMissed.append(line)
-		print 'self.PDFMissed start'
-		print self.PDFMissed
-		print 'self.PDFMissed end'
 	# self.PDFComments is a list of strings, which will be reportlab paragraphs
 	self.PDFComments = self.CommentOutBox.Value.splitlines(False)
 
@@ -210,7 +253,7 @@ def buildScreenGradeReport(self):
 	self.headerLines.append(tempString + '\n')
 	self.headerLines.append('Teacher:\t<b>' + self.gradeRecord['teacherFullName'] + '</b>\n')
 	self.headerLines.append('Contact:\t<b>' + self.gradeRecord['contactFullName'] + '</b>\n')
-	self.headerLines.append('Score:\t<b>' + str(self.gradeRecord['grade']) + '%</b>\n\n')
+	self.headerLines.append('Score:\t<b>' + str(int(self.gradeRecord['grade'])) + '%</b>\n\n')
 	self.missedLines = []
 	if self.gradeRecord['numberMissed'] == 0:
 		self.missedLines.append("<b>No questions missed!</b>")
@@ -218,9 +261,6 @@ def buildScreenGradeReport(self):
 		self.missedLines.append("<b>Question missed\tYour answer\tCorrect answer</b>\n")
 	for line in self.gradeRecord['missedList']:
 		self.missedLines.append('<b>' + line[0] + '\t' + line[1] + '\t' + line[2] + '</b>\n')
-		print 'self.missedLines start'
-		print self.missedLines
-		print 'self.missedLines end'
 	self.commentLines = []
 	if ' ' in self.gradeRecord['studentFirstName']:
 		index = self.gradeRecord['studentFirstName'].find(' ')
@@ -318,6 +358,19 @@ def initProperties(self):
 	#self.Centered = True
 
 
+def onDestroy(self, evt):
+	import os
+	app = self.Application
+	cwd = app.tempdir
+	filenames = os.listdir(cwd)
+	for name in filenames:
+		if '.pdf' in name or '.PDF' in name:
+			try:
+				os.remove(name)
+			except:
+				dabo.ui.exclaim('Something went wrong trying to delete a temporary file called ' + str(name) + '.')
+
+
 def onFailedCheckBox(self):
 	if self.FailedCheckBox.Value == True:
 		if self.IncompleteCheckBox.Value == True:
@@ -334,6 +387,18 @@ def onIncompleteCheckBox(self):
 		if self.FailedCheckBox.Value == True:
 			self.FailedCheckBox.Value = False
 			self.FailedCheckBox.raiseEvent(dabo.dEvents.Hit)
+
+
+def onResetButton(self):
+	self.clearAnswerCheckBoxes()
+	self.clearHeaderOutBox()
+	self.clearMissedOutBox()
+	self.clearCommentOutBox()
+	if self.IncompleteCheckBox.Value == True:
+		self.IncompleteCheckBox.Value = False
+	if self.FailedCheckBox.Value == True:
+		self.FailedCheckBox.Value = False
+		self.EnterGradeSpinner.Enabled = False
 
 
 def openCommentSelectorForm(self):
@@ -482,35 +547,61 @@ def savePDF(self):
 		lastName = self.gradeRecord['studentFullName']
 	grade = str(int(self.gradeRecord['grade']))
 	lesson = self.gradeRecord['lessonShortName']
-	fileName = lastName + '_' + lesson + '_' + grade + '.pdf'
+	fileName = app.tempdir + '//' + lastName + '_' + lesson + '_' + grade + '.pdf'
+	if os.path.exists(fileName):
+		try:
+			os.remove(fileName)
+		except:
+			dabo.ui.exclaim("Cannot delete temp file!  File " + fileName + \
+							" already exists and cannot be removed!")
+	from reportlab.platypus import BaseDocTemplate, Frame, Paragraph, PageBreak, PageTemplate, FrameBreak
 	from reportlab.lib.styles import getSampleStyleSheet
 	from reportlab.lib import colors
 	from reportlab.lib.pagesizes import letter, inch
 	from reportlab.platypus import Paragraph, SimpleDocTemplate, Table, TableStyle
 
 	styles = getSampleStyleSheet()
-	doc = SimpleDocTemplate(fileName, pagesize=letter)
+	doc = BaseDocTemplate(fileName,
+							pagesize=letter,
+							leftMargin = .5*inch,
+							rightMargin = 8*inch,
+							topMargin = 10.5*inch,
+							bottomMargin = .5*inch,
+							allowSplitting=1,
+							showBoundary=0,
+							)
+	# frame for headers
+	headerFrame = Frame(doc.leftMargin, doc.topMargin-1.2*inch, 7.5*inch, 1.2*inch, id='headers')
+	# frames for 3 columns of question data
+	questionFrame1 = Frame(doc.leftMargin, doc.topMargin-3.65*inch, 2.4*inch, 2.4*inch, id='col1')
+	questionFrame2 = Frame(doc.leftMargin+2.50*inch, doc.topMargin-3.65*inch, 2.4*inch, 2.4*inch, id='col2')
+	questionFrame3 = Frame(doc.leftMargin+5*inch, doc.topMargin-3.65*inch, 2.4*inch, 2.4*inch, id='col3')
+	# frame for comment text
+	commentsFrame = Frame(doc.leftMargin, doc.bottomMargin, 7.5*inch, 6.35*inch, id='comments')
+	doc.addPageTemplates([PageTemplate(id='GradeReport',frames=[headerFrame, questionFrame1, questionFrame2, questionFrame3, commentsFrame]), ])
+
+
 	# container for the 'Flowable' objects
 	elements = []
 	 
 	Hdata = self.PDFHeaders
-	print "Hdata start"
-	print Hdata
-	print "Hdata end"
-	t1=Table(Hdata,[.75*inch, 2*inch, 1.5*inch], 14)
-	t1.setStyle(TableStyle([('ALIGN',(0,0), (0,4),'RIGHT'),
+	#print "Hdata start"
+	#print Hdata
+	#print "Hdata end"
+	headerTable=Table(Hdata,[.75*inch, 2*inch, 1.5*inch], 14)
+	headerTable.setStyle(TableStyle([('ALIGN',(0,0), (0,4),'RIGHT'),
 							('FONT',(0,0), (2,0),'Helvetica-Bold'),
 							('FONT',(1,0), (1,4),'Helvetica-Bold'),
 							('ALIGN',(1,0), (1,4),'LEFT'),
 							]))
 	
 	Mdata = self.PDFMissed
-	print "Mdata start"
-	print Mdata
-	print "Mdata end"
+	#print "Mdata start"
+	#print Mdata
+	#print "Mdata end"
 	if len(Mdata) == 1:
-		t2=Table(Mdata, None, [28])
-		t2.setStyle(TableStyle([('ALIGN',(0,0), (-1,-1),'LEFT'),
+		questionTable=Table(Mdata, None, [28])
+		questionTable.setStyle(TableStyle([('ALIGN',(0,0), (-1,-1),'LEFT'),
 								('ALIGN',(0,1), (0,-1),'RIGHT'),
 								]))
 	elif len(Mdata) >=2:
@@ -518,18 +609,26 @@ def savePDF(self):
 		heightList.append(28)
 		for value in range(1, len(Mdata)):
 			heightList.append(14)
-		t2=Table(Mdata, None, heightList)
-		t2.setStyle(TableStyle([('ALIGN',(0,0), (-1,-1),'CENTER'),
+		questionTable=Table(Mdata, None, heightList)
+		questionTable.setStyle(TableStyle([('ALIGN',(0,0), (-1,-1),'CENTER'),
 								('FONT',(0,0), (-1,-1),'Helvetica-Bold'),
 								('ALIGN',(0,1), (0,-1),'RIGHT'),
-								('GRID', (0,0), (-1,-1), None, colors.black),
+								('GRID', (0,0), (-1,-1), .5, colors.black),
 								]))
-	t1.hAlign = 'LEFT'
-	t2.hAlign = 'LEFT'
-	elements.append(t1)
+	headerTable.hAlign = 'LEFT'
+	questionTable.hAlign = 'LEFT'
+	elements.append(headerTable)
 	if not self.FailedCheckBox.Value and not self.IncompleteCheckBox.Value and not self.gradeRecord['grade'] == 100:
-		elements.append(t2)
-
+		elements.append(questionTable)
+		if len(Mdata)>=22:
+			elements.append(FrameBreak())
+		elif len(Mdata)>=11:
+			elements.append(FrameBreak())
+			elements.append(FrameBreak())
+		elif len(Mdata)>=1:
+			elements.append(FrameBreak())
+			elements.append(FrameBreak())
+			elements.append(FrameBreak())
 	for line in self.PDFComments:
 		para = Paragraph(line, styles["BodyText"])
 		elements.append(para)
@@ -719,19 +818,9 @@ def scoreWrongAnswers(self, answerCheckBoxList, answerDataSet):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-686
+## *!* ## Dabo Code ID: dCheckBox-dPanel-367
 def onHit(self, evt):
-	# WriteToDB button
-	self.Form.saveCurrentGradeRecord()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel
-def onHit(self, evt):
-	#resetform button
-	self.Form.clearAnswerCheckBoxes()
-	self.Form.clearHeaderOutBox()
-	self.Form.clearMissedOutBox()
-	self.Form.clearCommentOutBox()
+	# Incomplete checkbox
+	self.Form.onIncompleteCheckBox()
 
 
