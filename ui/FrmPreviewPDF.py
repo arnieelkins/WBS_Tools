@@ -62,10 +62,11 @@ class FrmPreviewPDF(FrmReportBase):
 		return f
 
 	def afterInitAll(self):
+		import os
 		app = self.Application
 		self.headerOutput = self.FormatOutput(self.headerInput)
 		self.missedOutput = self.FormatOutput(self.missedInput)
 		self.commentOutput = self.FormatOutput(self.commentInput)
-		self.ReportForm = "reports//GradeReport.rfxml"
+		self.ReportForm = "reports" + os.sep + "GradeReport.rfxml"
 		self.runReport("preview")
 		self.safeDestroy()

@@ -4,59 +4,13 @@
 ### 		'Dabo Code ID: XXXX',
 ### as these are needed to link the code to the objects.
 
-## *!* ## Dabo Code ID: dButton-dPanel-477
-def onHit(self, evt):
-	# First button
-	self.Form.first()
+import os
 
 
-
-## *!* ## Dabo Code ID: dButton-dPanel-207
-def onHit(self, evt):
-	# Save button
-	self.Form.save()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-738
-def onHit(self, evt):
-	# Last button
-	self.Form.last()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-234
+## *!* ## Dabo Code ID: dButton-dPanel-601
 def onHit(self, evt):
 	# New button
 	self.Form.addTeacher()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-311
-def onHit(self, evt):
-	# Delete button
-	self.Form.deleteTeacher()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-124
-def onHit(self, evt):
-	# Next button
-	self.Form.next()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel
-def onHit(self, evt):
-	# Refresh button
-	self.Form.requery()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-130
-def onHit(self, evt):
-	# Prior button
-	self.Form.prior()
 
 
 
@@ -69,8 +23,8 @@ def addTeacher(self):
 	except:
 		dabo.ui.exclaim('Uh oh, something went wrong!  Better check the log file!')
 
+
 def afterInitAll(self):
-	SaveRestorePosition="True"
 	self.requery()
 
 
@@ -100,14 +54,89 @@ def deleteTeacher(self):
 			self.requery()
 		except:
 			dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+	self.requery()
 
 
 def initProperties(self):
-
-	SaveRestorePosition="True"
+	self.SaveRestorePosition = True
 	app = self.Application
 	self.FontSize = app.PreferenceManager.getValue("fontsize")
 
 
+def onChooseTeacherPicture(self, teacherRecNo):
+	app = self.Application
+	import wx
+	import MySQLdb
+	dlg = dabo.ui.uiwx.dFileDialog(parent=None, message=u'Choose the picture of this teacher', defaultPath=app.HomeDirectory, wildcard='*.*')
+	if dlg.ShowModal() == wx.ID_OK:
+		picturePath = dlg.GetPath()
+		idx = picturePath.rfind(os.sep)
+		pictureName = picturePath[idx + len(os.sep):]
+		print 'picturePath = ' , picturePath
+		print 'pictureName = ' , pictureName
+		pictureFile = open(picturePath, 'rb')
+		pictureData = pictureFile.read()
+		pictureFile.close()
+		if not pictureData == '' and not pictureData == None:
+			tempCursor = self.getBizobj('Teachers').getTempCursor()
+			tempCursor.execute("update Teachers set TeacherPictureName=%s, TeacherPictureData=%s where TeacherRecNo = %s", (pictureName, pictureData, teacherRecNo))
+			self.requery()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-271
+def onHit(self, evt):
+	# Last button
+	self.Form.last()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-165
+def onHit(self, evt):
+	# Next button
+	self.Form.next()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-714
+def onHit(self, evt):
+	# First button
+	self.Form.first()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-429
+def onHit(self, evt):
+	# Delete button
+	self.Form.deleteTeacher()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-879
+def onHit(self, evt):
+	# Save button
+	self.Form.save()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-132
+def onHit(self, evt):
+	# Prior button
+	self.Form.prior()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel
+def onHit(self, evt):
+	# Refresh button
+	self.Form.requery()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-946
+def onHit(self, evt):
+	# Choose Picture button
+	app = self.Application
+	self.Form.onChooseTeacherPicture(self.Form.PrimaryBizobj.Record.TeacherRecNo)
 
 

@@ -11,7 +11,8 @@ class App(dApp):
 	def initProperties(self):
 		# Manages how preferences are saved
 		self.BasePrefKey = "dabo.app.WBSTools"
-		
+		app = self.Application
+		self.BaseDir = app.PreferenceManager.getValue("basedir")
 		self.setAppInfo("appShortName", "WBSTools")
 		self.setAppInfo("appName", "WBSTools")
 		self.setAppInfo("copyright", "(c) 2013")

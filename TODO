@@ -1,3 +1,6 @@
+==========
+Captions on the program windows should reflect the database in use, or the username, or somehow
+differentiate the connection in use.
 
 ==========
 Forms retrieve at most 1000 records at a time.  Currently there is no way to get the rest.  Need to
@@ -61,10 +64,6 @@ Default buttons:
 Print or Preview - Print
 Lesson Selector - Select
 Lookup - Lookup
-
-
-==========
-On the GradingForm, the boxes should be broken up into sections by lesson number
 
 
 Completed changes
@@ -160,3 +159,8 @@ filename.
 DONE! Can answer table be broken into two columns?  If it is too long, it needs to wrap.  Something needs
 to keep the questions from taking up too much vertical space.  Anything that can cut down on 
 vertical space should be considered.
+
+==========
+DONE! On the GradingForm, the boxes should be broken up into sections by lesson number
+
+

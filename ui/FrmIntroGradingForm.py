@@ -23,10 +23,11 @@ class FrmIntroGradingForm(FrmReportBase):
 		self.DataSetFunction = app.db.getIntroGradingFormDataSet
 
 	def addControls(self):
+		import os
 		"""Add any controls here, such as record selection choices."""
 		super(FrmIntroGradingForm, self).addControls()
 		siz = self.Sizer
-		printOrPreviewPanel = dabo.ui.createClass("ui//PrintOrPreviewPanel.cdxml")
+		printOrPreviewPanel = dabo.ui.createClass("ui" + os.sep + "PrintOrPreviewPanel.cdxml")
 		newPanel = printOrPreviewPanel(self, RegID = 'PrintOrPreviewPanel')
 		siz.append(newPanel, alignment='center')
 
@@ -70,50 +71,50 @@ class FrmIntroGradingForm(FrmReportBase):
 	def onHit_butPreview(self, evt):
 		app = self.Application
 		if self.LessonRadioList.Value == 'Intro':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//IntroGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "IntroGradingForm.rfxml")
 			self.runReport("preview")
 		if self.LessonRadioList.Value == 'GHS':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//GHSGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "GHSGradingForm.rfxml")
 			self.runReport("preview")
 		if self.LessonRadioList.Value == 'TIGN':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//TIGNGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGNGradingForm.rfxml")
 			self.runReport("preview")
 		if self.LessonRadioList.Value == 'KJ':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//KJGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "KJGradingForm.rfxml")
 			self.runReport("preview")
 		if self.LessonRadioList.Value == 'FOG':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//FOGGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "FOGGradingForm.rfxml")
 			self.runReport("preview")
 		if self.LessonRadioList.Value == 'BWS':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//BWSGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "BWSGradingForm.rfxml")
 			self.runReport("preview")
 		if self.LessonRadioList.Value == 'LLL':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//LLLGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "LLLGradingForm.rfxml")
 			self.runReport("preview")
 		self.Form.safeDestroy()
 
 	def onHit_butPrint(self, evt):
 		app = self.Application
 		if self.LessonRadioList.Value == 'Intro':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//IntroGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "IntroGradingForm.rfxml")
 			self.runReport("print")
 		if self.LessonRadioList.Value == 'GHS':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//GHSGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "GHSGradingForm.rfxml")
 			self.runReport("print")
 		if self.LessonRadioList.Value == 'TIGN':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//TIGNGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGNGradingForm.rfxml")
 			self.runReport("print")
 		if self.LessonRadioList.Value == 'KJ':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//KJGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "KJGradingForm.rfxml")
 			self.runReport("print")
 		if self.LessonRadioList.Value == 'FOG':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//FOGGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "FOGGradingForm.rfxml")
 			self.runReport("print")
 		if self.LessonRadioList.Value == 'BWS':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//BWSGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "BWSGradingForm.rfxml")
 			self.runReport("print")
 		if self.LessonRadioList.Value == 'LLL':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports//LLLGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "LLLGradingForm.rfxml")
 			self.runReport("print")
 		self.Form.safeDestroy()
 

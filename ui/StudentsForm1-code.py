@@ -225,7 +225,6 @@ def onHit(self, evt):
 
 ## *!* ## Dabo Code ID: dGrid-dPanel
 def afterInitAll(self):
-	SaveRestorePosition="True"
 	self.RowColorOdd = "azure"
 	self.RowColorEven = "whitesmoke"
 	self.AlternateRowColoring = True
@@ -235,8 +234,7 @@ def afterInitAll(self):
 
 
 def initProperties(self):
-	SaveRestorePosition="True"
-	self.SelectionMode = 'Row'
+		self.SelectionMode = 'Row'
 
 
 def onGridCellEdited(self, evt):
@@ -291,7 +289,6 @@ def addStudent(self):
 
 
 def afterInitAll(self):
-	SaveRestorePosition="True"
 	app = self.Application
 	self.setTabOrder()
 	self.setupMenu()
@@ -386,7 +383,6 @@ def fillReportsMenu(self):
 
 
 def initProperties(self):
-	SaveRestorePosition="True"
 	app = self.Application
 	self.FontSize = app.PreferenceManager.getValue("fontsize")
 

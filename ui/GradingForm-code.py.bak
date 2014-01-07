@@ -459,31 +459,6 @@ def openCommentSelectorForm(self):
 	newForm.safeDestroy()
 
 
-def outputLines(self, Lines, OutputBox):
-	print Lines
-	for line in Lines:
-		# Two newlines in a row can cause this function to skip one of them.  Insert a space
-		# to make sure that does not happen.
-		line = line.replace('\n\n', '\n \n')
-		line = line.replace('<sp>', ' ')
-		countBold = line.count('<b>')
-		if countBold > 0:
-			for count in range(0, countBold):
-				startBold = line.find('<b>')
-				# found <b> in the output line, indicating a bolded word
-				if startBold >= 0:
-					endBold = line.find('</b>')
-					if startBold >= 1:
-						# do not perform WriteText if the line starts with a <b>, as this
-						# will output an extra newline.  As long as there is anything else
-						# before the tag, output that part before you continue.
-						OutputBox.WriteText(line[0:startBold])
-					OutputBox.BeginBold()
-					OutputBox.WriteText(line[startBold + 3:endBold])
-					OutputBox.EndBold()
-					line = line[endBold + 4:]
-		OutputBox.WriteText(line)
-
 
 def saveCurrentGradeRecord(self):
 	app = self.Application
@@ -581,7 +556,7 @@ def savePDF(self):
 	from reportlab.lib.styles import getSampleStyleSheet
 	from reportlab.lib import colors
 	from reportlab.lib.pagesizes import letter, inch
-	from reportlab.platypus import Table, TableStyle, Image
+	from reportlab.platypus import Paragraph, BaseDocTemplate, Table, TableStyle
 
 	styles = getSampleStyleSheet()
 	doc = BaseDocTemplate(fileName,
@@ -591,42 +566,33 @@ def savePDF(self):
 							topMargin = 10.5*inch,
 							bottomMargin = .5*inch,
 							allowSplitting=1,
-							showBoundary=0,
+							showBoundary=1,
 							)
-	# fullPageFrame is always used for a possible second page
-	fullPageFrame = Frame(doc.leftMargin, doc.bottomMargin, 7.5*inch, 10*inch, id='commentpage')
+	# frame for headers
 	if lesson == 'Intro':
-		# Intro response includes a picture of the teacher if we have one, so formatting is different
-		headerFrame = Frame(doc.leftMargin, doc.topMargin-2*inch, 5.5*inch, 2*inch, id='headers')
-		pictureFrame = Frame(doc.rightMargin-2*inch, doc.topMargin-2*inch, 2*inch, 2*inch, id='picture')
-		# frames for 3 columns of question data
-		questionFrame1 = Frame(doc.leftMargin, doc.topMargin-4.36*inch, 2.35*inch, 2.35*inch, id='col1')
-		questionFrame2 = Frame(doc.leftMargin+2.50*inch, doc.topMargin-4.36*inch, 2.35*inch, 2.35*inch, id='col2')
-		questionFrame3 = Frame(doc.leftMargin+5*inch, doc.topMargin-4.36*inch, 2.35*inch, 2.35*inch, id='col3')
-		# frame for comment text
-		commentsFrame = Frame(doc.leftMargin, doc.bottomMargin, 7.5*inch, 5.64*inch, id='comments')
-		commentsFrameLarge = Frame(doc.leftMargin, doc.bottomMargin, 7.5*inch, 7.89*inch, id='commentslarge')
-		if self.FailedCheckBox.Value == True or self.IncompleteCheckBox.Value == True or self.gradeRecord['grade'] == 100:
-			# if the student failed, had an Incomplete, or missed none, do not leave space for answer data
+		headerFrame = Frame(doc.leftMargin, doc.topMargin-1.8*inch, 7-1.8*inch, 1.8*inch, id='headers')
+		pictureFrame = Frame(doc.rightMargin - 1.8*inch, doc.topMargin - 1.8*inch, 1.8*inch, 1.8*inch, id='picture')
+	else:
+		headerFrame = Frame(doc.leftMargin, doc.topMargin-1.14*inch, 5.5*inch, 1.14*inch, id='headers')
+	# frames for 3 columns of question data
+	questionFrame1 = Frame(doc.leftMargin, doc.topMargin-3.5*inch, 2.35*inch, 2.35*inch, id='col1')
+	questionFrame2 = Frame(doc.leftMargin+2.50*inch, doc.topMargin-3.5*inch, 2.35*inch, 2.35*inch, id='col2')
+	questionFrame3 = Frame(doc.leftMargin+5*inch, doc.topMargin-3.5*inch, 2.35*inch, 2.35*inch, id='col3')
+	# frame for comment text
+	commentsFrame = Frame(doc.leftMargin, doc.bottomMargin, 7.5*inch, 6.5*inch, id='comments')
+	commentsFrameLarge = Frame(doc.leftMargin, doc.bottomMargin, 7.5*inch, 8.75*inch, id='commentslarge')
+	fullPageFrame = Frame(doc.leftMargin, doc.bottomMargin, 7.5*inch, 10*inch, id='commentpage')
+	if self.FailedCheckBox.Value == True or self.IncompleteCheckBox.Value == True or self.gradeRecord['grade'] == 100:
+		if lesson == 'Intro':
 			doc.addPageTemplates([PageTemplate(id='GradeReport',frames=[headerFrame, pictureFrame, commentsFrameLarge]),
 								PageTemplate(id = 'CommentPage', frames=[fullPageFrame])])
 		else:
-			doc.addPageTemplates([PageTemplate(id='GradeReport',frames=[headerFrame, pictureFrame, questionFrame1, questionFrame2, questionFrame3, commentsFrame]),
-							PageTemplate(id = 'CommentPage', frames=[fullPageFrame])])
-	else:
-		# we are not on an Intro lesson, so ignore the pictureFrame
-		headerFrame = Frame(doc.leftMargin, doc.topMargin-1.14*inch, 5.5*inch, 1.14*inch, id='headers')
-		# frames for 3 columns of question data
-		questionFrame1 = Frame(doc.leftMargin, doc.topMargin-3.5*inch, 2.35*inch, 2.35*inch, id='col1')
-		questionFrame2 = Frame(doc.leftMargin+2.50*inch, doc.topMargin-3.5*inch, 2.35*inch, 2.35*inch, id='col2')
-		questionFrame3 = Frame(doc.leftMargin+5*inch, doc.topMargin-3.5*inch, 2.35*inch, 2.35*inch, id='col3')
-		# frame for comment text
-		commentsFrame = Frame(doc.leftMargin, doc.bottomMargin, 7.5*inch, 6.5*inch, id='comments')
-		commentsFrameLarge = Frame(doc.leftMargin, doc.bottomMargin, 7.5*inch, 8.75*inch, id='commentslarge')
-		if self.FailedCheckBox.Value == True or self.IncompleteCheckBox.Value == True or self.gradeRecord['grade'] == 100:
-			# if the student failed, had an Incomplete, or missed none, do not leave space for answer data
 			doc.addPageTemplates([PageTemplate(id='GradeReport',frames=[headerFrame, commentsFrameLarge]),
 								PageTemplate(id = 'CommentPage', frames=[fullPageFrame])])
+	else:
+		if lesson == 'Intro':
+			doc.addPageTemplates([PageTemplate(id='GradeReport',frames=[headerFrame, pictureFrame, questionFrame1, questionFrame2, questionFrame3, commentsFrame]),
+							PageTemplate(id = 'CommentPage', frames=[fullPageFrame])])
 		else:
 			doc.addPageTemplates([PageTemplate(id='GradeReport',frames=[headerFrame, questionFrame1, questionFrame2, questionFrame3, commentsFrame]),
 							PageTemplate(id = 'CommentPage', frames=[fullPageFrame])])
@@ -647,27 +613,24 @@ def savePDF(self):
 	headerTable.hAlign = 'LEFT'
 	elements.append(headerTable)
 	if lesson == 'Intro':
-		tempCursor = self.getBizobj('Teachers').getTempCursor('Select TeacherPictureData as pic, TeacherPictureName as picname from wbs_dabo.Teachers where concat(TeacherFirstName, " ", TeacherLastName) =%s', (self.gradeRecord['teacherFullName'],))
-		pic = tempCursor.Record.pic
-		picname = tempCursor.Record.picname
-		if picname == None or picname == '':
-			self.tempFile = ''
-			# no picture data, but we are on Intro, so skip the pictureFrame
-			elements.append(FrameBreak())
-			elements.append(FrameBreak())
-		else:
+		(pic, picName) = self.getBizobj('Teachers').getTempCursor('Select TeacherPictureData as pic, TeacherPictureName as picname from wbs_dabo.Teachers where concat(TeacherFirstName, " ", TeacherLastName) =%s', (self.gradeRecord.teacherFullName,))
+		print 'tempCursor.LastSQL = ' + str(tempCursor.LastSQL)
+		if not pic == None and not pic == '':
 			# we have picture data, so create a temporary file, create a Platypus Image, and add it to the pictureFrame
 			try:
 				# a Platypus Image has to read data from a file, so we have to create one
-				self.tempFile = app.tempdir + os.sep + picname
-				tempFileHandle = open(self.tempFile, 'wb')
+				tempFile = app.tempdir + os.sep + picname
+				tempFileHandle = open(tempFile, 'wb')
 				tempFileHandle.write(pic)
 				tempFileHandle.close()
-				im = Image(self.tempFile, 1.8*inch, 1.8*inch)
+				im = Image(tempFile, 1.8*inch, 1.8*inch)
 				elements.append(im)
-			except Exception, e:
-				dabo.ui.exclaim('Error trying to load teacher picture! ')
-				dabo.ui.exclaim(traceback.format_exc())
+				os.remove(tempFile)
+			except:
+				dabo.ui.exclaim('Error trying to load teacher picture!')
+		else:
+			# no picture data, but we are on Intro, so skip the pictureFrame
+			elements.append(FrameBreak())
 	elements.append(NextPageTemplate('CommentPage'))
 	if self.FailedCheckBox.Value == True or self.IncompleteCheckBox.Value == True or self.gradeRecord['grade'] == 100:
 		# skip output of answer data
@@ -709,9 +672,6 @@ def savePDF(self):
 	# write the document to disk
 	doc.build(elements)
 	dabo.lib.reportUtils.previewPDF(fileName)
-	if os.path.isfile(self.tempFile):
-		os.remove(self.tempFile)
-
 
 
 def scoreLesson(self):

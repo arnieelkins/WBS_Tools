@@ -57,7 +57,7 @@
 					<String>
 						<expr>'Intro'</expr>
 						<expr_def>'Helvetica-Bold'</expr_def>
-						<fontname>'Courier'</fontname>
+						<fontname>'Helvetica-Bold'</fontname>
 						<fontsize>16</fontsize>
 						<height>18</height>
 						<height_def>18</height_def>
@@ -77,7 +77,7 @@
 					<String>
 						<align>'right'</align>
 						<expr>'Student:'</expr>
-						<expr_def>Lesson:'</expr_def>
+						<expr_def>'Lesson:'</expr_def>
 						<height>16</height>
 						<height_def>16</height_def>
 						<width>65</width>

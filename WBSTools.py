@@ -6,6 +6,7 @@ remotehost = ""
 
 import sys
 import os
+import wx
 import dabo.ui
 from dabo.dLocalize import _
 # The loading of the UI needs to happen before the importing of the
@@ -50,7 +51,7 @@ app.MainFormClass = app.ui.FrmMain
 app.PreferenceManager.setValue("fontsize", 11)
 app.NoneDisplay = ""
 # Set up a global connection to the database that all bizobjs will share:
-app.dbConnection = app.getConnectionByName("wbsmonro_user")
+app.dbConnection = app.getConnectionByName("wbs_dabo_admin")
 #app.dbConnection.LogEvents = ['All']
 
 

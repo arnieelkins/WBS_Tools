@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="cp1252" standalone="no"?>
-<dForm code-ID="dForm-top" Name="dForm" Caption="LessonSelector" SaveRestorePosition="False" Top="385" Height="420" Width="232" designerClass="DesForm" Left="844">
+<dForm code-ID="dForm-top" Name="dForm" Caption="LessonSelector" SaveRestorePosition="True" Top="370" Height="420" Width="232" designerClass="DesForm" Left="844">
 	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
 		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top', 'Border': 3}" designerClass="controlMix">
 			<dSizer SlotCount="2" DefaultBorder="10" designerClass="LayoutSizer" Orientation="Vertical">
@@ -8,13 +8,13 @@
 					<dSizer DefaultBorder="8" SlotCount="9" sizerInfo="{'BorderSides': ['All'], 'Proportion': 3, 'HAlign': 'Left', 'VAlign': 'Middle', 'Border': 0, 'Expand': True}" designerClass="LayoutSizer" Orientation="Vertical">
 						<dPanel Spacing="20" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
 						<dCheckBox code-ID="dCheckBox-dPanel" FontBold="True" Name="IntroCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="Intro" designerClass="controlMix" RegID="IntroCheckBox"></dCheckBox>
-						<dCheckBox code-ID="dCheckBox-dPanel-244" FontBold="True" Name="GHSCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="GHS" designerClass="controlMix" RegID="GHSCheckBox"></dCheckBox>
-						<dCheckBox code-ID="dCheckBox-dPanel-449" FontBold="True" Name="TIGNCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="TIGN" designerClass="controlMix" RegID="TIGNCheckBox"></dCheckBox>
-						<dCheckBox code-ID="dCheckBox-dPanel-13" FontBold="True" Name="TIGNaCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="TIGNa" designerClass="controlMix" RegID="TIGNaCheckBox"></dCheckBox>
-						<dCheckBox code-ID="dCheckBox-dPanel-81" FontBold="True" Name="KJCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="KJ" designerClass="controlMix" RegID="KJCheckBox"></dCheckBox>
-						<dCheckBox code-ID="dCheckBox-dPanel-869" FontBold="True" Name="BWSCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="BWS" designerClass="controlMix" RegID="BWSCheckBox"></dCheckBox>
-						<dCheckBox code-ID="dCheckBox-dPanel-961" FontBold="True" Name="FOGCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="FOG" designerClass="controlMix" RegID="FOGCheckBox"></dCheckBox>
-						<dCheckBox code-ID="dCheckBox-dPanel-165" FontBold="True" Name="LLLCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="LLL" designerClass="controlMix" RegID="LLLCheckBox"></dCheckBox>
+						<dCheckBox code-ID="dCheckBox-dPanel-180" FontBold="True" Name="GHSCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="GHS" designerClass="controlMix" RegID="GHSCheckBox"></dCheckBox>
+						<dCheckBox code-ID="dCheckBox-dPanel-537" FontBold="True" Name="TIGNCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="TIGN" designerClass="controlMix" RegID="TIGNCheckBox"></dCheckBox>
+						<dCheckBox code-ID="dCheckBox-dPanel-160" FontBold="True" Name="TIGNaCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="TIGNa" designerClass="controlMix" RegID="TIGNaCheckBox"></dCheckBox>
+						<dCheckBox code-ID="dCheckBox-dPanel-693" FontBold="True" Name="KJCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="KJ" designerClass="controlMix" RegID="KJCheckBox"></dCheckBox>
+						<dCheckBox code-ID="dCheckBox-dPanel-744" FontBold="True" Name="BWSCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="BWS" designerClass="controlMix" RegID="BWSCheckBox"></dCheckBox>
+						<dCheckBox code-ID="dCheckBox-dPanel-994" FontBold="True" Name="FOGCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="FOG" designerClass="controlMix" RegID="FOGCheckBox"></dCheckBox>
+						<dCheckBox code-ID="dCheckBox-dPanel-5" FontBold="True" Name="LLLCheckBox" sizerInfo="{'HAlign': 'Left', 'Border': 8, 'Expand': True}" Caption="LLL" designerClass="controlMix" RegID="LLLCheckBox"></dCheckBox>
 					</dSizer>
 					<dPanel Spacing="20" sizerInfo="{'Proportion': 1, 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
 				</dSizer>

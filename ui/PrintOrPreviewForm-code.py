@@ -15,14 +15,14 @@ def onHit(self, evt):
 	import os
 	app = self.Application
 	reportList = []
-	checkBoxDict = {self.Form.IntroCheckBox:os.path.join(app.HomeDirectory, "reports//IntroGradingForm.rfxml"),
-									self.Form.GHSCheckBox:os.path.join(app.HomeDirectory, "reports//GHSGradingForm.rfxml"),
-									self.Form.TIGNCheckBox:os.path.join(app.HomeDirectory, "reports//TIGNGradingForm.rfxml"),
-									self.Form.TIGNaCheckBox:os.path.join(app.HomeDirectory, "reports//TIGNaGradingForm.rfxml"),
-									self.Form.KJCheckBox:os.path.join(app.HomeDirectory, "reports//KJGradingForm.rfxml"),
-									self.Form.FOGCheckBox:os.path.join(app.HomeDirectory, "reports//FOGGradingForm.rfxml"),
-									self.Form.BWSCheckBox:os.path.join(app.HomeDirectory, "reports//BWSGradingForm.rfxml"),
-									self.Form.LLLCheckBox:os.path.join(app.HomeDirectory, "reports//LLLGradingForm.rfxml")}
+	checkBoxDict = {self.Form.IntroCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "IntroGradingForm.rfxml"),
+									self.Form.GHSCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "GHSGradingForm.rfxml"),
+									self.Form.TIGNCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGNGradingForm.rfxml"),
+									self.Form.TIGNaCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGNaGradingForm.rfxml"),
+									self.Form.KJCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "KJGradingForm.rfxml"),
+									self.Form.FOGCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "FOGGradingForm.rfxml"),
+									self.Form.BWSCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "BWSGradingForm.rfxml"),
+									self.Form.LLLCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "LLLGradingForm.rfxml")}
 	for checkBox in checkBoxDict.keys():
 		if checkBox.Value == True:
 			reportList.append(checkBoxDict[checkBox])
@@ -46,12 +46,12 @@ def GetDataSet(self, bizObj, recordNumber):
 
 
 def afterInitAll(self):
-	SaveRestorePosition="True"
 	self.DataSet = self.GetDataSet(self.bizObj, self.recordNumber)
 	print self.DataSet
 
 
 def initProperties(self):
+	self.SaveRestorePosition = True
 	app = self.Application
 	self.FontSize = app.PreferenceManager.getValue("fontsize")
 	from dabo.dReportWriter import dReportWriter
@@ -94,14 +94,14 @@ def onHit(self, evt):
 	import os
 	app = self.Application
 	reportList = []
-	checkBoxDict = {self.Form.IntroCheckBox:os.path.join(app.HomeDirectory, "reports//IntroGradingForm.rfxml"),
-									self.Form.GHSCheckBox:os.path.join(app.HomeDirectory, "reports//GHSGradingForm.rfxml"),
-									self.Form.TIGNCheckBox:os.path.join(app.HomeDirectory, "reports//TIGNGradingForm.rfxml"),
-									self.Form.TIGNaCheckBox:os.path.join(app.HomeDirectory, "reports//TIGNaGradingForm.rfxml"),
-									self.Form.KJCheckBox:os.path.join(app.HomeDirectory, "reports//KJGradingForm.rfxml"),
-									self.Form.FOGCheckBox:os.path.join(app.HomeDirectory, "reports//FOGGradingForm.rfxml"),
-									self.Form.BWSCheckBox:os.path.join(app.HomeDirectory, "reports//BWSGradingForm.rfxml"),
-									self.Form.LLLCheckBox:os.path.join(app.HomeDirectory, "reports//LLLGradingForm.rfxml")}
+	checkBoxDict = {self.Form.IntroCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "IntroGradingForm.rfxml"),
+									self.Form.GHSCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "GHSGradingForm.rfxml"),
+									self.Form.TIGNCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGNGradingForm.rfxml"),
+									self.Form.TIGNaCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGNaGradingForm.rfxml"),
+									self.Form.KJCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "KJGradingForm.rfxml"),
+									self.Form.FOGCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "FOGGradingForm.rfxml"),
+									self.Form.BWSCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "BWSGradingForm.rfxml"),
+									self.Form.LLLCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "LLLGradingForm.rfxml")}
 	for checkBox in checkBoxDict.keys():
 		if checkBox.Value == True:
 			reportList.append(checkBoxDict[checkBox])

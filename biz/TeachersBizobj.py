@@ -16,6 +16,8 @@ class TeachersBizobj(dabo.biz.dBizobj):
 		self.addField("TeacherWBSID")
 		self.addField("TeacherFirstName")
 		self.addField("TeacherLastName")
+		self.addField("TeacherPictureName")
+		self.addField("TeacherPictureData")
 		self.DefaultValues = {"TeacherWBSID": 'AL-091',}
 	def validateRecord(self):
 		"""Returning anything other than an empty string from

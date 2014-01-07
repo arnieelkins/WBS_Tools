@@ -374,7 +374,7 @@
 						<y>'544.0 pt'</y>
 					</Line>
 					<String>
-						<expr>'Enter student answers for questions missed in the blanks belows.  5 points each.'</expr>
+						<expr>'Enter student answers for questions missed in the blanks belows.  1 point each.'</expr>
 						<fontname>'Helvetica'</fontname>
 						<width>510</width>
 						<x>'60.0 pt'</x>

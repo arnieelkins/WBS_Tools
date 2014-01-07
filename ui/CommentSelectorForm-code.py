@@ -188,7 +188,6 @@ def onHit(self, evt):
 
 ## *!* ## Dabo Code ID: dScrollPanel-dPanel
 def initProperties(self):
-	SaveRestorePosition="True"
 	import wx
 	self._addWindowStyleFlag(wx.ALWAYS_SHOW_SB)
 
@@ -196,7 +195,6 @@ def initProperties(self):
 
 ## *!* ## Dabo Code ID: dDialog-top
 def afterInitAll(self):
-	SaveRestorePosition="True"
 	#dDialog
 	import wx
 	#self.ScrollPanel._addWindowStyleFlag(wx.ALWAYS_SHOW_SB)
@@ -283,7 +281,6 @@ def clearCommentCheckBoxes(self):
 
 
 def initProperties(self):
-	SaveRestorePosition="True"
 	app = self.Application
 	self.bizobj = None
 	self.BorderResizable = True
@@ -314,7 +311,7 @@ def lookupComments(self, dictList, bizObj, tagDict):
 						if key in thisComment:
 							thisComment = thisComment.replace(key, tagDict[key])
 					item['Comment'] = thisComment
-			print item
+
 
 
 def processSelected(self, evt):

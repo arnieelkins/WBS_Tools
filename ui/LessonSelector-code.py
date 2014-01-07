@@ -4,7 +4,37 @@
 ### 		'Dabo Code ID: XXXX',
 ### as these are needed to link the code to the objects.
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-961
+## *!* ## Dabo Code ID: dCheckBox-dPanel-5
+def onHit(self, evt):
+	self.Form.ProcessCheckBoxes(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-744
+def onHit(self, evt):
+	self.Form.ProcessCheckBoxes(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-693
+def onHit(self, evt):
+	self.Form.ProcessCheckBoxes(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-180
+def onHit(self, evt):
+	self.Form.ProcessCheckBoxes(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-537
+def onHit(self, evt):
+	self.Form.ProcessCheckBoxes(evt)
+
+
+
+## *!* ## Dabo Code ID: dCheckBox-dPanel-994
 def onHit(self, evt):
 	self.Form.ProcessCheckBoxes(evt)
 
@@ -16,31 +46,13 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-244
-def onHit(self, evt):
-	self.Form.ProcessCheckBoxes(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-81
-def onHit(self, evt):
-	self.Form.ProcessCheckBoxes(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-449
-def onHit(self, evt):
-	self.Form.ProcessCheckBoxes(evt)
-
-
-
 ## *!* ## Dabo Code ID: dButton-dPanel
 def onHit(self, evt):
 	import os
 	app = self.Application
 	for box in self.Form.CheckBoxList:
 		if box.Value == True:
-			formClass = dabo.ui.createClass('ui//GradingForm.cdxml')
+			formClass = dabo.ui.createClass("ui" + os.sep + "GradingForm.cdxml")
 			# now create an instance of the form
 			newForm = formClass(self.Form, Modal=True)
 			newForm.StudentRecNo = self.Form.StudentRecNo
@@ -53,13 +65,7 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-869
-def onHit(self, evt):
-	self.Form.ProcessCheckBoxes(evt)
-
-
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-13
+## *!* ## Dabo Code ID: dCheckBox-dPanel-160
 def onHit(self, evt):
 	self.Form.ProcessCheckBoxes(evt)
 
@@ -75,7 +81,6 @@ def ProcessCheckBoxes(self, event):
 
 
 def afterInitAll(self):
-	SaveRestorePosition="True"
 	self.CheckBoxList = [self.IntroCheckBox,
 							self.GHSCheckBox,
 							self.TIGNCheckBox,
@@ -88,9 +93,8 @@ def afterInitAll(self):
 
 
 def initProperties(self):
-	SaveRestorePosition="True"
-	app = self.Application
 	self.SaveRestorePosition = True
+	app = self.Application
 	self.FontSize = app.PreferenceManager.getValue("fontsize")
 	self.BorderResizable = False
 	self.recordNumber = 1
@@ -98,9 +102,7 @@ def initProperties(self):
 	self.MaximumSize = (233, 381)
 
 
-
-## *!* ## Dabo Code ID: dCheckBox-dPanel-165
-def onHit(self, evt):
-	self.Form.ProcessCheckBoxes(evt)
+def onClose(self, evt):
+	self.saveSizeAndPosition()
 
 
