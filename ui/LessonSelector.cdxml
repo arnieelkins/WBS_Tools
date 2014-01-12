@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <dForm code-ID="dForm-top" Name="dForm" Caption="LessonSelector" SaveRestorePosition="True" Top="370" Height="420" Width="232" designerClass="DesForm" Left="844">
 	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
 		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top', 'Border': 3}" designerClass="controlMix">

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <dDialog code-ID="dDialog-top" Name="dDialog" Caption="Select Comments" Top="142" Height="546" Width="734" designerClass="DesForm" Left="423">
 	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
 		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top'}" designerClass="controlMix" Name="dPanel1">

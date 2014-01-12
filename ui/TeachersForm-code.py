@@ -58,8 +58,9 @@ def deleteTeacher(self):
 
 
 def initProperties(self):
-	self.SaveRestorePosition = True
 	app = self.Application
+	self.BasePrefKey = app.BasePrefKey
+	self.SaveRestorePosition = True
 	self.FontSize = app.PreferenceManager.getValue("fontsize")
 
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <dForm Caption="Dabo Class Designer" SaveRestorePosition="True" Top="177" Height="367" Width="349" designerClass="DesForm" Left="621">
 	<dSizer classID="5266603-7814797" SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical" DefaultBorder="0">
 		<dPanel classID="7779415" sizerInfo="{'BorderSides': ['All'], 'Proportion': 1, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="path://..\PrintOrPreviewPanel.cdxml" savedClass="True">

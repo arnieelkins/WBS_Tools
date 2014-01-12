@@ -5,19 +5,11 @@ xsi:schemaLocation="http://www.dabodev.com conn.xsd"
 xsi:noNamespaceSchemaLocation = "http://dabodev.com/schema/conn.xsd">
 
 	<connection dbtype="MySQL">
-		<name>wbsmonro_user</name>
+		<name>wbs_test_user</name>
 		<host>mysql.monrovia.org</host>
-		<database>wbs_monrovia</database>
-		<user>wbsmonro_user</user>
-		<password>M71icTf+tprRj2ue5Rr9GmEFJ8Ccd5/B/A==</password>
-		<port>3306</port>
-	</connection>
-	<connection dbtype="MySQL">
-		<name>Connection_2</name>
-		<host></host>
-		<database></database>
-		<user></user>
-		<password></password>
+		<database>wbs_dabo</database>
+		<user>wbs_test_user</user>
+		<password>NnT56/+SkQRz+RWqDs4MUObtx1iURr55KA==</password>
 		<port>3306</port>
 	</connection>
 

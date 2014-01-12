@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<dForm code-ID="dForm-top" Name="dForm" Caption="Attachments" SaveRestorePosition="True" Top="269" Height="622" Width="644" designerClass="DesForm" CxnName="wbs_monro_user" Left="638">
+	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top'}" designerClass="controlMix">
+			<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+				<dGrid ColumnCount="7" code-ID="dGrid-dPanel" sizerInfo="{}" RowHeight="22" DataSource="Attachments" designerClass="controlMix">
+					<dColumn Caption="Filename" DataField="AttachmentName" designerClass="controlMix" Order="0" Width="80"></dColumn>
+					<dColumn Caption="Type" DataField="AttachmentType" designerClass="controlMix" Order="10" Width="80"></dColumn>
+					<dColumn Caption="Created" DataField="AttachmentCreated" designerClass="controlMix" Order="20" Width="80"></dColumn>
+					<dColumn Caption="Sent" DataField="AttachmentSentToContact" designerClass="controlMix" Order="30" Width="80"></dColumn>
+					<dColumn Caption="RecNo" DataField="AttachmentRecNo" designerClass="controlMix" Order="40" Width="80"></dColumn>
+					<dColumn Caption="Student" DataField="AttachmentStudentsRecNo" designerClass="controlMix" Order="50" Width="80"></dColumn>
+					<dColumn Caption="Data" DataField="AttachmentData" designerClass="controlMix"></dColumn>
+				</dGrid>
+			</dSizer>
+		</dPanel>
+	</dSizer>
+</dForm>

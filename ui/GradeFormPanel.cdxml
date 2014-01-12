@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <dPanel classID="15238827" BorderColor="(0, 0, 0)" sizerInfo="{}" Name="C:\SkyDrive\python\WBSTools\ui\GradeFormPanel.cdxml" Buffered="False" TabStop="True" AlwaysResetSizer="False" Enabled="True" ToolTipText="None" MinSizerWidth="10" ForeColor="(0, 0, 0)" Tag="None" designerClass="path://C:\SkyDrive\python\WBSTools\ui\GradeFormPanel.cdxml" savedClass="True" Transparency="255" BackColor="(240, 240, 240)" MinSizerHeight="10" BorderStyle="Default" Visible="True" BorderLineStyle="Solid" BorderWidth="0">
 	<dSizer classID="15238827-15268047" Orientation="Horizontal" DefaultBorderTop="False" DefaultBorderRight="False" DefaultSpacing="0" DefaultBorderBottom="False" DefaultBorder="0" DefaultBorderLeft="False" designerClass="LayoutSizer" SlotCount="5">
 		<dPanel classID="15238827-15267933" Spacing="20" sizerInfo="{'Proportion': 1, 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>

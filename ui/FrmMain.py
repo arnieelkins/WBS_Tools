@@ -14,9 +14,12 @@ class FrmMain(dabo.ui.dFormMain):
 
 	def initProperties(self):
 		app = self.Application
+		self.BasePrefKey = app.BasePrefKey
 		self.FontSize = app.PreferenceManager.getValue("fontsize")
 		super(FrmMain, self).initProperties()
 		self.Icon = "daboIcon.ico"
+		self.BasePrefKey = app.BasePrefKey
+
 
 
 	def fillFileOpenMenu(self):

@@ -119,7 +119,8 @@ def afterInitAll(self):
 	self.requery()
 	studentRecord = self.PrimaryBizobj.Record
 	# now we have the info we need to initialize the gradeRecord
-	self.gradeRecord = {'currentDate':datetime.date.today(),
+	self.gradeRecord = {'studentRecNo':self.StudentRecNo,
+						'currentDate':datetime.date.today(),
 						'lessonShortName':self.lessonShortName,
 						'lessonFullName':self.lessonFullName,
 						'studentFullName':studentRecord['StudentFullName'],
@@ -140,6 +141,7 @@ def afterInitAll(self):
 	self.refresh()
 
 def onUpdate_HeaderOutBox(self, evt):
+	print "onUpdate_HeaderOutBox is running to scroll the header TextBox to the end\n"
 	self.scrollToEnd()
 
 def buildBoxes(self, answerData, AnswerPanel, testMode):
@@ -335,6 +337,8 @@ def createBizobjs(self):
 	teachersBizobj = app.biz.TeachersBizobj(app.dbConnection)
 	self.addBizobj(teachersBizobj)
 
+	attachmentsBizobj = app.biz.AttachmentsBizobj(app.dbConnection)
+	self.addBizobj(attachmentsBizobj)
 
 def displayOutput(self):
 	app = self.Application
@@ -363,8 +367,9 @@ def getAnswerData(self, lessonNumber, bizObj):
 
 
 def initProperties(self):
-	self.SaveRestorePosition = True
 	app = self.Application
+	self.BasePrefKey = app.BasePrefKey
+	self.SaveRestorePosition = True
 	self.FontSize = app.PreferenceManager.getValue('fontsize')
 	self.RegID = 'GradingForm'
 	# testMode colors the boxes for the correct answers green
@@ -646,8 +651,9 @@ def savePDF(self):
 							]))
 	headerTable.hAlign = 'LEFT'
 	elements.append(headerTable)
+	self.tempFile = ''
 	if lesson == 'Intro':
-		tempCursor = self.getBizobj('Teachers').getTempCursor('Select TeacherPictureData as pic, TeacherPictureName as picname from wbs_dabo.Teachers where concat(TeacherFirstName, " ", TeacherLastName) =%s', (self.gradeRecord['teacherFullName'],))
+		tempCursor = self.getBizobj('Teachers').getTempCursor('Select TeacherPictureData as pic, TeacherPictureName as picname from Teachers where concat(TeacherFirstName, " ", TeacherLastName) =%s', (self.gradeRecord['teacherFullName'],))
 		pic = tempCursor.Record.pic
 		picname = tempCursor.Record.picname
 		if picname == None or picname == '':
@@ -708,9 +714,32 @@ def savePDF(self):
 		elements.append(para)
 	# write the document to disk
 	doc.build(elements)
+	self.saveAttachment(fileName, self.gradeRecord['studentRecNo'])
 	dabo.lib.reportUtils.previewPDF(fileName)
 	if os.path.isfile(self.tempFile):
 		os.remove(self.tempFile)
+
+
+def saveAttachment(self, filePath, studentRecNo):
+	app = self.Application
+	(pathOnly, attachmentName) = os.path.split(filePath)
+	timeStamp = datetime.datetime.now()
+	try:
+		bizobj = self.getBizobj('Attachments')
+		bizobj.new()
+		bizobj.Record.AttachmentStudentsRecNo = studentRecNo
+		bizobj.Record.AttachmentName = attachmentName
+		handle = open(filePath, 'rb')
+		bizobj.Record.AttachmentData = handle.read()
+		handle.close()
+		bizobj.Record.AttachmentCreated = timeStamp
+		result = bizobj.save()
+		if result == True or result == None:
+			dabo.ui.info("Attachment saved successfully!")
+		else:
+			dabo.ui.exclaim("Uh oh, something went wrong!")
+	except Exception, e:
+		dabo.ui.exclaim("Hey, something went wrong!\n" + str(traceback.format_exc()))
 
 
 

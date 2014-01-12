@@ -35,23 +35,38 @@ app.db = db
 app.biz = biz
 app.ui = ui
 app.reports = reports
-app.tempdir = str(os.path.join(os.getcwd(), 'tmp'))
-if not os.path.exists(app.tempdir):
-	try:
-		os.mkdir(app.tempdir)
-	except:
-		dabo.ui.exclaim('Unable to create a temp directory!!')
 
 # Make it easy to find any images or other files you put in the resources
 # directory.
 sys.path.append(os.path.join(app.HomeDirectory, "resources"))
 
 app.setup()
+
+#app.PreferenceManager.setValue("basedir", None)
+app.BaseDir = app.PreferenceManager.getValue("basedir")
+print "basedir = " + str(app.BaseDir)
+if app.BaseDir == None or app.BaseDir == '':
+	dabo.ui.info("Please choose a directory for me to use for creating temporary files, etc.")
+	response = dabo.ui.getFolder()
+	if response == None or response == '':
+		dabo.ui.exclaim("Hey, I really need a directory to write stuff!  That's it, I quit!")
+		sys.exit()
+	else:
+		app.BaseDir = response
+		app.PreferenceManager.setValue("basedir", app.BaseDir)
+if app.BaseDir:
+	app.tempdir = str(os.path.join(app.BaseDir, 'tmp'))
+	if not os.path.exists(app.tempdir):
+		try:
+			os.mkdir(app.tempdir)
+		except:
+			dabo.ui.exclaim('Unable to create a temp directory!!')
+
 app.MainFormClass = app.ui.FrmMain
 app.PreferenceManager.setValue("fontsize", 11)
 app.NoneDisplay = ""
 # Set up a global connection to the database that all bizobjs will share:
-app.dbConnection = app.getConnectionByName("wbs_dabo_admin")
+app.dbConnection = app.getConnectionByName("wbs_monro_user")
 #app.dbConnection.LogEvents = ['All']
 
 
@@ -59,16 +74,18 @@ app.dbConnection = app.getConnectionByName("wbs_dabo_admin")
 # generator, but you can change that here. Additionally, if form names were
 # passed on the command line, they will be opened instead of the default one
 # as long as they exist.
-app.ui.AnswersForm = dabo.ui.createClass("ui//AnswersForm.cdxml")
-app.ui.CommentsForm = dabo.ui.createClass("ui//CommentsForm.cdxml")
-app.ui.ContactsForm = dabo.ui.createClass("ui//ContactsForm.cdxml")
-app.ui.GradesForm = dabo.ui.createClass("ui//GradesForm.cdxml")
-app.ui.LessonsForm = dabo.ui.createClass("ui//LessonsForm.cdxml")
-app.ui.StudentsForm = dabo.ui.createClass("ui//StudentsForm.cdxml")
-app.ui.TeachersForm = dabo.ui.createClass("ui//TeachersForm.cdxml")
-app.ui.PrintOrPreviewForm = dabo.ui.createClass("ui//PrintOrPreviewForm.cdxml")
-app.ui.LessonSelector = dabo.ui.createClass("ui//LessonSelector.cdxml")
-app.ui.CommentSelectorForm = dabo.ui.createClass("ui//CommentSelectorForm.cdxml")
+app.ui.AnswersForm = dabo.ui.createClass("ui" + os.sep + "AnswersForm.cdxml")
+app.ui.AttachmentsForm = dabo.ui.createClass("ui" + os.sep + "AttachmentsForm.cdxml")
+app.ui.CommentsForm = dabo.ui.createClass("ui" + os.sep + "CommentsForm.cdxml")
+app.ui.ContactsForm = dabo.ui.createClass("ui" + os.sep + "ContactsForm.cdxml")
+app.ui.EmailContactForm = dabo.ui.createClass("ui" + os.sep + "EmailContactForm.cdxml")
+app.ui.GradesForm = dabo.ui.createClass("ui" + os.sep + "GradesForm.cdxml")
+app.ui.LessonsForm = dabo.ui.createClass("ui" + os.sep + "LessonsForm.cdxml")
+app.ui.StudentsForm = dabo.ui.createClass("ui" + os.sep + "StudentsForm.cdxml")
+app.ui.TeachersForm = dabo.ui.createClass("ui" + os.sep + "TeachersForm.cdxml")
+app.ui.PrintOrPreviewForm = dabo.ui.createClass("ui" + os.sep + "PrintOrPreviewForm.cdxml")
+app.ui.LessonSelector = dabo.ui.createClass("ui" + os.sep + "LessonSelector.cdxml")
+app.ui.CommentSelectorForm = dabo.ui.createClass("ui" + os.sep + "CommentSelectorForm.cdxml")
 app.DefaultForm = app.ui.StudentsForm
 app.FormsToOpen = [app.DefaultForm]
 app.startupForms()

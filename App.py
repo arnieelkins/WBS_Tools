@@ -11,11 +11,9 @@ class App(dApp):
 	def initProperties(self):
 		# Manages how preferences are saved
 		self.BasePrefKey = "dabo.app.WBSTools"
-		app = self.Application
-		self.BaseDir = app.PreferenceManager.getValue("basedir")
 		self.setAppInfo("appShortName", "WBSTools")
 		self.setAppInfo("appName", "WBSTools")
-		self.setAppInfo("copyright", "(c) 2013")
+		self.setAppInfo("copyright", "(c) 2013, 2014")
 		self.setAppInfo("companyName", "Monrovia Church of Christ")
 		self.setAppInfo("companyAddress1", "595 Nance Road")
 		self.setAppInfo("companyAddress2", "Madison, AL 35757")
@@ -45,4 +43,6 @@ class App(dApp):
 			# no need for main form in SDI mode
 			self.MainFormClass = None
 		super(App, self).setup()
+
+
 

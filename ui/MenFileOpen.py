@@ -24,6 +24,7 @@ class MenFileOpen(dabo.ui.dMenu):
 		# by turning off the autoHotKeys flag.
 
 		forms = (("Answers Form", app.ui.AnswersForm),
+				("Attachments Form", app.ui.AttachmentsForm),
 				("Comments Form", app.ui.CommentsForm),
 				("Contacts Form", app.ui.ContactsForm),
 				("Grades Form", app.ui.GradesForm),

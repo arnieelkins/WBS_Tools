@@ -10,3 +10,4 @@ from GradesBizobj import GradesBizobj
 from LessonsBizobj import LessonsBizobj
 from StudentsBizobj import StudentsBizobj
 from TeachersBizobj import TeachersBizobj
+from AttachmentsBizobj import AttachmentsBizobj

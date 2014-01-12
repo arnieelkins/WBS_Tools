@@ -1,3 +1,4 @@
+StudentID on reports should be Student ID
 ==========
 Captions on the program windows should reflect the database in use, or the username, or somehow
 differentiate the connection in use.
@@ -37,17 +38,8 @@ answer data can be determined, whatever space is left will be allocated for comm
 need to define the remaining space, so that the users know how much space they have remaining.
 
 ==========
-Directory on dropbox:
-root
-	contact fullname email
-	contact fullname
-		studentid_lastname_firstname
-			studentid_lastname_firstname_lesson_grade
-
-Outgoing files should be in the contact's email.  The program should, when prompted,
-make a list of the outgoing files, the student they are associated with, and the date sent.
-This list should be in a new table, linked to the contacts and the students.  Once files are
-recorded they should be moved into the directory of the student
+PDFs are now saved into the Attachments table in the DB.  Need to get the Attachments form
+working so users can view the files associated with a student.
 
 ==========
 Fields that should be dropdowns with the ability to choose something that is not in the list:
