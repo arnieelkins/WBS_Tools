@@ -4,6 +4,7 @@
 ## import them by name here.
 
 from AnswersBizobj import AnswersBizobj
+from AttachmentsBizobj import AttachmentsBizobj
 from CommentsBizobj import CommentsBizobj
 from ContactsBizobj import ContactsBizobj
 from GradesBizobj import GradesBizobj 

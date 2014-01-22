@@ -17,6 +17,7 @@ class AttachmentsBizobj(dabo.biz.dBizobj):
 		self.addField("AttachmentType")
 		self.addField("AttachmentCreated")
 		self.addField("AttachmentSentToContact")
+		self.addField("AttachmentSelected")
 		self.addJoin("Contacts", "AttachmentContactsRecNo = ContactRecNo")
 		self.addField("ContactFirstName")
 		self.addField("ContactLastName")
@@ -27,7 +28,26 @@ class AttachmentsBizobj(dabo.biz.dBizobj):
 							"ContactFullName":self.getContactFullName,}
 		self.DefaultValues = {"AttachmentType": 'Graded Lesson',
 								"AttachmentSentToContact": None,
+								"AttachmentSelected": False,
 								}
+
+
+	def initPropterties(self):
+		self.DataStructure = (
+				("AttachmentRecNo", "I", True, "Attachments", "AttachmentRecNo"),
+				("AttachmentContactsRecNo", "I", False, "Attachments", "AttachmentContactsRecNo"),
+				("AttachmentStudentsRecNo", "I", False, "Attachments", "AttachmentStudentsRecNo"),
+				("AttachmentName", "C", False, "Attachments", "AttachmentName"),
+				("AttachmentData", "C", False, "Attachments", "AttachmentData"),
+				("AttachmentType", "I", False, "Attachments", "AttachmentType"),
+				("AttachmentCreated", "D", False, "Attachments", "AttachmentCreated"),
+				("AttachmentSentToContact", "D", False, "Attachments", "AttachmentSentToContact"),
+				("AttachmentSelected", "C", False, "Attachments", "AttachmentSelected"),
+				("StudentFullName", "C", False, "Attachments", "StudentFullName"),
+				("ContactFullName", "C", False, "Attachments", "ContactFullName"),
+		)
+
+
 	def validateRecord(self):
 		"""Returning anything other than an empty string from
 		this method will prevent the data from being saved.

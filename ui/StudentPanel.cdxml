@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="cp1252" standalone="no"?>
 <dPanel classID="13863233" sizerInfo="{}" designerClass="path://StudentPanel.cdxml" savedClass="True" Name="StudentFormTopLeveldPanel">
 	<dSizer classID="13863233-13873705" SlotCount="3" designerClass="LayoutSizer" Orientation="Vertical">
 		<dGridSizer classID="13863233-13897781" HGap="50" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 4, 'Expand': True}" Rows="2" designerClass="LayoutGridSizer" VGap="5" Columns="4">

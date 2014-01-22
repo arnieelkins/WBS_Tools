@@ -1,3 +1,7 @@
+To delete a student, you must first get rid of all the grade records belonging to the student, then
+delete the student record.
+==========
+
 StudentID on reports should be Student ID
 ==========
 Captions on the program windows should reflect the database in use, or the username, or somehow

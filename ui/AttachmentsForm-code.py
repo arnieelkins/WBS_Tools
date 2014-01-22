@@ -26,7 +26,7 @@ def onGridMouseLeftDoubleClick(self, evt):
 			handle.write(fileData)
 			handle.close()
 		except Exception, e:
-			dabo.ui.exclaim("Oh No!  An exception writing the file!\n" + str(traceback.format_exc()))
+			dabo.ui.exclaim("Oh No!  An exception while writing the file!  This is a Really, Really Bad Thing!\n" + str(traceback.format_exc()))
 		print "f = " + str(f)
 		reportUtils.previewPDF(f)
 
@@ -34,8 +34,8 @@ def onGridMouseLeftDoubleClick(self, evt):
 
 ## *!* ## Dabo Code ID: dForm-top
 def afterInitAll(self):
-	self.PrimaryBizobj.addWhere("AttachmentStudentsRecNo = %s")
-	self.PrimaryBizobj.setParams(self.StudentRecNo)
+	self.PrimaryBizobj.addWhere("AttachmentStudentsRecNo = %s" % self.StudentRecNo)
+	print self.PrimaryBizobj.CurrentSQL
 	self.requery()
 
 

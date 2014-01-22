@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<dForm code-ID="dForm-top" Name="dForm" Caption="Get Files For Contact" SaveRestorePosition="False" Top="210" Height="740" Width="780" designerClass="DesForm" CxnName="wbs_test_user" Left="570">
+	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top'}" designerClass="controlMix" Name="dPanel1">
+			<dSizer SlotCount="3" designerClass="LayoutSizer" Orientation="Vertical">
+				<dSizer DefaultBorder="5" SlotCount="0" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSizer" Orientation="Horizontal"></dSizer>
+				<dGrid ColumnCount="9" code-ID="dGrid-dPanel" sizerInfo="{}" RowHeight="22" Name="AttachmentGrid" designerClass="controlMix" DataSource="Attachments" RegID="AttachmentGrid">
+					<dColumn Width="85" Editable="True" Caption="Selected?" designerClass="controlMix" DataField="AttachmentSelected" Order="0" Expand="True"></dColumn>
+					<dColumn Width="84" Caption="Name" designerClass="controlMix" DataField="AttachmentName" Order="10" Expand="True"></dColumn>
+					<dColumn Width="84" Caption="Created" designerClass="controlMix" DataField="AttachmentCreated" Order="20" Expand="True"></dColumn>
+					<dColumn Width="84" Caption="Sent" designerClass="controlMix" DataField="AttachmentSentToContact" Order="30" Expand="True"></dColumn>
+					<dColumn Width="84" Visible="False" Caption="StudentsRecNo" designerClass="controlMix" DataField="AttachmentStudentsRecNo" Order="40" Expand="True"></dColumn>
+					<dColumn Width="84" ListEditorChoices="[u&apos;&apos;, u&apos;Graded Lesson&apos;]" Caption="Type" designerClass="controlMix" DataField="AttachmentType" Order="50" Expand="True"></dColumn>
+					<dColumn Width="84" Visible="False" Caption="ContactsRecNo" designerClass="controlMix" DataField="AttachmentContactsRecNo" Order="60" Expand="True"></dColumn>
+					<dColumn Width="83" Visible="False" Caption="Data" designerClass="controlMix" DataField="AttachmentData" Order="70" Expand="True"></dColumn>
+					<dColumn Width="82" Visible="False" Caption="RecNo" designerClass="controlMix" DataField="AttachmentRecNo" Order="80" Expand="True"></dColumn>
+				</dGrid>
+				<dSizer DefaultBorder="8" SlotCount="10" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': False}" designerClass="LayoutSizer" Orientation="Horizontal">
+					<dButton code-ID="dButton-dPanel" Caption="Select All" sizerInfo="{'Border': 8}" designerClass="controlMix" Name="SelectAllButton"></dButton>
+					<dButton code-ID="dButton-dPanel-660" Width="76" sizerInfo="{'Border': 8}" designerClass="controlMix" Name="SelectNoneButton" Caption="Select None"></dButton>
+					<dButton code-ID="dButton-dPanel-246" Caption="Mark Sent" sizerInfo="{'Border': 5}" designerClass="controlMix" Name="MarkSentButton"></dButton>
+					<dButton code-ID="dButton-dPanel-944" Caption="Get Files" sizerInfo="{'Border': 5}" designerClass="controlMix" Name="GetFilesButton"></dButton>
+					<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 8, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
+					<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 8, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
+					<dButton code-ID="dButton-dPanel-158" Caption="Save" sizerInfo="{}" designerClass="controlMix" Name="SaveButton"></dButton>
+					<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 8, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
+					<dPanel Spacing="20" sizerInfo="{'VAlign': 'Top', 'Border': 8, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
+					<dButton code-ID="dButton-dPanel-152" Caption="Refresh" sizerInfo="{'Border': 5}" designerClass="controlMix" Name="RefreshButton"></dButton>
+				</dSizer>
+			</dSizer>
+		</dPanel>
+	</dSizer>
+</dForm>

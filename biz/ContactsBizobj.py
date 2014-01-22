@@ -11,21 +11,11 @@ class ContactsBizobj(dabo.biz.dBizobj):
 		self.SaveNewUnchanged = True
 		self.DataSource = "Contacts"
 		self.KeyField = "ContactRecNo"
-		self.LinkField = "ContactRecNo"
 		self.addFrom("Contacts")
 		self.addField("ContactRecNo")
 		self.addField("ContactWBSID")
 		self.addField("ContactFirstName")
 		self.addField("ContactLastName")
-		self.addJoin("Attachments", "ContactRecNo = AttachmentContactsRecNo")
-		self.addField("AttachmentRecNo")
-		self.addField("AttachmentContactsRecNo")
-		self.addField("AttachmentStudentsRecNo")
-		self.addField("AttachmentName")
-		self.addField("AttachmentData")
-		self.addField("AttachmentType")
-		self.addField("AttachmentCreated")
-		self.addField("AttachmentSentToContact")
 		self.VirtualFields = {"ContactFullName":self.getContactFullName}
 		self.DefaultValues = {"ContactWBSID": 'AL-091',}
 	def validateRecord(self):

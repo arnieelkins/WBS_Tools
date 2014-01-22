@@ -13,21 +13,7 @@ import datetime
 import os
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-32
-def onHit(self, evt):
-	# Incomplete checkbox
-	self.Form.onIncompleteCheckBox()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-14
-def onHit(self, evt):
-	# Comments button
-	self.Form.openCommentSelectorForm()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-164
+## *!* ## Dabo Code ID: dButton-dPanel-228
 def onHit(self, evt):
 	#clearoutput button
 	app = self.Application
@@ -45,14 +31,14 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-850
+## *!* ## Dabo Code ID: dCheckBox-dPanel-397
 def onHit(self, evt):
-	# WriteToDB button
-	self.Form.saveCurrentGradeRecord()
+	# Incomplete checkbox
+	self.Form.onIncompleteCheckBox()
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-20
+## *!* ## Dabo Code ID: dButton-dPanel-647
 def onHit(self, evt):
 	# Score button
 	app = self.Application
@@ -67,11 +53,10 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-634
+## *!* ## Dabo Code ID: dButton-dPanel-788
 def onHit(self, evt):
-	# SavePDF button
-	app = self.Application
-	self.Form.savePDF()
+	# Comments button
+	self.Form.openCommentSelectorForm()
 
 
 
@@ -140,9 +125,6 @@ def afterInitAll(self):
 						}
 	self.refresh()
 
-def onUpdate_HeaderOutBox(self, evt):
-	print "onUpdate_HeaderOutBox is running to scroll the header TextBox to the end\n"
-	self.scrollToEnd()
 
 def buildBoxes(self, answerData, AnswerPanel, testMode):
 	colordb = wx.TheColourDatabase
@@ -190,9 +172,9 @@ def buildBoxes(self, answerData, AnswerPanel, testMode):
 			elif lessonNumber == 91:
 				checkBoxSizer.appendSpacer(10)
 				rowNum = rowNum + 1
-		questionNumberLabel = wx.StaticText(AnswerPanel, wx.ID_ANY, str(questionNumber) + ') ')
-		checkBoxSizer.append(questionNumberLabel, row=rowNum, col=0)
-		#checkBoxSizer.setItemProps(questionNumberLabel, {'ColExpand': True, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Center', 'RowSpan': 1, 'VAlign': 'Middle', 'Border': 1, 'Expand': False, 'RowExpand': False})
+		questionNumberLabel = wx.StaticText(AnswerPanel, wx.ID_ANY, str(questionNumber) + ')')
+		checkBoxSizer.append(questionNumberLabel, row=rowNum, col=0, halign='left')
+		#checkBoxSizer.setItemProps(questionNumberLabel, {'ColExpand': True, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Center', 'RowSpan': 1, 'VAlign': 'Middle', 'Border': 8, 'Expand': False, 'RowExpand': False})
 		CheckBoxA = wx.CheckBox(AnswerPanel, wx.ID_ANY, 'A')
 		checkBoxSizer.append(CheckBoxA, row=rowNum, col=1)
 		CheckBoxB = wx.CheckBox(AnswerPanel, wx.ID_ANY, 'B')
@@ -203,14 +185,34 @@ def buildBoxes(self, answerData, AnswerPanel, testMode):
 		checkBoxSizer.append(CheckBoxNA, row=rowNum, col=4)
 		if testMode:
 			if item['AnswerCorrectAnswer'] == 'A':
-				CheckBoxA.SetBackgroundColour(colordb.Find('PALE GREEN'))
+				CheckBoxA.SetForegroundColour('green')
+				CheckBoxA.Refresh()
+			else:
+				CheckBoxA.SetForegroundColour('black')
 				CheckBoxA.Refresh()
 			if item['AnswerCorrectAnswer'] == 'B':
-				CheckBoxB.SetBackgroundColour(colordb.Find('PALE GREEN'))
+				CheckBoxB.SetForegroundColour('green')
+				CheckBoxB.Refresh()
+			else:
+				CheckBoxB.SetForegroundColour('black')
 				CheckBoxB.Refresh()
 			if item['AnswerCorrectAnswer'] == 'C':
-				CheckBoxC.SetBackgroundColour(colordb.Find('PALE GREEN'))
+				CheckBoxC.SetForegroundColour('green')
 				CheckBoxC.Refresh()
+			else:
+				CheckBoxC.SetForegroundColour('black')
+				CheckBoxC.Refresh()
+			CheckBoxNA.SetForegroundColour('black')
+			CheckBoxNA.Refresh()
+		else:
+			CheckBoxA.SetForegroundColour('black')
+			CheckBoxA.Refresh()
+			CheckBoxB.SetForegroundColour('black')
+			CheckBoxB.Refresh()
+			CheckBoxC.SetForegroundColour('black')
+			CheckBoxC.Refresh()
+			CheckBoxNA.SetForegroundColour('black')
+			CheckBoxNA.Refresh()
 		answerCheckBoxList.append({'questionNumber': questionNumber,
 									'questionNumberLabel':questionNumberLabel,
 									'A': CheckBoxA,
@@ -340,6 +342,7 @@ def createBizobjs(self):
 	attachmentsBizobj = app.biz.AttachmentsBizobj(app.dbConnection)
 	self.addBizobj(attachmentsBizobj)
 
+
 def displayOutput(self):
 	app = self.Application
 	print "displayOutput is running\n"
@@ -372,7 +375,7 @@ def initProperties(self):
 	self.SaveRestorePosition = True
 	self.FontSize = app.PreferenceManager.getValue('fontsize')
 	self.RegID = 'GradingForm'
-	# testMode colors the boxes for the correct answers green
+	# testMode colors the correct answers green
 	self.testMode = True
 	self.lessonScored = False
 	self.commentsSelected = False
@@ -424,6 +427,11 @@ def onResetButton(self):
 	if self.FailedCheckBox.Value == True:
 		self.FailedCheckBox.Value = False
 		self.EnterGradeSpinner.Enabled = False
+
+
+def onUpdate_HeaderOutBox(self, evt):
+	print "onUpdate_HeaderOutBox is running to scroll the header TextBox to the end\n"
+	self.scrollToEnd()
 
 
 def openCommentSelectorForm(self):
@@ -490,11 +498,35 @@ def outputLines(self, Lines, OutputBox):
 		OutputBox.WriteText(line)
 
 
+def saveAttachment(self, filePath, studentRecNo, contactRecNo):
+	app = self.Application
+	(pathOnly, attachmentName) = os.path.split(filePath)
+	timeStamp = datetime.datetime.now()
+	try:
+		bizobj = self.getBizobj('Attachments')
+		bizobj.new()
+		bizobj.Record.AttachmentStudentsRecNo = studentRecNo
+		bizobj.Record.AttachmentContactsRecNo = contactRecNo
+		bizobj.Record.AttachmentName = attachmentName
+		handle = open(filePath, 'rb')
+		bizobj.Record.AttachmentData = handle.read()
+		handle.close()
+		bizobj.Record.AttachmentCreated = timeStamp
+		result = bizobj.save()
+		if result == True or result == None:
+			dabo.ui.info("Attachment saved successfully!")
+		else:
+			dabo.ui.exclaim("Uh oh, something went wrong!")
+	except Exception, e:
+		dabo.ui.exclaim("Hey, something went wrong!\n" + str(traceback.format_exc()))
+
+
 def saveCurrentGradeRecord(self):
 	app = self.Application
 	import datetime
 	now = datetime.date.today()
 	print 'attempting to save grade record\n'
+	print self.PrimaryBizobj.Record
 	self.saveGradeRecord(studentsRecNo = self.PrimaryBizobj.Record["StudentRecNo"],
 						currentDate = now,
 						lessonRecNo = self.lessonRecNo,
@@ -570,7 +602,7 @@ def savePDF(self):
 	idx = self.gradeRecord['studentFullName'].rfind(" ")
 	print 'index = ' + str(idx)
 	if idx != None:
-		lastName = self.gradeRecord['studentFullName'][idx:]
+		lastName = self.gradeRecord['studentFullName'][idx + 1:]
 	else:
 		lastName = self.gradeRecord['studentFullName']
 	grade = str(int(self.gradeRecord['grade']))
@@ -714,33 +746,13 @@ def savePDF(self):
 		elements.append(para)
 	# write the document to disk
 	doc.build(elements)
-	self.saveAttachment(fileName, self.gradeRecord['studentRecNo'])
+	tempCursor = self.getBizobj('Students')
+	tempCursor.execute("select StudentContactsRecNo from Students where StudentRecNo = %s" % self.gradeRecord['studentRecNo'])
+	contactRecNo = tempCursor.Record.StudentContactsRecNo
+	self.saveAttachment(fileName, self.gradeRecord['studentRecNo'], contactRecNo)
 	dabo.lib.reportUtils.previewPDF(fileName)
 	if os.path.isfile(self.tempFile):
 		os.remove(self.tempFile)
-
-
-def saveAttachment(self, filePath, studentRecNo):
-	app = self.Application
-	(pathOnly, attachmentName) = os.path.split(filePath)
-	timeStamp = datetime.datetime.now()
-	try:
-		bizobj = self.getBizobj('Attachments')
-		bizobj.new()
-		bizobj.Record.AttachmentStudentsRecNo = studentRecNo
-		bizobj.Record.AttachmentName = attachmentName
-		handle = open(filePath, 'rb')
-		bizobj.Record.AttachmentData = handle.read()
-		handle.close()
-		bizobj.Record.AttachmentCreated = timeStamp
-		result = bizobj.save()
-		if result == True or result == None:
-			dabo.ui.info("Attachment saved successfully!")
-		else:
-			dabo.ui.exclaim("Uh oh, something went wrong!")
-	except Exception, e:
-		dabo.ui.exclaim("Hey, something went wrong!\n" + str(traceback.format_exc()))
-
 
 
 def scoreLesson(self):
@@ -928,5 +940,17 @@ def scoreWrongAnswers(self, answerCheckBoxList, answerDataSet):
 
 
 
+## *!* ## Dabo Code ID: dButton-dPanel-758
+def onHit(self, evt):
+	# SavePDF button
+	app = self.Application
+	self.Form.savePDF()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-980
+def onHit(self, evt):
+	# WriteToDB button
+	self.Form.saveCurrentGradeRecord()
 
 

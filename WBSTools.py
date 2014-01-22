@@ -52,6 +52,7 @@ if app.BaseDir == None or app.BaseDir == '':
 		dabo.ui.exclaim("Hey, I really need a directory to write stuff!  That's it, I quit!")
 		sys.exit()
 	else:
+		print "response = ;" + str(response) + ";" 
 		app.BaseDir = response
 		app.PreferenceManager.setValue("basedir", app.BaseDir)
 if app.BaseDir:
@@ -66,7 +67,8 @@ app.MainFormClass = app.ui.FrmMain
 app.PreferenceManager.setValue("fontsize", 11)
 app.NoneDisplay = ""
 # Set up a global connection to the database that all bizobjs will share:
-app.dbConnection = app.getConnectionByName("wbs_monro_user")
+app.dbConnectionName = "wbs_test_user"
+app.dbConnection = app.getConnectionByName(app.dbConnectionName)
 #app.dbConnection.LogEvents = ['All']
 
 
@@ -78,7 +80,7 @@ app.ui.AnswersForm = dabo.ui.createClass("ui" + os.sep + "AnswersForm.cdxml")
 app.ui.AttachmentsForm = dabo.ui.createClass("ui" + os.sep + "AttachmentsForm.cdxml")
 app.ui.CommentsForm = dabo.ui.createClass("ui" + os.sep + "CommentsForm.cdxml")
 app.ui.ContactsForm = dabo.ui.createClass("ui" + os.sep + "ContactsForm.cdxml")
-app.ui.EmailContactForm = dabo.ui.createClass("ui" + os.sep + "EmailContactForm.cdxml")
+app.ui.GetFilesForContactForm = dabo.ui.createClass("ui" + os.sep + "GetFilesForContactForm.cdxml")
 app.ui.GradesForm = dabo.ui.createClass("ui" + os.sep + "GradesForm.cdxml")
 app.ui.LessonsForm = dabo.ui.createClass("ui" + os.sep + "LessonsForm.cdxml")
 app.ui.StudentsForm = dabo.ui.createClass("ui" + os.sep + "StudentsForm.cdxml")
@@ -90,6 +92,6 @@ app.DefaultForm = app.ui.StudentsForm
 app.FormsToOpen = [app.DefaultForm]
 app.startupForms()
 if app.MainForm != None:
-	app.MainForm.Caption = 'WBSTools version ' + str(app.getAppInfo('appVersion'))
+	app.MainForm.Caption = 'WBSTools version ' + str(app.getAppInfo('appVersion') + ' user = ' + str(app.dbConnectionName))
 # Start the application event loop:
 app.start()
