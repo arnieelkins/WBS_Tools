@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<dForm code-ID="dForm-top" Name="dForm" Caption="Possbile duplicate records!" SaveRestorePosition="True" Top="0" Height="523" Width="560" designerClass="DesForm" Left="0">
+	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top'}" designerClass="controlMix">
+			<dSizer SlotCount="4" designerClass="LayoutSizer" Orientation="Vertical">
+				<dGrid ColumnCount="29" code-ID="dGrid-dPanel" sizerInfo="{}" RowHeight="22" Name="DuplicateRecordsGrid" ActivateEditorOnSelect="False" designerClass="controlMix" RegID="DuplicateRecordsGrid">
+					<dColumn Caption="RecNo" DataField="StudentRecNo" designerClass="controlMix" Order="0" Width="80"></dColumn>
+					<dColumn Caption="StudentID" DataField="StudentID" designerClass="controlMix" Order="10" Width="84"></dColumn>
+					<dColumn Caption="FirstName" DataField="StudentFirstName" designerClass="controlMix" Order="20" Width="87"></dColumn>
+					<dColumn Caption="LastName" DataField="StudentLastName" designerClass="controlMix" Order="30" Width="87"></dColumn>
+					<dColumn Caption="Contact" DataField="ContactFullName" designerClass="controlMix" Order="40" Width="117"></dColumn>
+					<dColumn Caption="Teacher" DataField="TeacherFullName" designerClass="controlMix" Order="50" Width="120"></dColumn>
+					<dColumn Caption="WBS ID" DataField="StudentWBSID" designerClass="controlMix" Order="60" Width="113"></dColumn>
+					<dColumn Caption="Age" DataField="StudentAge" designerClass="controlMix" Order="70" Width="80"></dColumn>
+					<dColumn Caption="Birthdate" DataField="StudentBirthdate" designerClass="controlMix" Order="80" Width="81"></dColumn>
+					<dColumn Caption="MaritalStatus" DataField="StudentMaritalStatus" designerClass="controlMix" Order="90" Width="105"></dColumn>
+					<dColumn Caption="Gender" DataField="StudentGender" designerClass="controlMix" Order="100" Width="80"></dColumn>
+					<dColumn Caption="Occupation" DataField="StudentOccupation" designerClass="controlMix" Order="110" Width="94"></dColumn>
+					<dColumn Caption="Religion" DataField="StudentReligion" designerClass="controlMix" Order="120" Width="80"></dColumn>
+					<dColumn Caption="ChurchName" DataField="StudentChurchName" designerClass="controlMix" Order="130" Width="103"></dColumn>
+					<dColumn Caption="HasBeenBaptized" DataField="StudentHasBeenBaptized" designerClass="controlMix" Order="140" Width="129"></dColumn>
+					<dColumn Caption="BaptismType" DataField="StudentBaptismType" designerClass="controlMix" Order="150" Width="103"></dColumn>
+					<dColumn Caption="RequestedBaptism" DataField="StudentRequestedBaptism" designerClass="controlMix" Order="160" Width="137"></dColumn>
+					<dColumn Caption="Bible" DataField="StudentHasBible" designerClass="controlMix" Order="170" Width="80"></dColumn>
+					<dColumn Caption="WBSBefore" DataField="StudentWBSBefore" designerClass="controlMix" Order="180" Width="95"></dColumn>
+					<dColumn Caption="StreetAddress" DataField="StudentStreetAddress" designerClass="controlMix" Order="190" Width="112"></dColumn>
+					<dColumn Caption="PostalAddress" DataField="StudentPostalAddress" designerClass="controlMix" Order="200" Width="113"></dColumn>
+					<dColumn Caption="City" DataField="StudentCity" designerClass="controlMix" Order="210" Width="80"></dColumn>
+					<dColumn Caption="State" DataField="StudentState" designerClass="controlMix" Order="220" Width="80"></dColumn>
+					<dColumn Caption="Country" DataField="StudentCountry" designerClass="controlMix" Order="230" Width="80"></dColumn>
+					<dColumn Caption="Phone1" DataField="StudentPhone1" designerClass="controlMix" Order="240" Width="80"></dColumn>
+					<dColumn Caption="Phone2" DataField="StudentPhone2" designerClass="controlMix" Order="250" Width="80"></dColumn>
+					<dColumn Caption="EmailAddress" DataField="StudentEmailAddress" designerClass="controlMix" Order="260" Width="108"></dColumn>
+					<dColumn Caption="Notes" DataField="StudentNotes" designerClass="controlMix" Order="270" Width="80"></dColumn>
+					<dColumn Caption="Bible Delivered Date" DataField="StudentBibleDeliveredDate" designerClass="controlMix" Order="280" Width="80"></dColumn>
+				</dGrid>
+				<dLabel Caption="Potential duplicate record(s) detected!  Save anyway?" sizerInfo="{'Border': 4}" designerClass="controlMix"></dLabel>
+				<dSizer SlotCount="5" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0, 'Expand': True}" designerClass="LayoutSizer" Orientation="Horizontal">
+					<dPanel sizerInfo="{'BorderSides': ['All'], 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0}" designerClass="LayoutPanel"></dPanel>
+					<dButton code-ID="dButton-dPanel" Caption="Yes" sizerInfo="{}" designerClass="controlMix" Name="YesButton" RegID="YesButton"></dButton>
+					<dPanel sizerInfo="{'BorderSides': ['All'], 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0}" designerClass="LayoutPanel"></dPanel>
+					<dButton code-ID="dButton-dPanel-81" Caption="No" sizerInfo="{}" designerClass="controlMix"></dButton>
+					<dPanel sizerInfo="{'BorderSides': ['All'], 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0}" designerClass="LayoutPanel"></dPanel>
+				</dSizer>
+				<dPanel sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 0}" designerClass="LayoutPanel"></dPanel>
+			</dSizer>
+		</dPanel>
+	</dSizer>
+</dForm>

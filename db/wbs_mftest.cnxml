@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<connectiondefs xmlns="http://www.dabodev.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.dabodev.com conn.xsd"
+xsi:noNamespaceSchemaLocation = "http://dabodev.com/schema/conn.xsd">
+
+	<connection dbtype="MySQL">
+		<name>mayfair_test_admin</name>
+		<host>mysql.monrovia.org</host>
+		<database>wbs_mf_test</database>
+		<user>wbs_mftest_admin</user>
+		<password>NbwDibT0J2MU9VE4oVbLPF7MbjF0m8WrhQ==</password>
+		<port>3306</port>
+	</connection>
+
+
+</connectiondefs>

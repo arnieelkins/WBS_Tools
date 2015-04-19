@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="cp1252" standalone="no"?>
+<dForm Name="dForm" SaveRestorePosition="False" Top="127" Caption="Dabo Class Designer" designerClass="DesForm" Left="440">
+	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
+		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top'}" designerClass="controlMix">
+			<dSizer SlotCount="3" designerClass="LayoutSizer" Orientation="Vertical">
+				<dPanel Spacing="50" sizerInfo="{'HAlign': 'Left', 'Border': 0, 'Expand': True}" designerClass="LayoutSpacerPanel"></dPanel>
+				<dLabel Caption="Please select the File Type for this file:" sizerInfo="{}" designerClass="controlMix"></dLabel>
+				<dGridSizer HGap="4" sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Left', 'VAlign': 'Top', 'Border': 2, 'Expand': True}" Rows="3" designerClass="LayoutGridSizer" VGap="4" Columns="3">
+					<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': True, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(0, 0)"></dPanel>
+					<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': True, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(1, 0)"></dPanel>
+					<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': True, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(2, 0)"></dPanel>
+					<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': True, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(0, 2)"></dPanel>
+					<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': True, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(1, 2)"></dPanel>
+					<dPanel sizerInfo="{'RowSpan': 1, 'BorderSides': ['All'], 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left', 'ColExpand': True, 'VAlign': 'Middle', 'Border': 0, 'RowExpand': False}" designerClass="LayoutPanel" rowColPos="(2, 2)"></dPanel>
+					<dCheckBox code-ID="dCheckBox-dPanel" Width="90" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" designerClass="controlMix" Caption="Graded Lesson" rowColPos="(0, 1)"></dCheckBox>
+					<dCheckBox code-ID="dCheckBox-dPanel-620" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" Name="dCheckBox1" Caption="Student Info" rowColPos="(1, 1)" Width="80" designerClass="controlMix"></dCheckBox>
+					<dCheckBox code-ID="dCheckBox-dPanel-531" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" Name="dCheckBox2" Caption="Other" rowColPos="(2, 1)" Width="47" designerClass="controlMix"></dCheckBox>
+				</dGridSizer>
+			</dSizer>
+		</dPanel>
+	</dSizer>
+</dForm>

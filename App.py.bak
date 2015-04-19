@@ -1,0 +1,97 @@
+# -*- coding: utf-8 -*-
+
+import dabo
+from dabo.dApp import dApp
+from dabo.dLocalize import _
+from registerFonts import registerFonts
+import os
+import sys
+
+class App(dApp):
+	def initProperties(self):
+		# Manages how preferences are saved
+		self.BasePrefKey = "dabo.app.WBSToolsTEST"
+		self.setAppInfo("appShortName", "WBSTools")
+		self.setAppInfo("appName", "WBSTools")
+		self.setAppInfo("copyright", "(c) 2013, 2014")
+		self.setAppInfo("companyName", "Monrovia Church of Christ")
+		self.setAppInfo("companyAddress1", "595 Nance Road")
+		self.setAppInfo("companyAddress2", "Madison, AL 35757")
+		self.setAppInfo("companyPhone", "256.837.5255")
+		self.setAppInfo("companyEmail", "wbs@monrovia.org")
+		self.setAppInfo("companyUrl", "http://monrovia.org")
+
+		self.setAppInfo("appDescription", _("Tools for grading World Bible School lessons and recording \
+										   student information in a MySQL database"))
+
+		## Information about the developer of the software:
+		self.setAppInfo("authorName", "Arnie Elkins")
+		self.setAppInfo("authorEmail", "arnie.elkins.wbs@gmail.com")
+		self.setAppInfo("authorURL", "http://monrovia.org/wbs")
+
+		## Set app version information:
+		# This is the central place to keep your application's version updated. 
+		__version__ = "0.9.4.6"
+		self.setAppInfo("appVersion", __version__)
+		self.CryptoKey = "WeHoldTheseTruths"
+		print os.getcwd()
+		#registerFonts(os.getcwd())
+		self.Icon = "icons/wbs.ico"
+
+	def setup(self):
+		if dabo.MDI:
+			#self.MainFormClass = dabo.ui.createForm("ui/StudentsForm.cdxml")
+			self.MainFormClass = dabo.ui.dFormMain
+		else:
+			# no need for main form in SDI mode
+			self.MainFormClass = None
+		super(App, self).setup()
+
+
+	def getTempDir(self):
+		if self.TempDir == None or self.TempDir == '':
+			dabo.ui.info("Please choose a directory for me to use for creating temporary files, etc.")
+			response = dabo.ui.getFolder()
+			if response == None or response == '':
+				response = dabo.ui.areYouSure(message = "Are you going to find a directory for me to use?")
+				if response == None or response == '':
+					dabo.ui.info("Well alrighty then, I quit!")
+					sys.exit(1)
+				else:
+					self.getTempDir()
+			else:
+				print "response = ;" + str(response) + ";" 
+				self.TempDir = response
+				if not self.testTempDir():
+					dabo.ui.exclaim("There seems to be a problem here!")
+					self.getTempDir()
+				else:
+					self.PreferenceManager.setValue("TempDir", self.TempDir)
+	def testTempDir(self):
+		if self.TempDir:
+			if os.path.exists(self.TempDir):
+				self.PreferenceManager.setValue("TempDir", self.TempDir)
+				return(True)
+			else:
+				response = dabo.ui.areYouSure(message = "TempDir is defined as " + str(self.TempDir) + " but it does not exist.  Attempt to create it?",
+												defaultNo = True,
+												cancelButton = False,
+												requestUserAttention=True)
+				if response == True:
+					try:
+						os.mkdir(self.TempDir)
+						self.PreferenceManager.setValue("TempDir", self.TempDir)
+						return(True)
+					except:
+						dabo.ui.exclaim('Unable to create a temp directory!!')
+						dabo.ui.info("Hey, I really need a directory to write stuff!  Can you pick one please?")
+						response = dabo.ui.getFolder()
+						if response == None or response == '':
+							dabo.ui.exclaim("Well alrighty then, since I can't work without one, I quit!")
+							return(False)
+							sys.exit(1)
+						else:
+							self.getTempDir()
+				else:
+					dabo.ui.exclaim("Hey, I really need a directory to write stuff! Please pick one!")
+					

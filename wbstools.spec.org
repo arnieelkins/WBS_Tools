@@ -1,0 +1,24 @@
+# -*- mode: python -*-
+a = Analysis(['wbstools.py'],
+             pathex=['C:\\Users\\Arnie\\SkyDrive\\python\\WBSTools'],
+             hiddenimports=['hashlib'],
+             hookspath=None,
+             runtime_hooks=None)
+excludes = ['tcl']
+pyz = PYZ(a.pure)
+exe = EXE(pyz,
+          a.scripts,
+          exclude_binaries=True,
+          name='wbstools.exe',
+          debug=True,
+          strip=None,
+          upx=True,
+          console=False,
+          excludes=excludes)
+coll = COLLECT(exe,
+               a.binaries,
+               a.zipfiles,
+               a.datas,
+               strip=None,
+               upx=True,
+               name='wbstools')
