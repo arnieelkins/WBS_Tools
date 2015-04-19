@@ -30,7 +30,8 @@ class AttachmentsBizobj(dabo.biz.dBizobj):
 								"AttachmentSentToContact": None,
 								"AttachmentSelected": False,
 								}
-
+		#set bizobj to ignore referential integrity when deleting a child record
+		self.deleteChildLogic = 1
 
 	def initPropterties(self):
 		self.DataStructure = (

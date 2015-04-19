@@ -7,10 +7,75 @@
 import os
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-601
+## *!* ## Dabo Code ID: dButton-dPanel-512
 def onHit(self, evt):
 	# New button
 	self.Form.addTeacher()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-757
+def onHit(self, evt):
+	# First button
+	self.Form.first()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-48
+def onHit(self, evt):
+	# Prior button
+	self.Form.prior()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-89
+def onHit(self, evt):
+	# Save button
+	self.Form.save()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-869
+def onHit(self, evt):
+	# Last button
+	self.Form.last()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-998
+def onHit(self, evt):
+	# Next button
+	self.Form.next()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-35
+def onHit(self, evt):
+	# Delete Picture button
+	app = self.Application
+	self.Form.onDeleteTeacherPicture(self.Form.PrimaryBizobj.Record.TeacherRecNo)
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel
+def onHit(self, evt):
+	# Refresh button
+	self.Form.requery()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-880
+def onHit(self, evt):
+	# Choose Picture button
+	app = self.Application
+	self.Form.onChooseTeacherPicture(self.Form.PrimaryBizobj.Record.TeacherRecNo)
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-432
+def onHit(self, evt):
+	# Delete button
+	self.Form.deleteTeacher()
 
 
 
@@ -62,7 +127,7 @@ def initProperties(self):
 	self.BasePrefKey = app.BasePrefKey
 	self.SaveRestorePosition = True
 	self.FontSize = app.PreferenceManager.getValue("fontsize")
-
+	self.Icon = "icons/wbs.ico"
 
 def onChooseTeacherPicture(self, teacherRecNo):
 	app = self.Application
@@ -81,63 +146,14 @@ def onChooseTeacherPicture(self, teacherRecNo):
 		if not pictureData == '' and not pictureData == None:
 			tempCursor = self.getBizobj('Teachers').getTempCursor()
 			tempCursor.execute("update Teachers set TeacherPictureName=%s, TeacherPictureData=%s where TeacherRecNo = %s", (pictureName, pictureData, teacherRecNo))
+			self.save()
 			self.requery()
+			self.setFocus()
 
 
-
-## *!* ## Dabo Code ID: dButton-dPanel-271
-def onHit(self, evt):
-	# Last button
-	self.Form.last()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-165
-def onHit(self, evt):
-	# Next button
-	self.Form.next()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-714
-def onHit(self, evt):
-	# First button
-	self.Form.first()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-429
-def onHit(self, evt):
-	# Delete button
-	self.Form.deleteTeacher()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-879
-def onHit(self, evt):
-	# Save button
-	self.Form.save()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-132
-def onHit(self, evt):
-	# Prior button
-	self.Form.prior()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel
-def onHit(self, evt):
-	# Refresh button
-	self.Form.requery()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-946
-def onHit(self, evt):
-	# Choose Picture button
-	app = self.Application
-	self.Form.onChooseTeacherPicture(self.Form.PrimaryBizobj.Record.TeacherRecNo)
-
-
+def onDeleteTeacherPicture(self, recNo):
+	tempCursor = self.getBizobj('Teachers').getTempCursor()
+	tempCursor.execute("update Teachers set TeacherPictureName = %s, TeacherPictureData = %s where TeacherRecNo = %s", (None, None, recNo))
+	self.save()
+	self.requery()
+	self.setFocus()

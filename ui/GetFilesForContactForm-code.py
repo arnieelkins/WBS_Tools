@@ -18,22 +18,20 @@ def onHit(self, evt):
 ## *!* ## Dabo Code ID: dGrid-dPanel
 def afterInitAll(self):
 	# Attachments grid
-	pass
-
+	self.update()
 
 
 ## *!* ## Dabo Code ID: dButton-dPanel-152
 def onHit(self, evt):
 	# Refresh button
 	self.Form.requery()
-
+	self.Form.update()
 
 
 ## *!* ## Dabo Code ID: dButton-dPanel-660
 def onHit(self, evt):
 	# Select None button
 	self.Form.selectNone()
-
 
 
 ## *!* ## Dabo Code ID: dButton-dPanel
@@ -46,7 +44,6 @@ def onHit(self, evt):
 def onHit(self, evt):
 	# Mark Sent button
 	self.Form.markSent()
-
 
 
 ## *!* ## Dabo Code ID: dForm-top
@@ -64,6 +61,7 @@ def afterInitAll(self):
 	self.biz.addWhere("AttachmentSentToContact is NULL")
 	print self.biz.CurrentSQL
 	self.biz.requery()
+	self.requery()
 	self.update()
 
 
@@ -81,25 +79,65 @@ def createBizobjs(self):
 def getFiles(self):
 	import os
 	app = self.Application
-	dir = app.tempdir
+	downloadDir = app.PreferenceManager.getValue("downloaddir")
+	if downloadDir == None or downloadDir == '':
+		response = dabo.ui.areYouSure(message = "I do not seem to have a download directory set.  Would you like to choose one now?",
+								defaultNo = False,
+								cancelButton = False,
+								requestUserAttention=True)
+		if not response == True:
+			dabo.ui.exclaim("Well, I can't download anything without having a place to write the file!")
+			return()
+		else:
+			result = dabo.ui.getFolder()
+			if result == None or result == '':
+				dabo.ui.exclaim("Well, I can't download anything without having a place to write the file!")
+				return()
+			else:
+				downloadDir = result
+				app.PreferenceManager.setValue("downloaddir", downloadDir)
 	dataSet = self.biz.getDataSet()
 	count = 0
+	fileList = []
+	numberRenamed = 0
 	for record in dataSet:
+		print "record['AttachmentSelected'] == " + str(record['AttachmentSelected'])
 		if record['AttachmentSelected'] == 'True':
 			data = record['AttachmentData']
 			name = record['AttachmentName']
-			fullname = os.path.join(dir, name)
+			fullname = os.path.join(downloadDir, name)
 			if os.path.isfile(fullname):
-				os.remove(fullname)
-			outfile = open(fullname, 'wb')
+				# we have a duplicate filename
+				idx = fullname.rfind('.')
+				if not idx == None and not idx == 0:
+					filename = fullname[0:idx]
+					ext = fullname[idx + 1:]
+					itsAllGood = False
+					for diff in range(2, 9):
+						tempname = filename + '_' + str(diff) + '.' + ext
+						if not os.path.isfile(tempname):
+							fullname = tempname
+							outfile = open(fullname, 'wb')
+							fileList.append(fullname)
+							itsAllGood = True
+							numberRenamed = numberRenamed + 1
+							break
+					if not itsAllGood:
+						dabo.ui.exclaim("I tried 9 different filenames, and they were all duplicates!  I give up!")
+						return()
+			else:
+				fileList.append(fullname)
+				outfile = open(fullname, 'wb')
 			outfile.write(data)
 			outfile.close()
 			count = count + 1
-	dabo.ui.info(str(count) + " files were written to " + str(dir))
+	dabo.ui.info(str(count) + " files were written to " + str(downloadDir) + '.  To do that I had to rename ' + str(numberRenamed) + ' files!')
+	print fileList
 
 
 def initProperties(self):
 	self.ContactRecNo = -1
+	self.Icon = "icons/wbs.ico"
 
 
 def markSent(self):
@@ -120,7 +158,8 @@ def selectAll(self):
 	for idx in self.biz.bizIterator():
 		self.biz.Record['AttachmentSelected'] = 'True'
 	self.update()
-	dabo.ui.info("All records marked as Selected!")
+	totalRecords = self.biz.RowCount
+	dabo.ui.info("All " + str(totalRecords) + " records marked as Selected!")
 
 
 def selectNone(self):

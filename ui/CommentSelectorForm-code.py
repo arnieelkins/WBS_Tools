@@ -188,8 +188,10 @@ def onHit(self, evt):
 
 ## *!* ## Dabo Code ID: dScrollPanel-dPanel
 def initProperties(self):
+	app = self.Application
 	import wx
 	self._addWindowStyleFlag(wx.ALWAYS_SHOW_SB)
+	self.Icon = "icons/wbs.ico"
 
 
 

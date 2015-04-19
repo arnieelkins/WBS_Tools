@@ -5,6 +5,14 @@ xsi:schemaLocation="http://www.dabodev.com conn.xsd"
 xsi:noNamespaceSchemaLocation = "http://dabodev.com/schema/conn.xsd">
 
 	<connection dbtype="MySQL">
+		<name>mf_nigeria_admin</name>
+		<host>mysql.monrovia.org</host>
+		<database>wbs_mayfair_nigeria</database>
+		<user>mf_nigeria_admin</user>
+		<password>McVzhlsreOVoC2PFPGBuD75wvWOqKT+hlmdidiDAVdf+</password>
+		<port>3306</port>
+	</connection>
+	<connection dbtype="MySQL">
 		<name>wbs_mayfair_user</name>
 		<host>mysql.monrovia.org</host>
 		<database>wbs_mayfair_nigeria</database>
@@ -12,4 +20,14 @@ xsi:noNamespaceSchemaLocation = "http://dabodev.com/schema/conn.xsd">
 		<password>MhtnNWrTRY82PuKK3Njc9TIdJrho40+OYw==</password>
 		<port>3306</port>
 	</connection>
+	<connection dbtype="MySQL">
+		<name>mf_nigeria_user</name>
+		<host>mysql.monrovia.org</host>
+		<database>wbs_mayfair_nigeria</database>
+		<user>mf_nigeria_user</user>
+		<password>MmWABEzn/xaOvIvlm9I3jvRS63ihXiWvF9eu06JuX/Dc</password>
+		<port>3306</port>
+	</connection>
+
+
 </connectiondefs>

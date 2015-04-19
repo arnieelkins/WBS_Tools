@@ -10,7 +10,7 @@ import dabo.lib.datanav
 import dabo.lib.reportUtils as reportUtils
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-176
+## *!* ## Dabo Code ID: dButton-dPanel-222
 def onHit(self, evt):
 	import os
 	app = self.Application
@@ -18,11 +18,16 @@ def onHit(self, evt):
 	checkBoxDict = {self.Form.IntroCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "IntroGradingForm.rfxml"),
 									self.Form.GHSCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "GHSGradingForm.rfxml"),
 									self.Form.TIGNCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGNGradingForm.rfxml"),
-									self.Form.TIGNaCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGNaGradingForm.rfxml"),
 									self.Form.KJCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "KJGradingForm.rfxml"),
 									self.Form.FOGCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "FOGGradingForm.rfxml"),
 									self.Form.BWSCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "BWSGradingForm.rfxml"),
-									self.Form.LLLCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "LLLGradingForm.rfxml")}
+									self.Form.LLLCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "LLLGradingForm.rfxml"),
+									self.Form.GHS50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "GHS50QGradingForm.rfxml"),
+									self.Form.TIGN50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGN50QGradingForm.rfxml"),
+									self.Form.KJ50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "KJ50QGradingForm.rfxml"),
+									self.Form.FOG50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "FOG50QGradingForm.rfxml"),
+									self.Form.BWS50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "BWS50QGradingForm.rfxml"),
+									self.Form.LLL50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "LLL50QGradingForm.rfxml")}
 	for checkBox in checkBoxDict.keys():
 		if checkBox.Value == True:
 			reportList.append(checkBoxDict[checkBox])
@@ -63,8 +68,9 @@ def initProperties(self):
 	self.BorderResizable = False
 	self.bizObj = dabo.biz.dBizobj
 	self.recordNumber = 1
-	self.MinimumSize = (233, 381)
-	self.MaximumSize = (233, 381)
+	# self.MinimumSize = (233, 381)
+	# self.MaximumSize = (233, 381)
+	self.Icon = "icons/wbs.ico"
 
 
 def runReport(self, mode):
@@ -98,11 +104,16 @@ def onHit(self, evt):
 	checkBoxDict = {self.Form.IntroCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "IntroGradingForm.rfxml"),
 									self.Form.GHSCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "GHSGradingForm.rfxml"),
 									self.Form.TIGNCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGNGradingForm.rfxml"),
-									self.Form.TIGNaCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGNaGradingForm.rfxml"),
 									self.Form.KJCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "KJGradingForm.rfxml"),
 									self.Form.FOGCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "FOGGradingForm.rfxml"),
 									self.Form.BWSCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "BWSGradingForm.rfxml"),
-									self.Form.LLLCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "LLLGradingForm.rfxml")}
+									self.Form.LLLCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "LLLGradingForm.rfxml"),
+									self.Form.GHS50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "GHS50QGradingForm.rfxml"),
+									self.Form.TIGN50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "TIGN50QGradingForm.rfxml"),
+									self.Form.KJ50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "KJ50QGradingForm.rfxml"),
+									self.Form.FOG50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "FOG50QGradingForm.rfxml"),
+									self.Form.BWS50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "BWS50QGradingForm.rfxml"),
+									self.Form.LLL50QCheckBox:os.path.join(app.HomeDirectory, "reports" + os.sep + "LLL50QGradingForm.rfxml")}
 	for checkBox in checkBoxDict.keys():
 		if checkBox.Value == True:
 			reportList.append(checkBoxDict[checkBox])

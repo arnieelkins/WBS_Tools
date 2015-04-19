@@ -5,6 +5,9 @@
 remotehost = ""
 
 import sys
+import traceback
+import time
+import tempfile
 import os
 import wx
 import dabo.ui
@@ -17,17 +20,24 @@ if sys.platform[:3] == "win":
 	dabo.MDI = True
 
 if sys.platform == "darwin":
+	print "running on OSX"
 	dabo.MDI = True
-# hack for locale error on OSX
-#    import locale
-#    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+	# hack for locale error on OSX
+	import locale
+	print "imported locale"
+	print locale.getdefaultlocale()
+	locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
+	print "locale.setlocale successful"
+	print locale.getdefaultlocale()
 import db
 import biz
 import ui
 import reports
+import sys
+import time
 
 # included for PyInstaller
-#import wx.gizmos, wx.lib.calendar 
+import wx.gizmos, wx.lib.calendar 
 
 from App import App
 app = App(SourceURL=remotehost)
@@ -42,33 +52,26 @@ sys.path.append(os.path.join(app.HomeDirectory, "resources"))
 
 app.setup()
 
-#app.PreferenceManager.setValue("basedir", None)
-app.BaseDir = app.PreferenceManager.getValue("basedir")
-print "basedir = " + str(app.BaseDir)
-if app.BaseDir == None or app.BaseDir == '':
-	dabo.ui.info("Please choose a directory for me to use for creating temporary files, etc.")
-	response = dabo.ui.getFolder()
-	if response == None or response == '':
-		dabo.ui.exclaim("Hey, I really need a directory to write stuff!  That's it, I quit!")
-		sys.exit()
-	else:
-		print "response = ;" + str(response) + ";" 
-		app.BaseDir = response
-		app.PreferenceManager.setValue("basedir", app.BaseDir)
-if app.BaseDir:
-	app.tempdir = str(os.path.join(app.BaseDir, 'tmp'))
-	if not os.path.exists(app.tempdir):
-		try:
-			os.mkdir(app.tempdir)
-		except:
-			dabo.ui.exclaim('Unable to create a temp directory!!')
-
+app.PreferenceManager.setValue("TempDir", None)
+app.TempDir = app.PreferenceManager.getValue("TempDir")
+if app.TempDir == None or app.TempDir == '':
+	app.getTempDir()
+else:
+	print "TempDir = " + str(app.TempDir) + " " + str(type(app.TempDir))
+	if not app.testTempDir:
+		app.getTempDir()
 app.MainFormClass = app.ui.FrmMain
 app.PreferenceManager.setValue("fontsize", 11)
 app.NoneDisplay = ""
 # Set up a global connection to the database that all bizobjs will share:
-app.dbConnectionName = "wbs_test_user"
-app.dbConnection = app.getConnectionByName(app.dbConnectionName)
+try:
+	app.dbConnectionName = "wbs_monro_user"
+	app.dbConnection = app.getConnectionByName(app.dbConnectionName)
+except:
+	dabo.ui.exclaim("Error connecting to database, please check the network before trying again!" + str(traceback.format_exc()))
+	time.sleep(5)
+	
+	sys.exit(1)
 #app.dbConnection.LogEvents = ['All']
 
 
@@ -76,10 +79,22 @@ app.dbConnection = app.getConnectionByName(app.dbConnectionName)
 # generator, but you can change that here. Additionally, if form names were
 # passed on the command line, they will be opened instead of the default one
 # as long as they exist.
+if sys.platform == "darwin":
+	print "running on OSX"
+	dabo.MDI = True
+	# hack for locale error on OSX
+	import locale
+	print "imported locale"
+	print locale.getdefaultlocale()
+	locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
+	print "locale.setlocale successful"
+	print locale.getdefaultlocale()
+
 app.ui.AnswersForm = dabo.ui.createClass("ui" + os.sep + "AnswersForm.cdxml")
 app.ui.AttachmentsForm = dabo.ui.createClass("ui" + os.sep + "AttachmentsForm.cdxml")
 app.ui.CommentsForm = dabo.ui.createClass("ui" + os.sep + "CommentsForm.cdxml")
 app.ui.ContactsForm = dabo.ui.createClass("ui" + os.sep + "ContactsForm.cdxml")
+app.ui.FileTypeSelector = dabo.ui.createClass("ui" + os.sep + "FileTypeSelector.cdxml")
 app.ui.GetFilesForContactForm = dabo.ui.createClass("ui" + os.sep + "GetFilesForContactForm.cdxml")
 app.ui.GradesForm = dabo.ui.createClass("ui" + os.sep + "GradesForm.cdxml")
 app.ui.LessonsForm = dabo.ui.createClass("ui" + os.sep + "LessonsForm.cdxml")
@@ -92,6 +107,8 @@ app.DefaultForm = app.ui.StudentsForm
 app.FormsToOpen = [app.DefaultForm]
 app.startupForms()
 if app.MainForm != None:
-	app.MainForm.Caption = 'WBSTools version ' + str(app.getAppInfo('appVersion') + ' user = ' + str(app.dbConnectionName))
+	userName = str(app.dbConnectionName).upper()
+	app.MainForm.Caption = 'WBSTools version ' + str(app.getAppInfo('appVersion') + ' user = ' + userName)
+	app.MainForm.Icon = "icons/wbs.ico"
 # Start the application event loop:
 app.start()

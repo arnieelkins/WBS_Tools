@@ -9,7 +9,25 @@ xsi:noNamespaceSchemaLocation = "http://dabodev.com/schema/conn.xsd">
 		<host>mysql.monrovia.org</host>
 		<database>wbs_monrovia</database>
 		<user>wbs_monro_user</user>
-		<password>M71icTf+tprRj2ue5Rr9GmEFJ8Ccd5/B/A==</password>
+		<password>C65W1EZD1M8FUE0OFCW39ED5GCFFE9NF0Q82K43</password>
 		<port>3306</port>
 	</connection>
+	<connection dbtype="MySQL">
+		<name>monro_user</name>
+		<host>mysql.monrovia.org</host>
+		<database>wbs_monrovia</database>
+		<user>monro_user</user>
+		<password>OLRafPDb64muZrN9pNZKo3DQ8QcR4t049dJAIkJa2fLZ</password>
+		<port>3306</port>
+	</connection>
+	<connection dbtype="MySQL">
+		<name>monro_admin</name>
+		<host>mysql.monrovia.org</host>
+		<database>wbs_monrovia</database>
+		<user>monro_admin</user>
+		<password>OI5m/rRjXxYNvx5qw0lSQYKAsbVHNnTcWq3jS+D7ORKD</password>
+		<port>3306</port>
+	</connection>
+
+
 </connectiondefs>

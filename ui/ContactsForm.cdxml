@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<dForm code-ID="dForm-top" Name="dForm" SaveRestorePosition="True" Top="400" Height="360" Caption="Dabo Class Designer" designerClass="DesForm" CxnName="wbs_test_user" Left="760">
+<dForm code-ID="dForm-top" Name="dForm" SaveRestorePosition="True" Top="400" Height="360" Caption="Dabo Class Designer" designerClass="DesForm" CxnName="app.dbConnectionName" Left="760">
 	<dSizer SlotCount="1" designerClass="LayoutSizer" Orientation="Vertical">
 		<dPanel sizerInfo="{'HAlign': 'Left', 'VAlign': 'Top'}" designerClass="controlMix">
 			<dSizer SlotCount="3" DefaultBorder="2" designerClass="LayoutSizer" Orientation="Vertical">
@@ -16,7 +16,7 @@
 					<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left'}" Name="dTextBox1" rowColPos="(1, 1)" designerClass="controlMix" DataField="ContactFirstName" DataSource="Contacts"></dTextBox>
 					<dLabel Caption="Last Name" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" designerClass="controlMix" Name="dLabel2" rowColPos="(2, 0)"></dLabel>
 					<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left'}" Name="dTextBox2" rowColPos="(2, 1)" designerClass="controlMix" DataField="ContactLastName" DataSource="Contacts"></dTextBox>
-					<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left'}" Name="dTextBox3" rowColPos="(3, 1)" designerClass="controlMix" DataField="TeacherWBSID" DataSource="Teachers"></dTextBox>
+					<dTextBox sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'Proportion': 0, 'HAlign': 'Left'}" Name="dTextBox3" rowColPos="(3, 1)" designerClass="controlMix" DataField="ContactWBSID" DataSource="Contacts"></dTextBox>
 					<dLabel Caption="WBSID" sizerInfo="{'RowSpan': 1, 'ColSpan': 1, 'HAlign': 'Left'}" designerClass="controlMix" Name="dLabel3" rowColPos="(3, 0)"></dLabel>
 				</dGridSizer>
 				<dBorderSizer sizerInfo="{'BorderSides': ['All'], 'Proportion': 0, 'HAlign': 'Center', 'VAlign': 'Top', 'Border': 0, 'Expand': False}" Orientation="Horizontal" SlotCount="4" Caption="Navigation" designerClass="LayoutBorderSizer" DefaultBorder="4">

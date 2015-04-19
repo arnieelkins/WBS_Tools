@@ -4,30 +4,76 @@
 ### 		'Dabo Code ID: XXXX',
 ### as these are needed to link the code to the objects.
 
+import os
+import datetime
+import traceback
+
+
+## *!* ## Dabo Code ID: dDropdownList-dPanel-655
+def onValueChanged(self, evt):
+	#HasABible
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dDropdownList-dPanel-502
+def onValueChanged(self, evt):
+	#TypeOfBaptism
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-63
 def onHit(self, evt):
-	print 'Select Contact button pressed, opening GetFilesForContactForm'
-	self.Form.openGetFilesForContactForm()
+	# Attachments button
+	self.Form.openAttachmentsForm()
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-495
+
+## *!* ## Dabo Code ID: dTextBox-dPanel-806
+def onValueChanged(self, evt):
+	#ChurchName
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dTextBox-dPanel-672
+def onValueChanged(self, evt):
+	#Religion
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-919
 def onHit(self, evt):
-	# Save Button
-	try:
-		dlg = dabo.ui.info('Output from Form.save operation = ' + str(self.Form.save()) + '.\n')
-		self.Form.requery()
-		self.Form.update()
-	except:
-		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+	# Upload button
+	self.Form.onUploadButton()
 
 
 
-## *!* ## Dabo Code ID: dGrid-dPage-203
-def onGridMouseLeftDoubleClick(self, evt):
-	if self.CurrentRow >= 0:
-		print 'self.CurrentRow = ' + str(self.CurrentRow)
-		print 'self.DataSet = ' + str(self.DataSet)
-		contactRecNo = self.DataSet[self.CurrentRow]['ContactRecNo']
-		self.Form.openGetFilesForContactForm(contactRecNo)
+## *!* ## Dabo Code ID: dButton-dPage-19
+def onHit(self, evt):
+	self.Form.prior()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPage-292
+def onHit(self, evt):
+	self.Form.last()
+
+
+
+## *!* ## Dabo Code ID: dTextBox-dPanel-963
+def onValueChanged(self, evt):
+	#Phone1
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dDateTextBox-dPanel
+def onValueChanged(self, evt):
+	#Birthdate
+	self.Form.autoSave()
 
 
 
@@ -41,21 +87,43 @@ def afterInitAll(self):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-442
+## *!* ## Dabo Code ID: dDropdownList-dPanel-729
+def onValueChanged(self, evt):
+	#HasBeenBaptized
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dDropdownList-dPanel-467
+def onValueChanged(self, evt):
+	#Gender
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dEditBox-dPanel-112
+def onValueChanged(self, evt):
+	#Notes
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dDropdownList-dPanel-84
+def onValueChanged(self, evt):
+	#WBSBefore
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPage-625
 def onHit(self, evt):
-	# Attachments button
-	self.Form.openAttachmentsForm()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPage-725
-def onHit(self, evt):
-	self.Form.first()
+	self.Form.next()
 
 
 
 ## *!* ## Dabo Code ID: dDropdownList-dPanel
 def afterInit(self):
+	# StudentContactRecNo
 	mybiz = self.Form.getBizobj('Contacts')
 	(self.Choices, self.Keys) = mybiz.getAvailableTypes()
 	self.update()
@@ -67,8 +135,151 @@ def onMouseRightDown(self, evt):
 	self.afterInit()
 
 
+def onValueChanged(self, evt):
+	#StudentContactsRecNo
+	self.Form.autoSave()
 
-## *!* ## Dabo Code ID: dButton-dPanel-553
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-221
+def onHit(self, evt):
+	# Refresh button
+	self.Form.requery()
+
+
+
+## *!* ## Dabo Code ID: dSpinner-dPanel
+def onValueChanged(self, evt):
+	#Age
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dTextBox-dPanel
+def onValueChanged(self, evt):
+	#StudentID
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dGrid-dPage-208
+def onGridMouseLeftDoubleClick(self, evt):
+	if self.CurrentRow >= 0:
+		print 'self.CurrentRow = ' + str(self.CurrentRow)
+		print 'self.DataSet = ' + str(self.DataSet)
+		contactRecNo = self.DataSet[self.CurrentRow]['ContactRecNo']
+		self.Form.openGetFilesForContactForm(contactRecNo)
+
+
+
+## *!* ## Dabo Code ID: dButton-dPage-868
+def onHit(self, evt):
+	self.Form.requery()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-360
+def onHit(self, evt):
+	# Print Forms button
+	teacher = self.Form.PrimaryBizobj.Record.TeacherFullName
+	if teacher == ' ' or teacher == None:
+		dlg = dabo.ui.areYouSure("There is no TEACHER assigned.  Do you still want to print?", defaultNo=True, cancelButton=False, parent=self.Form)
+		if dlg == False:
+			return()
+	contact = self.Form.PrimaryBizobj.Record.ContactFullName
+	if contact == ' ' or contact == None:
+		dabo.ui.exclaim("You need to assign a CONTACT before you can print a grading sheet!")
+		return()
+	self.Form.openPrintForm()
+
+
+
+## *!* ## Dabo Code ID: dComboBox-dPanel
+def onValueChanged(self, evt):
+	#Occupation
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dTextBox-dPanel-102
+def onValueChanged(self, evt):
+	#WBSID
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dDropdownList-dPanel-487
+def onValueChanged(self, evt):
+	#RequestedBaptism
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-131
+def onHit(self, evt):
+	self.Form.last()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-771
+def onHit(self, evt):
+	# Grade button
+	print "\nGrade button pressed, attempting to open LessonSelector\n"
+	app = self.Application
+	teacher = self.Form.PrimaryBizobj.Record.TeacherFullName
+	if teacher == ' ' or teacher == None:
+		dabo.ui.exclaim("Hey, you have to assign a TEACHER before you can grade a lesson!")
+		return()
+	contact = self.Form.PrimaryBizobj.Record.ContactFullName
+	if contact == ' ' or contact == None:
+		dabo.ui.exclaim("Hey, you have to assign a CONTACT before you can grade a lesson!")
+		return()
+	newForm = app.ui.LessonSelector(app.MainForm, Modal=True)
+	newForm.StudentRecNo = self.Form.PrimaryBizobj.Record['StudentRecNo']
+	newForm.CenterOnParent()
+	newForm.show()
+	newForm.safeDestroy()
+	self.Form.requery()
+
+
+
+## *!* ## Dabo Code ID: dDropdownList-dPanel-19
+def onValueChanged(self, evt):
+	#MaritalStatus
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dEditBox-dPanel-364
+def onValueChanged(self, evt):
+	#PostalAddress
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dTextBox-dPanel-169
+def onValueChanged(self, evt):
+	#City
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPage-602
+def onHit(self, evt):
+	try:
+		returnCode = self.Form.save()
+		if returnCode == None:
+			dlg = dabo.ui.info('Save successful!')
+		else:
+			dabo.ui.exclaim('returnCode from save was not what I expected!\nreturnCode = ' + str(returnCode) + '\nPlease make a note of what you were attempting to do and the returnCode and contact the author!')
+			return()
+		self.Form.update()
+	except:
+		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!" + str(traceback.format_exc()))
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-904
 def onHit(self, evt):
 	# Add grade button
 	app = self.Application
@@ -87,64 +298,24 @@ def onHit(self, evt):
 		try:
 			dlg = dabo.ui.info('Output from bizObj save operation = ' + str(bizObj.save()) + '.\n')
 		except:
-			dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+			dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!" + str(traceback.format_exc()))
 		self.Form.requery()
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-555
-def onHit(self, evt):
-	# Refresh button
-	self.Form.requery()
+## *!* ## Dabo Code ID: dTextBox-dPanel-660
+def onValueChanged(self, evt):
+	#StudentFirstName
+	self.Form.autoSave()
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-716
-def onHit(self, evt):
-	self.Form.next()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPage-271
-def onHit(self, evt):
-	bizObj = self.Form.PrimaryBizobj
-	self.Form.StudentIDText.Value = ""
-	self.Form.FirstNameText.Value = ""
-	self.Form.LastNameText.Value = ""
-	self.Form.ContactText.Value = ""
-	self.Form.TeacherText.Value = ""
-	self.Form.StudentRecordText.Value = ""
-	self.Form.PhoneText.Value = ""
-	bizObj.setWhereClause("")
-	self.Form.requery()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-819
-def onHit(self, evt):
-	# Delete grade button
-	self.Form.deleteGrade()
-
-
-
-## *!* ## Dabo Code ID: dGrid-dPage
-def onGridMouseLeftDoubleClick(self, evt):
-	if self.CurrentRow >= 0:
-		self.Form.moveToRowNumber(self.CurrentRow)
-		self.Form.StudentDataPage.showContainingPage()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-293
-def onHit(self, evt):
-	self.Form.last()
-
-
-
-## *!* ## Dabo Code ID: dDropdownList-dPanel-168
+## *!* ## Dabo Code ID: dDropdownList-dPanel-141
 def afterInit(self):
+	# StudentTeachersRecNo
 	mybiz = self.Form.getBizobj('Teachers')
 	(self.Choices, self.Keys) = mybiz.getAvailableTypes()
+	print self.Choices, self.Keys
 	self.update()
 
 
@@ -154,8 +325,17 @@ def onMouseRightDown(self, evt):
 	self.afterInit()
 
 
+def onValueChanged(self, evt):
+	#StudentTeachersRecNo
+	self.Form.autoSave()
+
+
 
 ## *!* ## Dabo Code ID: dButton-dPage
+def afterInitAll(self):
+	#Lookup button on lookup tab
+	self.SetDefault()
+
 def onHit(self, evt):
 	# Lookup button on Lookup tab
 	bizObj = self.Form.PrimaryBizobj
@@ -163,15 +343,21 @@ def onHit(self, evt):
 	studentID = self.Form.StudentIDText.Value
 	fName = self.Form.FirstNameText.Value
 	lName = self.Form.LastNameText.Value
-	contact = self.Form.ContactText.Value
-	teacher = self.Form.TeacherText.Value
+	contact = self.Form.LookupFormContactDropdownList.Value
+	teacher = self.Form.LookupFormTeacherDropdownList.Value
 	recNo = self.Form.StudentRecordText.Value
 	phone = self.Form.PhoneText.Value
 	StudentIDDict = {"field":"StudentID", "value":studentID}
 	FirstNameDict = {"field":"StudentFirstName", "value":fName}
 	LastNameDict = {"field":"StudentLastName", "value":lName}
-	ContactDict = {"field":"ContactFirstName", "value":contact}
-	TeacherDict = {"field":"TeacherFirstName", "value":teacher}
+	if contact == 1:
+		ContactDict = {"field":"StudentContactsRecNo", "value":None}
+	else:
+		ContactDict = {"field":"StudentContactsRecNo", "value":contact}
+	if teacher == 1:
+		TeacherDict = {"field":"StudentTeachersRecNo", "value":None}
+	else:
+		TeacherDict = {"field":"StudentTeachersRecNo", "value":teacher}
 	RecNoDict = {"field":"StudentRecNo", "value":recNo}
 	Phone1Dict = {"field":"StudentPhone1", "value":phone}
 	Phone2Dict = {"field":"StudentPhone2", "value":phone}
@@ -190,8 +376,24 @@ def onHit(self, evt):
 		if tempDict["value"] == "" or tempDict["value"] == None:
 			pass
 		else:
-			whereString = tempDict["field"] + " LIKE '" + tempDict["value"] + "%'"
+			print type(tempDict["value"])
+			if 'string' in str(type(tempDict["value"]))   or 'unicode' in str(type(tempDict["value"])):
+				# If the user enters a search value, it will be a string, which is converted to lowercase
+				# for the compare with 'null'.  If the user does not enter a search value, skip the compare.
+				print "tempDict['value'].lower() = " + tempDict["value"].lower()
+				if tempDict["value"].lower() == "null":
+					whereString = "(" + tempDict["field"] + " is NULL or " + tempDict["field"] + " = '')"
+				elif tempDict["field"] == "StudentContactsRecNo":
+					whereString = tempDict["field"] + " = " + str(tempDict["value"])
+				elif tempDict["field"] == "StudentTeachersRecNo":
+					whereString = tempDict["field"] + " = " + str(tempDict["value"])
+				else:
+					whereString = tempDict["field"] + " LIKE '" + str(tempDict["value"]) + "%'"
+			else:
+				whereString = tempDict["field"] + " LIKE '" + str(tempDict["value"]) + "%'"
+			print 'whereString = ' + whereString
 			bizObj.addWhere(whereString)
+	print bizObj.CurrentSQL
 	self.Form.requery()
 	rowCount = bizObj.RowCount
 	if rowCount >= 0:
@@ -204,94 +406,117 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-76
+## *!* ## Dabo Code ID: dButton-dPanel-376
 def onHit(self, evt):
-	self.Form.prior()
+	# Delete grade button
+	self.Form.deleteGrade()
 
 
 
-## *!* ## Dabo Code ID: dButton-dPage-155
+## *!* ## Dabo Code ID: dTextBox-dPanel-69
+def onValueChanged(self, evt):
+	#State
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dDropdownList-dPage
+def afterInit(self):
+	# lookup tab
+	mybiz = self.Form.getBizobj('Contacts')
+	(self.Choices, self.Keys) = mybiz.getAvailableTypes()
+	self.Choices.insert(0, u'null')
+	self.Keys.insert(0, 0L)
+	print self.Choices, self.Keys
+	self.update()
+
+
+
+## *!* ## Dabo Code ID: dGrid-dPage
+def onGridMouseLeftDoubleClick(self, evt):
+	if self.CurrentRow >= 0:
+		self.Form.moveToRowNumber(self.CurrentRow)
+		self.Form.StudentDataPage.showContainingPage()
+
+
+
+## *!* ## Dabo Code ID: dTextBox-dPanel-959
+def onValueChanged(self, evt):
+	#Email
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-985
 def onHit(self, evt):
-	self.Form.next()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPage-170
-def onHit(self, evt):
+	# Save Button
 	try:
-		returnCode = self.Form.save()
-		if returnCode == None:
-			dlg = dabo.ui.info('Save successful!')
-		else:
-			dabo.ui.exclaim('returnCode from save was not what I expected!\nreturnCode = ' + str(returnCode) + '\nPlease make a note of what you were attempting to do and the returnCode and contact the author!')
-			return()
+		dlg = dabo.ui.info('Output from Form.save operation = ' + str(self.Form.save()) + '.\n')
+		self.Form.requery()
 		self.Form.update()
 	except:
-		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!" + str(traceback.format_exc()))
 
 
 
-## *!* ## Dabo Code ID: dButton-dPage-654
+## *!* ## Dabo Code ID: dButton-dPage-839
 def onHit(self, evt):
+	#Clear button
+	bizObj = self.Form.PrimaryBizobj
+	self.Form.StudentIDText.Value = ""
+	self.Form.FirstNameText.Value = ""
+	self.Form.LastNameText.Value = ""
+	self.Form.ContactDropdownList.Value = ""
+	self.Form.TeacherDropdownList.Value = ""
+	self.Form.StudentRecordText.Value = ""
+	self.Form.PhoneText.Value = ""
+	bizObj.setWhereClause("")
 	self.Form.requery()
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-456
+## *!* ## Dabo Code ID: dButton-dPage-191
 def onHit(self, evt):
 	self.Form.first()
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-344
+## *!* ## Dabo Code ID: dEditBox-dPanel
+def onValueChanged(self, evt):
+	#StreetAddress
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dTextBox-dPanel-561
+def onValueChanged(self, evt):
+	#StudentsLastName
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dTextBox-dPanel-185
+def onValueChanged(self, evt):
+	#Country
+	self.Form.autoSave()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-367
 def onHit(self, evt):
-	# Grade button
-	print "\nGrade button pressed, attempting to open LessonSelector\n"
-	app = self.Application
-	teacher = self.Form.PrimaryBizobj.Record.TeacherFullName
-	if teacher == ' ' or teacher == None:
-		dabo.ui.exclaim("Hey, you have to assign a TEACHER before you can grade a lesson!")
-		return()
-	contact = self.Form.PrimaryBizobj.Record.ContactFullName
-	if contact == ' ' or contact == None:
-		dabo.ui.exclaim("Hey, you have to assign a CONTACT before you can grade a lesson!")
-		return()
-	newForm = app.ui.LessonSelector(app.MainForm, Modal=True)
-	newForm.StudentRecNo = self.Form.PrimaryBizobj.Record['StudentRecNo']
-	newForm.show()
-	newForm.safeDestroy()
-	self.Form.requery()
+	self.Form.next()
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-86
+## *!* ## Dabo Code ID: dButton-dPanel-466
 def onHit(self, evt):
-	# Print Forms button
-	teacher = self.Form.PrimaryBizobj.Record.TeacherFullName
-	if teacher == ' ' or teacher == None:
-		dlg = dabo.ui.areYouSure("There is no TEACHER assigned.  Do you still want to print?", defaultNo=True, cancelButton=False, parent=self.Form)
-		if dlg == False:
-			return()
-	contact = self.Form.PrimaryBizobj.Record.ContactFullName
-	if contact == ' ' or contact == None:
-		dabo.ui.exclaim("You need to assign a CONTACT before you can print a grading sheet!")
-		return()
-	self.Form.openPrintForm()
+	self.Form.first()
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-234
+## *!* ## Dabo Code ID: dButton-dPanel-160
 def onHit(self, evt):
-	# Delete button
-	print 'bizobj deleteChildLogic == ' + str(self.Form.PrimaryBizobj.deleteChildLogic) + '\n'
-	self.Form.delete(dataSource='Students')
-	self.Form.requery()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPage-537
-def onHit(self, evt):
-	self.Form.last()
+	self.Form.prior()
 
 
 
@@ -316,13 +541,35 @@ def onGridCellEdited(self, evt):
 		dlg = dabo.ui.info('Output from Form.save operation = ' + str(self.Form.save(dataSource='Grades')) + '.\n')
 		self.Form.requery()
 	except:
-		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!" + str(traceback.format_exc()))
 
 
 
-## *!* ## Dabo Code ID: dButton-dPage-186
+## *!* ## Dabo Code ID: dButton-dPanel-165
 def onHit(self, evt):
-	self.Form.prior()
+	# Delete button
+	print 'bizobj deleteChildLogic == ' + str(self.Form.PrimaryBizobj.deleteChildLogic) + '\n'
+	self.Form.delete(dataSource='Students')
+	self.Form.requery()
+
+
+
+## *!* ## Dabo Code ID: dDropdownList-dPage-242
+def afterInit(self):
+	# Lookup tab
+	mybiz = self.Form.getBizobj('Teachers')
+	(self.Choices, self.Keys) = mybiz.getAvailableTypes()
+	self.Choices.insert(0, u'null')
+	self.Keys.insert(0, 0L)
+	print self.Choices, self.Keys
+	self.update()
+
+
+
+## *!* ## Dabo Code ID: dTextBox-dPanel-357
+def onValueChanged(self, evt):
+	#Phone2
+	self.Form.autoSave()
 
 
 
@@ -339,20 +586,26 @@ def addStudent(self):
 		self.PrimaryBizobj.setWhereClause("")
 		self.requery()
 		self.new()
-		dlg = dabo.ui.info('Output from Form.save operation = ' + str(self.save()) + '.\n')
+		self.autoSave()
+		self.PrimaryBizobj.addWhere('StudentContactsRecNo = ' + str(self.PrimaryBizobj.Record['StudentContactsRecNo']))
 		self.requery()
 	except:
-		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+		dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!" + str(traceback.format_exc()))
 
 
 def afterInitAll(self):
 	app = self.Application
 	self.setTabOrder()
 	self.setupMenu()
-	self.Caption = self.Caption + '-- WBSTools version ' + str(app.getAppInfo('appVersion') + ' user = ' + str(app.dbConnectionName))
+	userName = str(app.dbConnectionName).upper()
+	self.Caption = self.Caption + '-- WBSTools version ' + str(app.getAppInfo('appVersion') + ' user = ' + userName)
 	print 'attempting to set focus to Lookup tab\n'
 	self.StudentLookupPage.showContainingPage()
 	#self.requery()
+
+
+def autoSave(self):
+	self.save()
 
 
 def createBizobjs(self):
@@ -416,7 +669,16 @@ def deleteGrade(self):
 					return()
 				self.requery()
 			except:
-				dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!")
+				dabo.ui.exclaim("Uh oh, something went wrong!  Better check the log file!" + str(traceback.format_exc()))
+
+
+def fillEditPrefsMenu(self):
+	from ui.MenEditPrefs import MenEditPrefs
+	app = self.Application
+	print "finding base_edit menu"
+	editMenu = self.MenuBar.getMenu("base_edit")
+	print "editMenu = " + str(editMenu)
+	editMenu.prependMenu(MenEditPrefs(editMenu))
 
 
 def fillFileOpenMenu(self):
@@ -447,6 +709,41 @@ def initProperties(self):
 	app = self.Application
 	self.BasePrefKey = app.BasePrefKey
 	self.FontSize = app.PreferenceManager.getValue("fontsize")
+	self.Icon = "icons/wbs.ico"
+
+
+def onUploadButton(self):
+	app = self.Application
+	studentBizobj = self.PrimaryBizobj
+	studentRecNo = studentBizobj.Record.StudentRecNo
+	contactRecNo = studentBizobj.Record.StudentContactsRecNo
+	result = dabo.ui.getFile(multiple=True)
+	if not result == None or result == '':
+		for filePath in result:
+			(pathOnly, attachmentName) = os.path.split(filePath)
+			timeStamp = datetime.datetime.now()
+			try:
+				bizobj = self.getBizobj('Attachments')
+				for rec in bizobj.bizIterator():
+					print "AttachmentType = " + str(bizobj.Record.AttachmentType)
+				bizobj.new()
+				bizobj.Record.AttachmentStudentsRecNo = studentRecNo
+				bizobj.Record.AttachmentContactsRecNo = contactRecNo
+				bizobj.Record.AttachmentName = attachmentName
+				handle = open(filePath, 'rb')
+				bizobj.Record.AttachmentData = handle.read()
+				handle.close()
+				dlg = app.ui.FileTypeSelector()
+				bizobj.Record.AttachmentType = 4
+				bizobj.Record.AttachmentCreated = timeStamp
+				result = bizobj.save()
+				if result == True or result == None:
+					dabo.ui.info("Attachment saved successfully!")
+				else:
+					dabo.ui.exclaim("Uh oh, something went wrong!")
+					print bizobj.Record
+			except Exception, e:
+				dabo.ui.exclaim("Hey, something went wrong!\n" + str(traceback.format_exc()))
 
 
 def openAttachmentsForm(self):
@@ -457,6 +754,7 @@ def openAttachmentsForm(self):
 	newForm = formClass(self, Modal=True)
 	newForm.StudentRecNo = biz.Record.StudentRecNo
 	# and finally, show the new form
+	newForm.CenterOnParent()
 	newForm.show()
 	newForm.safeDestroy()
 
@@ -466,6 +764,7 @@ def openContactsForm(self):
 	print "\nUser asked to edit Contacts, attempting to open ContactsForm\n"
 	#app.LogEvents = ['All']
 	newForm = app.ui.ContactsForm(self, Modal=True)
+	newForm.CenterOnParent()
 	newForm.show()
 	newForm.safeDestroy()
 
@@ -475,6 +774,7 @@ def openGetFilesForContactForm(self, contactRecNo):
 	newForm = app.ui.GetFilesForContactForm(self, Modal=True)
 	newForm.ContactRecNo = contactRecNo
 	print 'opening GetFilesForContactForm with ContactRecNo of ' + str(newForm.ContactRecNo)
+	newForm.CenterOnParent()
 	newForm.show()
 	newForm.safeDestroy()
 
@@ -486,6 +786,7 @@ def openPrintForm(self):
 	newForm = app.ui.PrintOrPreviewForm(app.MainForm, Modal=True)
 	newForm.bizObj = self.PrimaryBizobj
 	newForm.recordNumber = self.PrimaryBizobj.Record['StudentRecNo']
+	newForm.CenterOnParent()
 	newForm.show()
 	newForm.safeDestroy()
 
@@ -495,6 +796,7 @@ def openTeachersForm(self):
 	print "\nUser asked to edit Teachers, attempting to open TeachersForm\n"
 	#app.LogEvents = ['All']
 	newForm = app.ui.TeachersForm(self, Modal=True)
+	newForm.CenterOnParent()
 	newForm.show()
 	newForm.safeDestroy()
 
@@ -508,8 +810,8 @@ def setTabOrder(self):
 	self.OccupationComboBox.MoveAfterInTabOrder(self.GenderDropdownList)
 	self.ReligionTextBox.MoveAfterInTabOrder(self.OccupationComboBox)
 	self.ChurchNameTextBox.MoveAfterInTabOrder(self.ReligionTextBox)
-	self.AgeTextBox.MoveAfterInTabOrder(self.ChurchNameTextBox)
-	self.BirthdateTextBox.MoveAfterInTabOrder(self.AgeTextBox)
+	self.AgeSpinner.MoveAfterInTabOrder(self.ChurchNameTextBox)
+	self.BirthdateTextBox.MoveAfterInTabOrder(self.AgeSpinner)
 	self.MaritalStatusDropdownList.MoveAfterInTabOrder(self.BirthdateTextBox)
 	self.HasBeenBaptizedDropdownList.MoveAfterInTabOrder(self.MaritalStatusDropdownList)
 	self.TypeOfBaptismDropdownList.MoveAfterInTabOrder(self.HasBeenBaptizedDropdownList)
@@ -530,6 +832,7 @@ def setTabOrder(self):
 
 def setupMenu(self):
 	self.fillFileOpenMenu()
+	self.fillEditPrefsMenu()
 	self.fillReportsMenu()
 
 

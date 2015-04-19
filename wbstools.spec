@@ -1,6 +1,6 @@
 # -*- mode: python -*-
-a = Analysis(['wbstools.py'],
-             pathex=['C:\\SkyDrive\\python\\WBSTools'],
+a = Analysis(['WBSTools.py'],
+             pathex=['/home/arnie/Dropbox/WBSTools'],
              hiddenimports=[],
              hookspath=None,
              runtime_hooks=None)
@@ -8,7 +8,7 @@ pyz = PYZ(a.pure)
 exe = EXE(pyz,
           a.scripts,
           exclude_binaries=True,
-          name='wbstools.exe',
+          name='WBSTools',
           debug=False,
           strip=None,
           upx=True,
@@ -19,4 +19,4 @@ coll = COLLECT(exe,
                a.datas,
                strip=None,
                upx=True,
-               name='wbstools')
+               name='WBSTools')

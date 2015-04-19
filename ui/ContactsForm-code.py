@@ -3,6 +3,7 @@
 ### but do not change the comments containing:
 ### 		'Dabo Code ID: XXXX',
 ### as these are needed to link the code to the objects.
+import traceback
 
 ## *!* ## Dabo Code ID: dButton-dPanel-204
 def onHit(self, evt):
@@ -63,10 +64,10 @@ def onHit(self, evt):
 def addContact(self):
 	try:
 		self.new()
-		dlg = dabo.ui.info('Output from save operation = ' + str(bizObj.save()) + '.\n')
+		dlg = dabo.ui.info('Output from save operation = ' + str(self.save()) + '.\n')
 		self.requery()
 	except:
-		dabo.ui.exclaim('Uh oh, something went wrong!  Better check the log file!')
+		dabo.ui.exclaim('Uh oh, something went wrong!  Better check the log file!  ' + str(traceback.format_exc()))
 
 def afterInitAll(self):
 	self.requery()
@@ -104,4 +105,5 @@ def initProperties(self):
 	self.SaveRestorePosition = True
 	app = self.Application
 	self.FontSize = app.PreferenceManager.getValue("fontsize")
+	self.Icon = "icons/wbs.ico"
 

@@ -13,13 +13,31 @@ import datetime
 import os
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-228
+## *!* ## Dabo Code ID: dButton-dPanel-183
 def onHit(self, evt):
 	#clearoutput button
 	app = self.Application
 	self.Form.clearHeaderOutBox()
 	self.Form.clearMissedOutBox()
 	self.Form.clearCommentOutBox()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-606
+def onHit(self, evt):
+	# Save button
+	app = self.Application
+	self.Form.saveCurrentGradeRecord()
+	self.Form.savePDF()
+	self.Form.safeDestroy()
+
+
+
+## *!* ## Dabo Code ID: dButton-dPanel-347
+def onHit(self, evt):
+	# Score button
+	app = self.Application
+	self.Form.scoreLesson()
 
 
 
@@ -31,18 +49,10 @@ def onHit(self, evt):
 
 
 
-## *!* ## Dabo Code ID: dCheckBox-dPanel-397
+## *!* ## Dabo Code ID: dCheckBox-dPanel-554
 def onHit(self, evt):
 	# Incomplete checkbox
 	self.Form.onIncompleteCheckBox()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-647
-def onHit(self, evt):
-	# Score button
-	app = self.Application
-	self.Form.scoreLesson()
 
 
 
@@ -50,13 +60,6 @@ def onHit(self, evt):
 def onHit(self, evt):
 	#resetform button
 	self.Form.onResetButton()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-788
-def onHit(self, evt):
-	# Comments button
-	self.Form.openCommentSelectorForm()
 
 
 
@@ -287,8 +290,13 @@ def buildScreenGradeReport(self):
 	self.commentLines.append('Dear ' + shortFirstName + ',\n\n')
 	for line in self.gradeRecord['commentList']:
 		self.commentLines.append(line + '\n\n')
-	self.commentLines.append('Your study helper,\n')
-	self.commentLines.append(self.gradeRecord['teacherFirstName'])
+	teacherFirst = self.gradeRecord['teacherFirstName']
+	if '&' in teacherFirst:
+		self.commentLines.append('Your study helpers,\n')
+		teacherFirst = teacherFirst.replace("&", "and")
+	else:
+		self.commentLines.append('Your study helper,\n')
+	self.commentLines.append(teacherFirst)
 
 
 def clearAnswerCheckBoxes(self):
@@ -380,6 +388,7 @@ def initProperties(self):
 	self.lessonScored = False
 	self.commentsSelected = False
 	#self.Centered = True
+	self.Icon = "icons/wbs.ico"
 
 
 def onClose(self, evt):
@@ -387,7 +396,7 @@ def onClose(self, evt):
 	import glob
 	app = self.Application
 	cwd = os.getcwd()
-	os.chdir(app.tempdir)
+	os.chdir(app.TempDir)
 	for name in glob.iglob('*.pdf'):
 		try:
 			if os.path.isfile(name):
@@ -451,6 +460,7 @@ def openCommentSelectorForm(self):
 		newForm.FailedCheckBox.Value = True
 	if self.IncompleteCheckBox.Value == True:
 		newForm.IncompleteCheckBox.Value = True
+	newForm.CenterOnParent()
 	newForm.show()
 	if newForm.Accepted:
 		#get our value, then destroy the form
@@ -512,6 +522,7 @@ def saveAttachment(self, filePath, studentRecNo, contactRecNo):
 		bizobj.Record.AttachmentData = handle.read()
 		handle.close()
 		bizobj.Record.AttachmentCreated = timeStamp
+		bizobj.Record.AttachmentType = 2
 		result = bizobj.save()
 		if result == True or result == None:
 			dabo.ui.info("Attachment saved successfully!")
@@ -519,6 +530,7 @@ def saveAttachment(self, filePath, studentRecNo, contactRecNo):
 			dabo.ui.exclaim("Uh oh, something went wrong!")
 	except Exception, e:
 		dabo.ui.exclaim("Hey, something went wrong!\n" + str(traceback.format_exc()))
+		dabo.ui.exclaim(bizobj.Record.AttachmentType)
 
 
 def saveCurrentGradeRecord(self):
@@ -599,15 +611,23 @@ def savePDF(self):
 	app = self.Application
 	self.buildPDFGradeReport()
 	print "self.gradeRecord['studentFullName'] = " + self.gradeRecord['studentFullName']
-	idx = self.gradeRecord['studentFullName'].rfind(" ")
-	print 'index = ' + str(idx)
-	if idx != None:
-		lastName = self.gradeRecord['studentFullName'][idx + 1:]
+	if self.gradeRecord['studentID'] != '' and self.gradeRecord['studentID'] != None:
+		# use StudentID for filename as long as one is present
+		studentID = self.gradeRecord['studentID']
+		grade = str(int(self.gradeRecord['grade']))
+		lesson = self.gradeRecord['lessonShortName']
+		fileName = app.TempDir + os.sep + studentID + '_' + lesson + '_' + grade + '.pdf'
 	else:
-		lastName = self.gradeRecord['studentFullName']
-	grade = str(int(self.gradeRecord['grade']))
-	lesson = self.gradeRecord['lessonShortName']
-	fileName = app.tempdir + os.sep + lastName + '_' + lesson + '_' + grade + '.pdf'
+		# if no StudentID, use last name in filename
+		idx = self.gradeRecord['studentFullName'].rfind(" ")
+		print 'index = ' + str(idx)
+		if idx != None:
+			lastName = self.gradeRecord['studentFullName'][idx + 1:]
+		else:
+			lastName = self.gradeRecord['studentFullName']
+		grade = str(int(self.gradeRecord['grade']))
+		lesson = self.gradeRecord['lessonShortName']
+		fileName = app.TempDir + os.sep + lastName + '_' + lesson + '_' + grade + '.pdf'
 	if os.path.exists(fileName):
 		try:
 			os.remove(fileName)
@@ -697,7 +717,7 @@ def savePDF(self):
 			# we have picture data, so create a temporary file, create a Platypus Image, and add it to the pictureFrame
 			try:
 				# a Platypus Image has to read data from a file, so we have to create one
-				self.tempFile = app.tempdir + os.sep + picname
+				self.tempFile = app.TempDir + os.sep + picname
 				tempFileHandle = open(self.tempFile, 'wb')
 				tempFileHandle.write(pic)
 				tempFileHandle.close()
@@ -750,7 +770,7 @@ def savePDF(self):
 	tempCursor.execute("select StudentContactsRecNo from Students where StudentRecNo = %s" % self.gradeRecord['studentRecNo'])
 	contactRecNo = tempCursor.Record.StudentContactsRecNo
 	self.saveAttachment(fileName, self.gradeRecord['studentRecNo'], contactRecNo)
-	dabo.lib.reportUtils.previewPDF(fileName)
+	#dabo.lib.reportUtils.previewPDF(fileName)
 	if os.path.isfile(self.tempFile):
 		os.remove(self.tempFile)
 
@@ -940,17 +960,9 @@ def scoreWrongAnswers(self, answerCheckBoxList, answerDataSet):
 
 
 
-## *!* ## Dabo Code ID: dButton-dPanel-758
+## *!* ## Dabo Code ID: dButton-dPanel-922
 def onHit(self, evt):
-	# SavePDF button
-	app = self.Application
-	self.Form.savePDF()
-
-
-
-## *!* ## Dabo Code ID: dButton-dPanel-980
-def onHit(self, evt):
-	# WriteToDB button
-	self.Form.saveCurrentGradeRecord()
+	# Comments button
+	self.Form.openCommentSelectorForm()
 
 

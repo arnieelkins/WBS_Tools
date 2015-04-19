@@ -42,6 +42,7 @@ iconSubDirs = []
 def getIconSubDir(arg, dirname, fnames):
 	if ".svn" not in dirname and dirname[-1] != "\\":
 		icons = glob.glob(os.path.join(dirname, "*.png"))
+		icons = glob.glob(os.path.join(dirname, "*.ico"))
 		if icons:
 			subdir = (os.path.join("resources", dirname[len(arg)+1:]), icons)
 			iconSubDirs.append(subdir)
@@ -81,8 +82,8 @@ _appComments = ("This is custom software by %s.\r\n"
 		"%s\r\n") % (_authorName, _authorEmail, _authorURL, _authorPhone)
 
 # Set your app icon here:
-_appIcon = None
-#_appIcon = "./resources/stock_addressbook.ico"
+#_appIcon = None
+_appIcon = "./icons/wbs.ico"
 
 _script = "WBSTools.py"
 manifest = open("WBSTools.exe.manifest").read()
@@ -107,9 +108,10 @@ class Target:
 data_files=[("db", glob.glob("db/*.cnxml")),
 		("ui", glob.glob("ui/*.cdxml")),
 		("ui", glob.glob("ui/*.py*")),
-		("resources", glob.glob(os.path.join(iconDir, "*.ico"))),
+		("icons", glob.glob("icons/*.ico")),
+		("icons", glob.glob("icons/*.png")),
 		("resources", glob.glob("resources/*")),
-		("reports", glob.glob("reports/*"))]
+		("reports", glob.glob("reports/*.rfxml"))]
 data_files.extend(iconSubDirs)
 data_files.extend(locales)
 
@@ -164,7 +166,7 @@ elif sys.platform.startswith("darwin"):
 				CFBundleIdentifier="com.example.WBSTools",
 				LSPrefersPPC=False,
 				NSHumanReadableCopyright=_copyright),
-			#"iconfile": "resources/logo_green.icns",
+			"iconfile": "icons/wbs.ico",
 			}}
 
 	setup(name=_appName,
@@ -175,7 +177,7 @@ elif sys.platform.startswith("darwin"):
 		author_email=_authorEmail,
 		url=_authorURL,
 		options=options,
-		#data_files=data_files,
+		data_files=data_files,
 		setup_requires=["py2app"]
 	)
 
@@ -200,4 +202,3 @@ elif sys.platform.startswith("linux"):
 		executables=[Executable(_script, compress=True,
 				appendScriptToExe=True)],
 		options=options)
-

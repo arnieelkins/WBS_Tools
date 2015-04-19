@@ -2,13 +2,17 @@
 
 import dabo.ui
 from MenFileOpen import MenFileOpen
+from MenEditPrefs import MenEditPrefs
 
 
 class FrmMain(dabo.ui.dFormMain):
 
 	def afterInit(self):
 		super(FrmMain, self).afterInit()
+		print "adding FileOpenMenu"
 		self.fillFileOpenMenu()
+		print "adding EditPrefsMenu"
+		self.fillEditPrefsMenu()
 
 
 
@@ -27,6 +31,13 @@ class FrmMain(dabo.ui.dFormMain):
 		app = self.Application
 		fileMenu = self.MenuBar.getMenu("base_file")
 		fileMenu.prependMenu(MenFileOpen(fileMenu))
+
+	def fillEditPrefsMenu(self):
+		app = self.Application
+		print "finding base_edit menu"
+		editMenu = self.MenuBar.getMenu("base_edit")
+		print "editMenu = " + str(editMenu)
+		editMenu.prependMenu(MenEditPrefs(editMenu))
 
 
 

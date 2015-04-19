@@ -52,5 +52,8 @@ class MenFileOpen(dabo.ui.dMenu):
 	def openForm(self, evt):
 		app = self.Application
 		mainForm = app.MainForm
+		print 'evt = ' + str(evt)
+		print 'EventObject = ' + str(evt.EventObject)
+		print 'Tag = ' + str(evt.EventObject.Tag)
 		frm = evt.EventObject.Tag(mainForm)
 		frm.show()

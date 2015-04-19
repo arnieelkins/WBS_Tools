@@ -43,6 +43,8 @@ def initProperties(self):
 	self.SaveRestorePosition = True
 	app = self.Application
 	self.FontSize = app.PreferenceManager.getValue("fontsize")
+	self.Icon = "icons/wbs.ico"
+
 
 def afterInitAll(self):
 	self.setupMenu()
