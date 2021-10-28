@@ -5,7 +5,7 @@
 ### as these are needed to link the code to the objects.
 
 def onHit(self, evt):
-	print 'Select Contact button pressed, opening GetFilesForContactForm'
+	print 'Contact button pressed, opening GetFilesForContactForm'
 	self.Form.openGetFilesForContactForm()
 
 
