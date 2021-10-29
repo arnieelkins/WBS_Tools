@@ -67,7 +67,7 @@ app.MainFormClass = app.ui.FrmMain
 app.PreferenceManager.setValue("fontsize", 11)
 app.NoneDisplay = ""
 # Set up a global connection to the database that all bizobjs will share:
-app.dbConnectionName = "wbs_test_user"
+app.dbConnectionName = "wbs_monro_user"
 app.dbConnection = app.getConnectionByName(app.dbConnectionName)
 #app.dbConnection.LogEvents = ['All']
 

@@ -30,7 +30,6 @@ class App(dApp):
 		self.setAppInfo("authorURL", "http://monrovia.org/wbs")
 
 		## Set app version information:
-		__version__ = "0.9.4.10"
 		self.setAppInfo("appVersion", __version__)
 		self.CryptoKey = "WeHoldTheseTruths"
 		print os.getcwd()
