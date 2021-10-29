@@ -41,7 +41,7 @@ iconDir = os.path.split(dabo.icons.__file__)[0]
 iconSubDirs = []
 def getIconSubDir(arg, dirname, fnames):
 	if ".svn" not in dirname and dirname[-1] != "\\":
-		icons = glob.glob(os.path.join(dirname, "*.png"))
+		icons = glob.glob(os.path.join(dirname, "*.ico"))
 		if icons:
 			subdir = (os.path.join("resources", dirname[len(arg)+1:]), icons)
 			iconSubDirs.append(subdir)
@@ -53,11 +53,11 @@ localeDir = "%s%slocale" % (daboDir, os.sep)
 locales = []
 def getLocales(arg, dirname, fnames):
   if ".svn" not in dirname and dirname[-1] != "\\":
-    #po_files = tuple(glob.glob(os.path.join(dirname, "*.po")))
-    mo_files = tuple(glob.glob(os.path.join(dirname, "*.mo")))
-    if mo_files:
-      subdir = os.path.join("dabo.locale", dirname[len(arg)+1:])
-      locales.append((subdir, mo_files))
+	#po_files = tuple(glob.glob(os.path.join(dirname, "*.po")))
+	mo_files = tuple(glob.glob(os.path.join(dirname, "*.mo")))
+	if mo_files:
+	  subdir = os.path.join("dabo.locale", dirname[len(arg)+1:])
+	  locales.append((subdir, mo_files))
 os.path.walk(localeDir, getLocales, localeDir)
 
 # The applications App object contains all the meta info:
@@ -81,7 +81,7 @@ _appComments = ("This is custom software by %s.\r\n"
 		"%s\r\n") % (_authorName, _authorEmail, _authorURL, _authorPhone)
 
 # Set your app icon here:
-_appIcon = None
+_appIcon = "./wbs.ico"
 #_appIcon = "./resources/stock_addressbook.ico"
 
 _script = "WBSTools.py"

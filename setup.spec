@@ -8,15 +8,15 @@ pyz = PYZ(a.pure)
 exe = EXE(pyz,
           a.scripts,
           exclude_binaries=True,
-          name='setup.exe',
+          name='WBSTools.exe',
           debug=False,
           strip=None,
           upx=True,
-          console=True )
+          console=False )
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
                a.datas,
                strip=None,
                upx=True,
-               name='setup')
+               name='WBSTools')
