@@ -6,7 +6,7 @@ from dabo.dLocalize import _
 from registerFonts import registerFonts
 import os
 
-__version__ = "0.9.5.1"
+__version__ = "0.9.5.2"
 class App(dApp):
 	def initProperties(self):
 		# Manages how preferences are saved

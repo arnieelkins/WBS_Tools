@@ -1,3 +1,10 @@
+2021-10-29
+The Reports menu option is loading a grading form? It should only load the 'print or preview' form. This is causing an error "'FrmIntroGradingForm' object has no attribute 'LLLCheckBox'", which is of course correct, but irrelevant. Why is this form being called? This does not appear to be a change in the dabo code, as dabo 0.9.14, which I had used previously, and 0.9.16, which I have now, are virtually identical. I did see a warning:
+
+C:\Python27\lib\site-packages\dabo-0.9.16-py2.7.egg\dabo\db\dCursorMixin.py:352: Warning: Invalid utf8 character string: '938C8B'
+
+But I am uncertain whether that is causing a problem. I graded a lesson, and the app created the PDF to be sent to the student, so I know PDF creation is working. (I had to update reportwriter.py to fix a problem importing Pillow-older versions of Pillow, the PIL replacement, imported it as Image, and that is not supported any more, you have to do 'from PIL import Image' instead). It creates PDFs, so that part is good. Something in the menu code is loading the wrong form? Not sure, but this is a Big Deal, so #1 priority!
+==========
 To delete a student, you must first get rid of all the grade records belonging to the student, then
 delete the student record.
 ==========

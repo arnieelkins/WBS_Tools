@@ -71,7 +71,8 @@ class FrmIntroGradingForm(FrmReportBase):
 	def onHit_butPreview(self, evt):
 		app = self.Application
 		if self.LessonRadioList.Value == 'Intro':
-			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "IntroGradingForm.rfxml")
+			self.ReportForm = os.path.join(app.HomeDirectory, "reports" +
+			os.sep + "IntroGradingForm.rfxml")
 			self.runReport("preview")
 		if self.LessonRadioList.Value == 'GHS':
 			self.ReportForm = os.path.join(app.HomeDirectory, "reports" + os.sep + "GHSGradingForm.rfxml")
