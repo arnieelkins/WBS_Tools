@@ -6,12 +6,12 @@
 
 ## *!* ## Dabo Code ID: dButton-dPanel
 def onHit(self, evt):
-	#preview
-	self.Form.onPreview(evt)
+    #preview
+    self.Form.onPreview(evt)
 
 
 ## *!* ## Dabo Code ID: dButton-dPanel-61
 def onHit(self, evt):
-	#print
-	#self.Form.onPrint(evt)
-	pass
+    #print
+    #self.Form.onPrint(evt)
+    pass

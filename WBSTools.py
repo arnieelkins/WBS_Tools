@@ -13,10 +13,10 @@ from dabo.dLocalize import _
 dabo.ui.loadUI("wx")
 #print sys.platform
 if sys.platform[:3] == "win":
-	dabo.MDI = True
+    dabo.MDI = True
 
 if sys.platform == "darwin":
-	dabo.MDI = True
+    dabo.MDI = True
 # hack for locale error on OSX
 #    import locale
 #    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
@@ -45,15 +45,15 @@ app.setup()
 app.BaseDir = app.PreferenceManager.getValue("basedir")
 #print "basedir = " + str(app.BaseDir)
 if app.BaseDir == None or app.BaseDir == '':
-		app.BaseDir = "c:\\WINDOWS\\TEMP"
-		app.PreferenceManager.setValue("basedir", app.BaseDir)
+    	app.BaseDir = "c:\\WINDOWS\\TEMP"
+    	app.PreferenceManager.setValue("basedir", app.BaseDir)
 if app.BaseDir:
-	app.tempdir = str(os.path.join(app.BaseDir, 'wbs'))
-	if not os.path.exists(app.tempdir):
-		try:
-			os.mkdir(app.tempdir)
-		except:
-			dabo.ui.exclaim('Unable to create a temp directory!!')
+    app.tempdir = str(os.path.join(app.BaseDir, 'wbs'))
+    if not os.path.exists(app.tempdir):
+    	try:
+    		os.mkdir(app.tempdir)
+    	except:
+    		dabo.ui.exclaim('Unable to create a temp directory!!')
 
 app.MainFormClass = app.ui.FrmMain
 app.PreferenceManager.setValue("fontsize", 11)
@@ -84,6 +84,6 @@ app.DefaultForm = app.ui.StudentsForm
 app.FormsToOpen = [app.DefaultForm]
 app.startupForms()
 if app.MainForm != None:
-	app.MainForm.Caption = 'WBSTools version ' + str(app.getAppInfo('appVersion') + ' user = ' + str(app.dbConnectionName))
+    app.MainForm.Caption = 'WBSTools version ' + str(app.getAppInfo('appVersion') + ' user = ' + str(app.dbConnectionName))
 # Start the application event loop:
 app.start()

@@ -6,21 +6,21 @@
 
 ## *!* ## Dabo Code ID: dCheckBox-dPanel-531
 def onHit(self, evt):
-	# Other CheckBox
-	pass
+    # Other CheckBox
+    pass
 
 
 
 ## *!* ## Dabo Code ID: dCheckBox-dPanel-620
 def onHit(self, evt):
-	# Student Info CheckBox
-	pass
+    # Student Info CheckBox
+    pass
 
 
 
 ## *!* ## Dabo Code ID: dCheckBox-dPanel
 def onHit(self, evt):
-	# Graded Lesson CheckBox
-	pass
+    # Graded Lesson CheckBox
+    pass
 
 

@@ -27,37 +27,37 @@ _authorPhone = app.getAppInfo("authorPhone")
 
 
 _appComments = ("This is custom software by %s.\r\n"
-		"\r\n"
-		"%s\r\n"
-		"%s\r\n"
-		"%s\r\n") % (_authorName, _authorEmail, _authorURL, _authorPhone)
+    	"\r\n"
+    	"%s\r\n"
+    	"%s\r\n"
+    	"%s\r\n") % (_authorName, _authorEmail, _authorURL, _authorPhone)
 
 _script = "WBSTools.py"
 
 data_files=[("db", glob.glob("db/*.cnxml")),
-		("ui", glob.glob("ui/*.cdxml")),
-		("ui", glob.glob("ui/*.py*")),
-		("resources", glob.glob(os.path.join(iconDir, "*.ico"))),
-		("resources", glob.glob("resources/*")),
-		("reports", glob.glob("reports/*"))]
+    	("ui", glob.glob("ui/*.cdxml")),
+    	("ui", glob.glob("ui/*.py*")),
+    	("resources", glob.glob(os.path.join(iconDir, "*.ico"))),
+    	("resources", glob.glob("resources/*")),
+    	("reports", glob.glob("reports/*"))]
 data_files.extend(iconSubDirs)
 data_files.extend(locales)
 
 options = {"py2app":
-			{"includes": ["App", "version", "ui", "biz", "encodings",
-				"wx", "wx.lib.calendar", "wx.gizmos", "reportlab"],
-			"optimize": 2,
-			"excludes": ["matplotlib", "Tkconstants","Tkinter","tcl",
-				"_imagingtk", "PIL._imagingtk",
-				"ImageTk", "PIL.ImageTk", "FixTk",],
-			"argv_emulation": True,
-			"resources": data_files,
-			"plist": dict(CFBundleGetInfoString=_appVersion,
-				CFBundleIdentifier="com.example.WBSTools",
-				LSPrefersPPC=False,
-				NSHumanReadableCopyright=_copyright),
-			#"iconfile": "resources/logo_green.icns",
-			}}
+    		{"includes": ["App", "version", "ui", "biz", "encodings",
+    			"wx", "wx.lib.calendar", "wx.gizmos", "reportlab"],
+    		"optimize": 2,
+    		"excludes": ["matplotlib", "Tkconstants","Tkinter","tcl",
+    			"_imagingtk", "PIL._imagingtk",
+    			"ImageTk", "PIL.ImageTk", "FixTk",],
+    		"argv_emulation": True,
+    		"resources": data_files,
+    		"plist": dict(CFBundleGetInfoString=_appVersion,
+    			CFBundleIdentifier="com.example.WBSTools",
+    			LSPrefersPPC=False,
+    			NSHumanReadableCopyright=_copyright),
+    		#"iconfile": "resources/logo_green.icns",
+    		}}
 
 setup(
     app=app,

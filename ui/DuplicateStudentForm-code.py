@@ -6,38 +6,38 @@
 
 ## *!* ## Dabo Code ID: dGrid-dPanel
 def onShow(self):
-	pass
+    pass
 
 
 
 ## *!* ## Dabo Code ID: dButton-dPanel-81
 def onHit(self, evt):
-	#No button
-	self.Form.Accepted = False
-	self.Form.Hide()
+    #No button
+    self.Form.Accepted = False
+    self.Form.Hide()
 
 
 
 ## *!* ## Dabo Code ID: dForm-top
 def afterInitAll(self):
-	print 'self.DuplicateRecordsGrid.DataSet = ', self.DuplicateRecordsGrid.DataSet
+    print 'self.DuplicateRecordsGrid.DataSet = ', self.DuplicateRecordsGrid.DataSet
 
 
 
 def initProperties(self):
-	app = self.Application
-	self.Icon = "resources/wbs.ico"
-	self.Accepted = False
-	self.BasePrefKey = app.BasePrefKey
-	self.SaveRestorePosition = True
-	self.FontSize = app.PreferenceManager.getValue('fontsize')
+    app = self.Application
+    self.Icon = "resources/wbs.ico"
+    self.Accepted = False
+    self.BasePrefKey = app.BasePrefKey
+    self.SaveRestorePosition = True
+    self.FontSize = app.PreferenceManager.getValue('fontsize')
 
 
 
 ## *!* ## Dabo Code ID: dButton-dPanel
 def onHit(self, evt):
-	#Yes button
-	self.Form.Accepted = True
-	self.Form.Hide()
+    #Yes button
+    self.Form.Accepted = True
+    self.Form.Hide()
 
 

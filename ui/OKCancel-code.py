@@ -6,7 +6,7 @@
 
 ## *!* ## Dabo Code ID: dButton-dOkCancelDialog
 def onHit(self, evt):
-	#button code
-	pass
+    #button code
+    pass
 
 
