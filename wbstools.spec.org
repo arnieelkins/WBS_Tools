@@ -1,6 +1,6 @@
 # -*- mode: python -*-
 a = Analysis(['wbstools.py'],
-             pathex=['C:\\Users\\Arnie\\SkyDrive\\python\\WBSTools'],
+             pathex=['C:\\Users\\chief\\github\\WBSTools'],
              hiddenimports=['hashlib'],
              hookspath=None,
              runtime_hooks=None)

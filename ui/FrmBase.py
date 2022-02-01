@@ -14,7 +14,7 @@ class FrmBase(datanav.Form):
 		# form load, which may be appropriate for your app (if it is reasonably
 		# certain that the dataset will be small no matter what).
 		self.RequeryOnLoad = False
-		self.Icon = "daboIcon.ico"
+		self.Icon = "wbs.ico"
 
 
 	def setupMenu(self):

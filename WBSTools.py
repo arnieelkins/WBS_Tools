@@ -5,13 +5,13 @@ remotehost = ""
 
 import sys
 import os
-import wx
+#import wx
 import dabo.ui
 from dabo.dLocalize import _
 # The loading of the UI needs to happen before the importing of the
 # db, biz, and ui packages:
 dabo.ui.loadUI("wx")
-print sys.platform
+#print sys.platform
 if sys.platform[:3] == "win":
 	dabo.MDI = True
 
@@ -43,19 +43,12 @@ app.setup()
 
 #app.PreferenceManager.setValue("basedir", None)
 app.BaseDir = app.PreferenceManager.getValue("basedir")
-print "basedir = " + str(app.BaseDir)
+#print "basedir = " + str(app.BaseDir)
 if app.BaseDir == None or app.BaseDir == '':
-	dabo.ui.info("Please choose a directory for me to use for creating temporary files, etc.")
-	response = dabo.ui.getFolder()
-	if response == None or response == '':
-		dabo.ui.exclaim("Hey, I really need a directory to write stuff!  That's it, I quit!")
-		sys.exit()
-	else:
-		print "response = ;" + str(response) + ";" 
-		app.BaseDir = response
+		app.BaseDir = "c:\\WINDOWS\\TEMP"
 		app.PreferenceManager.setValue("basedir", app.BaseDir)
 if app.BaseDir:
-	app.tempdir = str(os.path.join(app.BaseDir, 'tmp'))
+	app.tempdir = str(os.path.join(app.BaseDir, 'wbs'))
 	if not os.path.exists(app.tempdir):
 		try:
 			os.mkdir(app.tempdir)

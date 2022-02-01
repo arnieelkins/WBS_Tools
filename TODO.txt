@@ -1,3 +1,9 @@
+2021-11-04
+Icons for the menus do not appear unless the icons directory is copied to the dist directory.
+In the past, the icons directorywas not needed, as the icons are incorporated into the executable.
+The WBS icon is not appearing at all. It should be incorporated into the EXE, and it should not
+need to be added to the icons or resourced directories.
+
 2021-10-29
 The Reports menu option is loading a grading form? It should only load the 'print or preview' form. This is causing an error "'FrmIntroGradingForm' object has no attribute 'LLLCheckBox'", which is of course correct, but irrelevant. Why is this form being called? This does not appear to be a change in the dabo code, as dabo 0.9.14, which I had used previously, and 0.9.16, which I have now, are virtually identical. I did see a warning:
 
@@ -11,12 +17,12 @@ delete the student record.
 
 StudentID on reports should be Student ID
 ==========
+DONE
 Captions on the program windows should reflect the database in use, or the username, or somehow
 differentiate the connection in use.
 
 ==========
-Forms retrieve at most 1000 records at a time.  Currently there is no way to get the rest.  Need to
-find out how to deal with frames.
+Forms retrieve at most 1000 records at a time.  Currently there is no way to get the rest.  Need to find out how to deal with frames.
 
 ==========
 Deleting a contact not working - foreign key failure because records existed pointing to that contact. Need to 
@@ -39,7 +45,7 @@ that does not match the message string, which is confusing enough, but some, lik
 when the user selects a Contact after getting the message that one is necessary before
 grading, don't seem to work correctly.  The contact is saved, the result = True instead of 
 None as the message would indicate, and the user still cannot grade.  Apparently the 
-form is not being refreshed?  PARTIAL - form now updates correctly, but messages are still confusing.
+form is not being refreshed?  PARTIAL - form now updates correctly, but messages are stil confusing.
 
 
 ==========
@@ -53,7 +59,8 @@ PDFs are now saved into the Attachments table in the DB.  Need to get the Attach
 working so users can view the files associated with a student.
 
 ==========
-Fields that should be dropdowns with the ability to choose something that is not in the list:
+Fields that should be dropdowns with the ability to choose something that is not in the list. 
+If a user types in a field that is not in the list, the dropdown should add the field to the list:
 
 Occupation - student
 Religion - Christian/Islamic

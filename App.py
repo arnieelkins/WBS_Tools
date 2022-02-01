@@ -6,7 +6,7 @@ from dabo.dLocalize import _
 from registerFonts import registerFonts
 import os
 
-__version__ = "0.9.5.2"
+__version__ = "1.0.0.0"
 class App(dApp):
 	def initProperties(self):
 		# Manages how preferences are saved
@@ -31,8 +31,10 @@ class App(dApp):
 		## Set app version information:
 		self.setAppInfo("appVersion", __version__)
 		self.CryptoKey = "WeHoldTheseTruths"
-		print os.getcwd()
-		registerFonts(os.getcwd())
+		curdir = os.getcwd()
+		print curdir
+		registerFonts(curdir)
+		self.Icon = "icons\wbs.ico"
 
 	def setup(self):
 		if dabo.MDI:
