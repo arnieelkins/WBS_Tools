@@ -3,10 +3,10 @@
 import dabo
 from dabo.dApp import dApp
 from dabo.dLocalize import _
-from registerFonts import registerFonts
+from resources.registerFonts import registerFonts
 import os
 
-__version__ = "Monrovia_1.0.0.0"
+__version__ = "1.1.0.0"
 class App(dApp):
     def initProperties(self):
     	# Manages how preferences are saved
@@ -31,10 +31,8 @@ class App(dApp):
     	## Set app version information:
     	self.setAppInfo("appVersion", __version__)
     	self.CryptoKey = "WeHoldTheseTruths"
-    	curdir = os.getcwd()
-    	print curdir
-    	registerFonts(curdir)
-    	self.Icon = "resources/icons/wbs.ico"
+    	registerFonts("")
+    	self.Icon = "icons/wbs.ico"
 
     def setup(self):
     	if dabo.MDI:

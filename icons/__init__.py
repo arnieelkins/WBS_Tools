@@ -41,7 +41,7 @@ def getAvailableIcons():
     ret = []
     pth = __path__[0]
     defExt = ".%s" % defaultExtension
-    exts = ["png", "jpg", "gif", "bmp"]
+    exts = ["png", "jpg", "gif", "bmp", "ico"]
     for ext in exts:
     	ics = glob.glob("%s/*.%s" % (pth, ext))
     	ret += [os.path.split(ic)[-1].replace(defExt, "") for ic in ics]
